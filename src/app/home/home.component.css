@@ -1,0 +1,58 @@
+.box-under-parallax {
+    height: 200px;
+    background-color: aquamarine;
+}
+
+.box1 {
+    background: url("https://www.guiainfantil.com/uploads/educacion/uniformecole-p.jpg") ;
+}
+
+.box2 {
+    background: url("https://d1r091fxr1qmu2.cloudfront.net/documents/1877067/2168303/original-unifor.jpg");
+}
+
+.btn-school {
+    background: rgb(0,0,0,0.2);
+    border: 2px solid white;
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.btn-school:hover {
+    background: rgb(0,0,0,0.5);
+    border: 1px solid white;
+}
+
+.btn-school {
+    position: relative;
+    top: 50%;
+    width: 300px;
+    height: 50px;
+}
+
+.company-text .custom-mark {
+    border: 4px solid rgb(247, 31, 68);
+    height: 100%;
+    padding: 5%;
+}
+
+.company-text h2{
+    color: rgb(247, 31, 68);
+}
+
+.company-text {
+    font-weight: 600;
+}
+
+.content-location {
+    background-color: rgb(247, 31, 68);
+    color: white;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
