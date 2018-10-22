@@ -1,0 +1,25 @@
+.input {
+background-color: #f8f8f8;
+border:1.5px solid;
+border-color: #e9e9e9;
+height: 50px;
+}
+
+.label{
+    font-weight: 500;
+}
+
+.textarea {
+    background-color: #f8f8f8;
+    border:1.5px solid;
+    border-color: #e9e9e9;
+    }
+
+.btn-send {
+    border-radius: 0px;
+    border:1.5px solid;
+    border-color: #f71f44;
+    color: black;
+    height: 50px;
+    font-weight: 500;
+}
