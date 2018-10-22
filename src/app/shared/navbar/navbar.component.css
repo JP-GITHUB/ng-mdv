@@ -1,0 +1,17 @@
+.navbar {
+    background-color: rgb(247, 31, 68);
+}
+
+.navbar .menu-item {
+    color:white;
+    font-weight: 400;
+}
+
+.navbar .menu-item:hover {
+    color: #dbd6d6;
+}
+
+.btn-login {
+    width: 100%;
+    border-radius: 0;
+}

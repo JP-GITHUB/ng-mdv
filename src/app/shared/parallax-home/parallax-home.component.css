@@ -1,0 +1,19 @@
+.parallax-home { 
+    /* The image used */
+    background-image: url("https://smartslider3.com/wp-content/uploads/slider101/parallax-slider3.jpg");
+
+    /* Set a specific height */
+    height: 400px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wrapper {
+    color: white;
+    position: relative;
+    top: 30%;
+}
