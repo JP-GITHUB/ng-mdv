@@ -17,27 +17,27 @@
         <form class="form-inline">
           <div class="form-group col-md-6">
             <label for="txt_name" class="label">Nombre</label>
-            <input type="text" class="input col-md-12" id="txt_name" required>
+            <input [(ngModel)]="contactForm.name" placeholder="Nombre del contacto" class="input col-md-12" id="txt_name" required>
           </div>
 
           <div class="form-group col-md-6">
             <label for="txt_company" class="label">Empresa</label>
-            <input type="text" class="input col-md-12" id="txt_company">
+            <input [(ngModel)]="contactForm.company" placeholder="Nombre de la empresa" class="input col-md-12" id="txt_company">
           </div>
 
           <div class="form-group col-md-6">
             <label for="txt_contact" class="label">Contacto</label>
-            <input type="text" class="input col-md-12" id="txt_contact" required>
+            <input [(ngModel)]="contactForm.contact" placeholder="Telefono o Email de contacto" class="input col-md-12" id="txt_contact" required>
           </div>
 
           <div class="form-group col-md-6">
             <label for="txt_subject" class="label">Asunto</label>
-            <input type="text" class="input col-md-12" id="txt_subject">
+            <input [(ngModel)]="contactForm.subject" placeholder="Asunto" class="input col-md-12" id="txt_subject">
           </div>
 
           <div class="form-group col-md-12">
             <label for="txa_message" class="label">Mensaje</label>
-            <textarea class="textarea col-md-12" rows="5" id="txa_message"></textarea>
+            <textarea [(ngModel)]="contactForm.message" class="textarea col-md-12" rows="5" id="txa_message"></textarea>
           </div>
 
         </form>
