@@ -26,7 +26,7 @@ height: 50px;
 
 .contact h2 {
     color: rgb(247, 31, 68);
-    font-family: initial;
+    /*font-family: initial;*/
     font-weight: bold;
     line-height: 200%;
 }
