@@ -17,33 +17,33 @@
         <form class="form-inline">
           <div class="form-group col-md-6">
             <label for="txt_name" class="label">Nombre</label>
-            <input [(ngModel)]="contactForm.name" placeholder="Nombre del contacto" class="input col-md-12" id="txt_name" required>
+            <input [(ngModel)]="contactForm.name" [ngModelOptions]="{standalone: true}" placeholder="Nombre del contacto" class="input col-md-12" id="txt_name" required>
           </div>
 
           <div class="form-group col-md-6">
             <label for="txt_company" class="label">Empresa</label>
-            <input [(ngModel)]="contactForm.company" placeholder="Nombre de la empresa" class="input col-md-12" id="txt_company">
+            <input [(ngModel)]="contactForm.company" [ngModelOptions]="{standalone: true}" placeholder="Nombre de la empresa" class="input col-md-12" id="txt_company">
           </div>
 
           <div class="form-group col-md-6">
             <label for="txt_contact" class="label">Contacto</label>
-            <input [(ngModel)]="contactForm.contact" placeholder="Telefono o Email de contacto" class="input col-md-12" id="txt_contact" required>
+            <input [(ngModel)]="contactForm.contact" [ngModelOptions]="{standalone: true}" placeholder="Telefono o Email de contacto" class="input col-md-12" id="txt_contact" required>
           </div>
 
           <div class="form-group col-md-6">
             <label for="txt_subject" class="label">Asunto</label>
-            <input [(ngModel)]="contactForm.subject" placeholder="Asunto" class="input col-md-12" id="txt_subject">
+            <input [(ngModel)]="contactForm.subject" [ngModelOptions]="{standalone: true}" placeholder="Asunto" class="input col-md-12" id="txt_subject">
           </div>
 
           <div class="form-group col-md-12">
             <label for="txa_message" class="label">Mensaje</label>
-            <textarea [(ngModel)]="contactForm.message" class="textarea col-md-12" rows="5" id="txa_message"></textarea>
+            <textarea [(ngModel)]="contactForm.message" [ngModelOptions]="{standalone: true}" class="textarea col-md-12" rows="5" id="txa_message"></textarea>
           </div>
 
         </form>
         <br>
         <div class="col-md-4 text-center">
-          <button type="submit" class="btn-send btn btn-outline-light text-center col-md-9" id="btn_send">Enviar</button>
+          <button (click)="add(contactForm)" class="btn-send btn btn-outline-light text-center col-md-9" id="btn_send">Enviar</button>
         </div>
         <br>
       </div>
