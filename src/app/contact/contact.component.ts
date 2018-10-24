@@ -1,28 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactForm } from './contact';
-import { ContactService} from './contact.service';
+//import { ContactForm } from './contact';
+import { ContactService } from './contact.service';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
-  providers : [ContactService]
+  providers: [ContactService]
 })
 export class ContactComponent implements OnInit {
-  contactForm = ContactForm;
-  editForm = ContactForm;
+  contactForm: FormGroup;
 
-  constructor(private contactService : ContactService ) { }
+  constructor(
+    private contactService: ContactService,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.contactForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      company: ['', Validators.required],
+      contact: ['', Validators.required],
+      subject: ['', Validators.required],
+      message: ['', Validators.required]
+    });
   }
 
-  add(contactForm: ContactForm): void {
-    this.editForm = undefined;
-    console.log(ContactForm);
-    // The server will generate the id for this new hero
-    const newContact: ContactForm = contactForm as ContactForm;
-    this.contactService.addContact(newContact)
-      .subscribe();
+  get f() { return this.contactForm.controls; }
+
+  send(): void {
+
+    if(this.contactForm.invalid){
+      console.log("Se muricio!");
+      return;
+    }
+    
+    console.log(this.f);
   }
+
 }

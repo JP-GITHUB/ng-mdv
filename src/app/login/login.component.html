@@ -7,7 +7,6 @@
           <div class="form-group">
             <label for="" class="text-uppercase">Usuario</label>
             <input type="text" class="form-control" placeholder="">
-
           </div>
           <div class="form-group">
             <label for="" class="text-uppercase">Clave</label>
@@ -15,10 +14,11 @@
           </div>
 
           <div class="form-check">
-            <a [routerLink]="['/']" class="btn btn-login float-right ml-2">Volver</a>
+            <a [routerLink]="['/']" class="btn btn-login float-right">Volver</a>
+            <a [routerLink]="['/registro']" class="btn btn-login float-right ml-2 mr-2">Registrarse</a>
             <button type="submit" class="btn btn-login float-right">Ingresar</button>
           </div>
-        </form>
+        </form>        
       </div>
       <div class="col-md-8 banner-sec"></div>
     </div>
