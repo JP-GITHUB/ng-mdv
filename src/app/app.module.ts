@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppRoutingModule } from './app.routing.modules';
 
@@ -31,6 +32,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    DataTablesModule,
     ScrollToModule.forRoot()
   ],
   providers: [],
