@@ -30,3 +30,8 @@ height: 50px;
     font-weight: bold;
     line-height: 200%;
 }
+
+.btn-sep {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

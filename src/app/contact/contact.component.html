@@ -27,8 +27,7 @@
 
           <div class="form-group col-md-6">
             <label for="txt_contact" class="label">Contacto</label>
-            <input formControlName="contact" placeholder="Telefono o Email de contacto" class="input col-md-12" id="txt_contact"
-              required>
+            <input formControlName="contact" placeholder="Telefono o Email de contacto" class="input col-md-12" id="txt_contact" required>
           </div>
 
           <div class="form-group col-md-6">
@@ -40,9 +39,12 @@
             <label for="txa_message" class="label">Mensaje</label>
             <textarea formControlName="message" class="textarea col-md-12" rows="5" id="txa_message"></textarea>
           </div>
-          <br>
-          <div class="col-md-4 text-center">
-            <button class="btn-send btn btn-outline-light text-center col-md-9" id="btn_send">Enviar</button>
+
+          <div class="form-group col-md-12">
+            <br>
+            <div class="col-md-4 text-center btn-sep">
+              <button class="btn-send btn btn-outline-light text-center col-md-9" id="btn_send">Enviar</button>
+            </div>
           </div>
           <br>
         </form>
