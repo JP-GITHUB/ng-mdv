@@ -3,8 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 class Person {
   id: number;
-  firstName: string;
-  lastName: string;
+  name: string;
+  lastname: string;
 }
 
 class DataTablesResponse {
@@ -37,7 +37,7 @@ export class UserComponent implements OnInit {
       ajax: (dataTablesParameters: any, callback) => {
         that.http
           .post<DataTablesResponse>(
-            'https://angular-datatables-demo-server.herokuapp.com/',
+            'http://localhost:3000/users/datatables',
             dataTablesParameters, {}
           ).subscribe(resp => {
             that.persons = resp.data;
@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
             });
           });
       },
-      columns: [{ data: 'id' }, { data: 'firstName' }, { data: 'lastName' }]
+      columns: [{ data: 'id' }, { data: 'name' }, { data: 'lastname' }]
     };
   }
 

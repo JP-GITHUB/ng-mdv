@@ -12,8 +12,8 @@
     <tbody *ngIf="persons?.length != 0">
       <tr *ngFor="let person of persons">
         <td>{{ person.id }}</td>
-        <td>{{ person.firstName }}</td>
-        <td>{{ person.lastName }}</td>
+        <td>{{ person.name }}</td>
+        <td>{{ person.lastname }}</td>
       </tr>
     </tbody>
     <tbody *ngIf="persons?.length == 0">
