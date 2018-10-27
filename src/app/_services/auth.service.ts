@@ -10,7 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`http://localhost:3000/auth/login`, { email: email, password: password })
+    return this.http.post<any>(`http://localhost:3000/auth/login`, { mail: email, password: password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));

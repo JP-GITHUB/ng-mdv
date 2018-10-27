@@ -5,7 +5,7 @@
         <img src="assets/images/img-navbar.png" height="35" class="d-inline-block align-top" alt="">
       </a>
     </div>
-    <div class="collapse navbar-collapse flex-grow-1 text-right" *ngIf="navbarService.control">
+    <div class="collapse navbar-collapse flex-grow-1 text-right" *ngIf="loggedIn">
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
           <a [ngx-scroll-to]="'#company'" class="nav-link m-2 menu-item nav-active">EMPRESA</a>
@@ -21,8 +21,11 @@
         </li>
       </ul>
     </div>
-    <div class="d-flex flex-grow-1 ml-4" *ngIf="navbarService.control">
-      <a [routerLink]="['/login']" class="btn btn-outline-light btn-login">Login</a>
+    <div class="d-flex ml-4" *ngIf="!loggedIn">
+      <a [routerLink]="['/login']" class="btn btn-outline-light btn-login float-right">Login</a>
+    </div>
+    <div class="d-flex ml-4" *ngIf="loggedIn">
+      <a (click)="onLogout()" class="btn btn-outline-light btn-logout float-right">Cerrar Sesión</a>
     </div>
   </div>
 </nav>
