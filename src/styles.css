@@ -2,8 +2,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 @import "~angular-notifier/styles.css";
-
 .no-padding {
     padding-right: 0;
     padding-left: 0;
+}
+
+.dataTables_empty {
+    display: none;
 }

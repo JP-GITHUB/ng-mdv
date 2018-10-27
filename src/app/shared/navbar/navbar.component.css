@@ -15,4 +15,10 @@
 .btn-logout {
     width: 200px;
     border-radius: 0;
+    color: white !important;
+}
+
+.btn-login:hover,
+.btn-logout:hover {
+    color: rgb(0, 0, 0) !important;
 }

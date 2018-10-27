@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NotifierModule } from 'angular-notifier';
-import { DataTablesModule } from 'angular-datatables';
 
 import { AppRoutingModule } from './app.routing.modules';
 
@@ -17,6 +16,8 @@ import { ParallaxHomeComponent } from './shared/parallax-home/parallax-home.comp
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistryComponent } from './registry/registry.component';
+
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { RegistryComponent } from './registry/registry.component';
   ],
   imports: [
     AppRoutingModule,
+    UserModule,
     HttpClientModule,
     BrowserModule,
     FormsModule,
@@ -42,7 +44,6 @@ import { RegistryComponent } from './registry/registry.component';
         }
       }
     }),
-    DataTablesModule,
     ScrollToModule.forRoot()
   ],
   providers: [],
