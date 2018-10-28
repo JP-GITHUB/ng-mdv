@@ -9,7 +9,7 @@ import { UserService } from '../_services/user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements AfterViewInit, OnInit {
+export class UserComponent implements OnInit {
   @ViewChild(DataTableDirective)
   datatableElement: DataTableDirective;
 
@@ -17,8 +17,7 @@ export class UserComponent implements AfterViewInit, OnInit {
   users: User[];
 
   constructor(
-    private userService: UserService,
-    private renderer: Renderer
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -47,14 +46,6 @@ export class UserComponent implements AfterViewInit, OnInit {
         }
       }]
     };
-  }
-
-  ngAfterViewInit(): void {
-    this.renderer.listenGlobal('document', 'click', (event) => {
-      if (event.target.hasAttribute("view-person-id")) {
-       // this.router.navigate(["/person/" + event.target.getAttribute("view-person-id")]);
-      }
-    });
   }
 
   resetDatatables() {
