@@ -1,0 +1,66 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="registry-form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_name">Nombre</label>
+          <input type="email" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+            placeholder="Nombre">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="input_lastname">Apellido</label>
+          <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"
+            placeholder="Apellido">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_rut">Rut</label>
+          <input type="text" class="form-control" formControlName="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }"
+            placeholder="Rut">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_email">Email</label>
+          <input type="email" class="form-control" formControlName="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"
+            placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="input_telephone">Telefono</label>
+          <input type="text" class="form-control" formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }"
+            placeholder="Telefono">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+            placeholder="Password">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="password">Reingresar Password</label>
+          <input type="password" class="form-control" formControlName="repassword" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }"
+            placeholder="Reingresar Password">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
+          <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<button class="btn btn-md btn-outline-primary mb-3" (click)="open(content)">Agregar</button>

@@ -1,12 +1,16 @@
 <div class="container">
   <h2 class="mt-4 mb-4">Listado de usuarios</h2>
 
-  <table datatable [dtOptions]="dtOptions" class="row-border hover">
+  <app-user-add (reloadDt)="resetDatatables()"></app-user-add>
+
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="row-border hover">
     <thead>
       <tr>
         <th>ID</th>
         <th>First name</th>
         <th>Last name</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody *ngIf="users?.length != 0">
@@ -14,6 +18,8 @@
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.lastname }}</td>
+        <td><button class="btn btn-md" (click)="modalEdit.open(user.id, user.name, user.lastname)">Editar</button></td>
+        <td><button class="btn btn-md">Eliminar</button></td>
       </tr>
     </tbody>
     <tbody *ngIf="users?.length == 0">
@@ -23,3 +29,5 @@
     <tbody>
   </table>
 </div>
+
+<app-user-edit #modalEdit (reloadDt)="resetDatatables()"></app-user-edit>
