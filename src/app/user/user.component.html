@@ -9,14 +9,14 @@
         <th>Last name</th>
       </tr>
     </thead>
-    <tbody *ngIf="persons?.length != 0">
-      <tr *ngFor="let person of persons">
-        <td>{{ person.id }}</td>
-        <td>{{ person.name }}</td>
-        <td>{{ person.lastname }}</td>
+    <tbody *ngIf="users?.length != 0">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.lastname }}</td>
       </tr>
     </tbody>
-    <tbody *ngIf="persons?.length == 0">
+    <tbody *ngIf="users?.length == 0">
       <tr>
         <td colspan="3" class="no-data-available">No data!</td>
       </tr>
