@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserDeleteComponent } from './user-delete/user-delete.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [UserComponent, UserAddComponent, UserEditComponent]
+  declarations: [UserComponent, UserAddComponent, UserEditComponent, UserDeleteComponent]
 })
 export class UserModule { }

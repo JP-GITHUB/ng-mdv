@@ -95,13 +95,13 @@ export class UserEditComponent implements OnInit {
             
           }
         } else {
-          console.log('error', 'Error al registrar.');
+          console.log('error', 'Error al modificar.');
         }
         this.submitted = false;
       },
       error => {
         this.loading = false;
-        console.log('error', 'Error al registrar.');
+        console.log('error', 'Error al modificar.');
       }
     )
   }

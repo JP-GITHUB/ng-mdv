@@ -19,7 +19,7 @@
         <td>{{ user.name }}</td>
         <td>{{ user.lastname }}</td>
         <td><button class="btn btn-md" (click)="modalEdit.open(user.id, user.name, user.lastname)">Editar</button></td>
-        <td><button class="btn btn-md">Eliminar</button></td>
+        <td><button class="btn btn-md" (click)="modalDelete.open(user.id)">Eliminar</button></td>
       </tr>
     </tbody>
     <tbody *ngIf="users?.length == 0">
@@ -31,3 +31,4 @@
 </div>
 
 <app-user-edit #modalEdit (reloadDt)="resetDatatables()"></app-user-edit>
+<app-user-delete #modalDelete (reloadDt)="resetDatatables()"></app-user-delete>

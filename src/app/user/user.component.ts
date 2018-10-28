@@ -39,17 +39,12 @@ export class UserComponent implements OnInit {
           });
         });
       },
-      columns: [{ data: 'id' }, { data: 'name' }, { data: 'lastname' }, {
-        title: 'Action',
-        render: function (data: any, type: any, full: any) {
-          return 'View';
-        }
-      }]
+      columns: [{ data: 'id' }, { data: 'name' }, { data: 'lastname' }, { title: 'Action' }]
     };
   }
 
   resetDatatables() {
-    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => { 
       dtInstance.draw();
     });
   }

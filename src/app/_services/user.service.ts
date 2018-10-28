@@ -46,4 +46,10 @@ export class UserService {
       headers: this.getHeaders()
     });
   }
+
+  delete(id: Number) {
+    return this.http.delete('http://localhost:3000/users/' + id, {
+      headers: this.getHeaders()
+    });
+  }
 }
