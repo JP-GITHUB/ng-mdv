@@ -1,12 +1,11 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Eliminar usuario</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
   </div>
   <div class="modal-body">
-    <h5 class="mb-5">Estas seguro? pero seguro?!!</h5>
+    <div class="mx-auto msg-modal">
+        <h5 class="mb-5">Estas seguro? pero seguro?!!</h5>
+    </div>
 
     <button type="button" class="btn btn-danger mr-3" (click)="onSubmit()">Eliminar</button>
     <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
