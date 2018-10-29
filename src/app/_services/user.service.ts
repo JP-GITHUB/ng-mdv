@@ -33,6 +33,12 @@ export class UserService {
       )
   }
 
+  getUserById(userId: number) {
+    return this.http.get('http://localhost:3000/users/' + userId, {
+      headers: this.getHeaders()
+    });
+  }
+
   registry(form: any) {
     return this.http.post('http://localhost:3000/users/register', form);
   }

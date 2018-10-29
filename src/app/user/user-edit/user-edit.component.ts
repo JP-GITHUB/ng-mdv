@@ -12,7 +12,7 @@ import { UserService } from 'src/app/_services/user.service';
 export class UserEditComponent implements OnInit {
   @ViewChild('content') content;
 
-  private idUser: Number;
+  private userId: Number;
   closeResult: string;
 
   objMsg = {
@@ -47,25 +47,29 @@ export class UserEditComponent implements OnInit {
   }
 
   open(id, name, lastname) {
-    this.idUser = id;
+    this.userId = id;
     this.f.name.setValue(name);
     this.f.lastname.setValue(lastname);
+
+    this.userService.getUserById(Number(this.userId)).subscribe(
+      data => {
+        console.log(data);
+        if(data){
+          this.f.rut.setValue(data['rut'].trim());
+          this.f.mail.setValue(data['mail'].trim());
+          this.f.telephone.setValue(data['telephone'].trim());
+        }
+      },
+      error => {
+
+      }
+    )
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-edit-user" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.closeResult = `Dismissed`;
     });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 
   get f() { return this.editForm.controls; }
@@ -82,7 +86,7 @@ export class UserEditComponent implements OnInit {
     this.loading = true;
 
     data = {
-      id: this.idUser,
+      id: this.userId,
       name: this.f.name.value,
       lastname: this.f.lastname.value,
       rut: this.f.rut.value,
