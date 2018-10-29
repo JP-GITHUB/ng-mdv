@@ -3,13 +3,12 @@
 
   <app-user-add (reloadDt)="resetDatatables()"></app-user-add>
 
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="row-border hover">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl-users">
     <thead>
       <tr>
         <th>ID</th>
         <th>First name</th>
         <th>Last name</th>
-        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -18,8 +17,10 @@
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.lastname }}</td>
-        <td><button class="btn btn-md" (click)="modalEdit.open(user.id, user.name, user.lastname)">Editar</button></td>
-        <td><button class="btn btn-md" (click)="modalDelete.open(user.id)">Eliminar</button></td>
+        <td>
+          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(user.id, user.name, user.lastname)"><img class="img-table" src="/assets/images/pencil.png"></button>
+          <button class="btn btn-md p-0" (click)="modalDelete.open(user.id)"><img class="img-table" src="/assets/images/cancel.png"></button>
+        </td>
       </tr>
     </tbody>
     <tbody *ngIf="users?.length == 0">

@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
           });
         });
       },
-      columns: [{ data: 'id' }, { data: 'name' }, { data: 'lastname' }, { title: 'Action' }]
+      columns: [{ data: 'id' }, { data: 'name', title: 'nombre' }, { data: 'lastname', title: 'apellidos' }, { title: 'Acciones', width: '15%' }]
     };
   }
 
