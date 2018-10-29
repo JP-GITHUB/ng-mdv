@@ -58,4 +58,10 @@
       </div>
     </form>
   </div>
+
+  <div class="pl-3 pr-3">
+    <div *ngIf="objMsg.display" class="alert" [ngClass]="{'alert-success': objMsg.type == 'success', 'alert-danger': objMsg.type == 'error'}">
+      {{objMsg.msg}}
+    </div>
+  </div>
 </ng-template>

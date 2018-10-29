@@ -14,10 +14,17 @@ export class UserEditComponent implements OnInit {
 
   private idUser: Number;
   closeResult: string;
+
+  objMsg = {
+    display: false,
+    msg: '',
+    type: ''
+  }
+
+  /** Form */
   editForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: String;
 
   @Output() reloadDt: EventEmitter<any> = new EventEmitter();
 
@@ -31,11 +38,11 @@ export class UserEditComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       name: ['', Validators.required],
       lastname: ['', Validators.required],
-      rut: [''],
-      mail: [''],
-      telephone: [''],
-      password: [''],
-      repassword: ['']
+      rut: ['', Validators.required],
+      mail: ['', Validators.required],
+      telephone: ['', Validators.required],
+      password: ['', Validators.required],
+      repassword: ['', Validators.required]
     });
   }
 
@@ -44,7 +51,7 @@ export class UserEditComponent implements OnInit {
     this.f.name.setValue(name);
     this.f.lastname.setValue(lastname);
 
-    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title',  windowClass:"modal-edit-user" }).result.then((result) => {
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-edit-user" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -88,21 +95,40 @@ export class UserEditComponent implements OnInit {
     this.userService.edit(data).subscribe(
       data => {
         if (data.hasOwnProperty('status')) {
-          if(data['status']){
+          if (data['status']) {
             this.reloadDt.emit();
             this.editForm.reset();
-          }else{
-            
+
+            this.showMsg(data['msg'], 'success');
+          } else {
+            this.showMsg(data['msg'], 'error');
           }
         } else {
           console.log('error', 'Error al modificar.');
+          this.showMsg('Error al modificar.', 'error');
         }
         this.submitted = false;
       },
       error => {
         this.loading = false;
-        console.log('error', 'Error al modificar.');
+        console.log('error', error);
+        this.showMsg('Error al modificar.', 'error');
       }
-    )
+    );
+  }
+
+  showMsg(msg: string, type: string) {
+    this.objMsg.display = true;
+    this.objMsg.msg = msg;
+    this.objMsg.type = type;
+    setTimeout(() => {
+      this.clearMsg();
+    }, 3000);
+  }
+
+  clearMsg() {
+    this.objMsg.display = false;
+    this.objMsg.msg = '';
+    this.objMsg.type = '';
   }
 }
