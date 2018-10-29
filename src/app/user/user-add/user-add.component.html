@@ -1,9 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Agregar usuario</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
   </div>
   <div class="modal-body">
     <form class="registry-form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
@@ -63,4 +60,4 @@
   </div>
 </ng-template>
 
-<button class="btn btn-md btn-outline-primary mb-3" (click)="open(content)">Agregar</button>
+<button class="btn btn-outline-app mb-3" (click)="open(content)">Agregar</button>

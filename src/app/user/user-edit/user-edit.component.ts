@@ -44,7 +44,7 @@ export class UserEditComponent implements OnInit {
     this.f.name.setValue(name);
     this.f.lastname.setValue(lastname);
 
-    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title',  windowClass:"modal-edit-user" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
