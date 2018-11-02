@@ -5,6 +5,7 @@
 .navbar .menu-item {
     color: white;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .navbar .menu-item:hover {
@@ -21,4 +22,18 @@
 .btn-login:hover,
 .btn-logout:hover {
     color: rgb(0, 0, 0) !important;
+}
+
+@media (max-width: 575.98px) {
+    .btn-login,
+    .btn-logout {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .btn-login,
+    .btn-logout {
+        width: 70vw;
+    }
 }

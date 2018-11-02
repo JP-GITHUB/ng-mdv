@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistryComponent } from './registry/registry.component';
 
 import { UserModule } from './user/user.module';
+import { CatalogueModule } from './catalogue/catalogue.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UserModule } from './user/user.module';
   imports: [
     AppRoutingModule,
     UserModule,
+    CatalogueModule,
     HttpClientModule,
     BrowserModule,
     FormsModule,

@@ -1,0 +1,29 @@
+.content-img {
+    height: 300px;
+    overflow: hidden;
+}
+
+.content-list .list-group-item.active {
+    color: unset;
+    background-color: unset;
+    border-left: 2px solid #007bff;
+    font-weight: 500;
+}
+
+.content-list .list-group-flush .list-group-item {
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.content-product .img-thumbnail {
+    border-radius: 0;
+}
+
+.ddschools button, .ddschools .dropdown-menu{
+    width: 100%;
+}
+
+.list-group-item, .card-img-top, .card-title {
+    cursor: pointer;
+}
