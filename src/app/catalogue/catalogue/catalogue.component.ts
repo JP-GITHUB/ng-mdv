@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogueService } from 'src/app/_services/catalogue.service';
 import { ProductService } from 'src/app/_services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-catalogue',
@@ -14,12 +15,13 @@ export class CatalogueComponent implements OnInit {
   public activeElementSchool = null;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private catalogueService: CatalogueService,
     private productService: ProductService
   ) { }
 
   ngOnInit() {
-    let branchoffice_id = 1;
+    let branchoffice_id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.catalogueService.getShoolsByBranchoffice(branchoffice_id).subscribe(
       data => {
         if (data['status']) {
@@ -29,10 +31,12 @@ export class CatalogueComponent implements OnInit {
             this.activeElementSchool = this.schools[0];
             this.productService.getProductBySchool(this.schools[0].id).subscribe(
               data => {
-                if (data['status']) {
-                  this.products = data['obj'];
-                } else {
+                if (data) {
+                  if (data['status']) {
+                    this.products = data['obj'];
+                  } else {
 
+                  }
                 }
               }
             );
@@ -49,10 +53,12 @@ export class CatalogueComponent implements OnInit {
 
     this.productService.getProductBySchool(item.id).subscribe(
       data => {
-        if (data['status']) {
-          this.products = data['obj'];
-        } else {
+        if (data) {
+          if (data['status']) {
+            this.products = data['obj'];
+          } else {
 
+          }
         }
       }
     );

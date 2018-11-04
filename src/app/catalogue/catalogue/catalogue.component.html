@@ -22,14 +22,17 @@
     <div class="content-catalogue col-xs-12 col-sm-12 col-md-9 col-lg-10">
       <div class="container-fluid no-gutters">
         <div class="row mt-5">
+          <div *ngIf="products.length == 0">
+            <img src="https://lightningdesignsystem.com/assets/images/messaging/illustration-page-not-found.png" alt="empty">
+          </div>
           <div *ngFor="let item of products" class="col-md-3">
             <div class="content-product">
               <div class="content-img img-thumbnail">
                 <img class="card-img-top" src="http://www.margaritadelvillar.cl/wp-content/uploads/sites/1301/2016/01/confecciones-margarita-del-villar-liceo-manuel-de-salas-7.jpg"
-                  alt="Card image cap">
+                  alt="Card image cap" (click)="modalCart.open(item)">
               </div>
               <div class="card-body text-center">
-                <h5 class="card-title mb-0">{{item?.name}}</h5>
+                <h5 class="card-title mb-0" (click)="modalCart.open(item)">{{item?.name}}</h5>
                 <p class="card-desc mb-0">{{item?.Gender.description}}</p>
                 <p class="card-text mb-0">${{item?.min_price}} - ${{item?.max_price}}</p>
               </div>
@@ -39,3 +42,5 @@
       </div>
     </div>
   </div>
+
+  <app-modal-cart #modalCart></app-modal-cart>
