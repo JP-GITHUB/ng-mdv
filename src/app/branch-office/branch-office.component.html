@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="mt-4 mb-4">Listado de sucursales</h2>
+
+  <app-branch-office-add (reloadDt)="resetDatatables()"></app-branch-office-add>
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover tbl-users">
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>LOCATION</th>
+        <th>TELEPHONE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="branchOffices?.length != 0">
+      <tr *ngFor="let branchOffice of branchOffices">
+        <td>{{ branchOffice.name }}</td>
+        <td>{{ branchOffice.location }}</td>
+        <td>{{ branchOffice.telephone }}</td>
+        <td>
+          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(branchOffice.id, branchOffice.name, branchOffice.lastname)"><img class="img-table" src="/assets/images/pencil.png"></button>
+          <button class="btn btn-md p-0" (click)="modalDelete.open(branchOffice.id)"><img class="img-table" src="/assets/images/cancel.png"></button>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="branchOffices?.length == 0">
+      <tr>
+        <td colspan="3" class="no-data-available">No data!</td>
+      </tr>
+    <tbody>
+  </table>
+</div>
+
+<app-branch-office-edit #modalEdit (reloadDt)="resetDatatables()"></app-branch-office-edit>
+<app-branch-office-delete #modalDelete (reloadDt)="resetDatatables()"></app-branch-office-delete>

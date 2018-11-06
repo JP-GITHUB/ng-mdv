@@ -19,6 +19,7 @@ import { RegistryComponent } from './registry/registry.component';
 
 import { UserModule } from './user/user.module';
 import { CatalogueModule } from './catalogue/catalogue.module';
+import { BranchOfficeModule } from './branch-office/branch-office.module'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CatalogueModule } from './catalogue/catalogue.module';
     ParallaxHomeComponent,
     HomeComponent,
     LoginComponent,
-    RegistryComponent
+    RegistryComponent,
+    
   ],
   imports: [
     AppRoutingModule,
@@ -39,6 +41,7 @@ import { CatalogueModule } from './catalogue/catalogue.module';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    BranchOfficeModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {

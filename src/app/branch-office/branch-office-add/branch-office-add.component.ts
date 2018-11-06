@@ -2,46 +2,32 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import { UserService } from 'src/app/_services/user.service';
+import { BranchOfficeService } from 'src/app/_services/branch-office.service'
 
 @Component({
-  selector: 'app-user-add',
-  templateUrl: './user-add.component.html',
-  styleUrls: ['./user-add.component.css']
+  selector: 'app-branch-office-add',
+  templateUrl: './branch-office-add.component.html',
+  styleUrls: ['./branch-office-add.component.css']
 })
-export class UserAddComponent implements OnInit {
+export class BranchOfficeAddComponent implements OnInit {
 
   closeResult: string;
   addForm: FormGroup;
   loading = false; //Utilizar para deshabilitar el boton de guardar, antySpam best choice award
-  submitted = false;
-  returnUrl: String;
 
   @Output() reloadDt: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private branchOfficeService: BranchOfficeService
   ) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      rut: ['', Validators.required],
-      mail: ['', Validators.required],
+      location: ['', Validators.required],
       telephone: ['', Validators.required],
-      password: ['', Validators.required],
-      repassword: ['', Validators.required]
-    });
-  }
-
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass:"modal-add-user" }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
@@ -55,11 +41,18 @@ export class UserAddComponent implements OnInit {
     }
   }
 
-  get f() { return this.addForm.controls; }
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass:"modal-add-branch-office" }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  get dataForm() { return this.addForm.controls; }
 
   onSubmit() {
     let data;
-    this.submitted = true;
 
     if (this.addForm.invalid) {
       console.log("Invalid form");
@@ -69,16 +62,16 @@ export class UserAddComponent implements OnInit {
     this.loading = true;
 
     data = {
-      name: this.f.name.value,
-      lastname: this.f.lastname.value,
-      rut: this.f.rut.value,
-      mail: this.f.mail.value,
-      telephone: this.f.telephone.value,
-      password: this.f.password.value,
-      repassword: this.f.repassword.value
+      name: this.dataForm.name.value,
+      lastname: this.dataForm.lastname.value,
+      rut: this.dataForm.rut.value,
+      mail: this.dataForm.mail.value,
+      telephone: this.dataForm.telephone.value,
+      password: this.dataForm.password.value,
+      repassword: this.dataForm.repassword.value
     }
 
-    this.userService.add(data).subscribe(
+    this.branchOfficeService.add(data).subscribe(
       data => {
         if (data.hasOwnProperty('status')) {
           if(data['status']){
@@ -91,7 +84,6 @@ export class UserAddComponent implements OnInit {
         } else {
           console.log('error', 'Error al registrar.');
         }
-        this.submitted = false;
       },
       error => {
         this.loading = false;
