@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { NotifierService } from 'angular-notifier';
+import * as _ from 'lodash';
+
+import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
 
 @Component({
   selector: 'app-modal-cart',
@@ -9,26 +12,41 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 })
 export class ModalCartComponent implements OnInit {
   closeResult: string;
+  private productSizes: any;
 
   @ViewChild('content') content;
 
-  private nameProduct: String;
-  private descProduct: String;
-  private genderProduct: String;
+  private productId: String;
+  private productGenderId: Number;
+  private productName: String;
+  private productDesc: String;
+  private productGender: String;
+
+  /** Control Access */
+  private selectedSize: Number;
+  private quantityProdSelected: Number;
+  private priceModal: Number;
+  private txtQuantity: Number;
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private shoppingcService: ShoppingcartService,
+    private notifierService: NotifierService
   ) { }
 
   ngOnInit() {
   }
 
   open(product) {
-    this.nameProduct = product.name;
-    this.descProduct = product.description;
-    this.genderProduct = product.Gender.description;
+    this.productId = product.id;
+    this.productName = product.name;
+    this.productDesc = product.description;
+    this.productGenderId = product.Gender.id;
+    this.productGender = product.Gender.description;
 
-    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass:"modal-cart" }).result.then((result) => {
+    this.productSizes = product.ProductSizes;
+
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-cart" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -45,4 +63,26 @@ export class ModalCartComponent implements OnInit {
     }
   }
 
+  private getPrice(sizeId) {
+    this.selectedSize = Number(sizeId);
+
+    this.productSizes.forEach(element => {
+      if (Number(element.Size.id) === this.selectedSize) {
+        this.priceModal = element.price;
+        this.quantityProdSelected = element.quantity;
+      }
+    });
+  }
+
+  saveCart() {
+    this.shoppingcService.saveProductLocalStorage({
+      productId: this.productId,
+      sizeId: this.selectedSize,
+      genderId: this.productGenderId,
+      quantity: this.txtQuantity,
+      price: this.priceModal
+    });
+
+    this.notifierService.notify('success', 'Producto agregado al carrito correctamente.');
+  }
 }

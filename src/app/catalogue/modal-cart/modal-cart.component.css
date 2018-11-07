@@ -1,0 +1,17 @@
+.content-img {
+    height: 450px;
+}
+
+.content-img img {
+    height: 100%;
+}
+
+.nav_price {
+    display: inline-block;
+}
+
+.position-btn-cart {
+    position: relative;
+    top: 130px;
+    left: 200px;
+}
