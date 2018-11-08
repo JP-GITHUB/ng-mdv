@@ -32,7 +32,7 @@ export class BranchOfficeService {
         dataTablesParameters, {
           headers: this.getHeaders()
         }
-      )
+      );
   }
 
   getBranchOfficeById(branchOfficeId: number) {

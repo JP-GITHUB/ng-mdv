@@ -75,7 +75,7 @@ export class BranchOfficeEditComponent implements OnInit {
       telephone: this.dataForm.telephone.value
     }
 
-    this.modalService.edit(data).subscribe(
+    this.branchOfficeService.edit(data).subscribe(
       data => {
         if (data.hasOwnProperty('status')) {
           if (data['status']) {
@@ -98,6 +98,21 @@ export class BranchOfficeEditComponent implements OnInit {
         this.showMsg('Error al modificar.', 'error');
       }
     );
+  }
+
+  showMsg(msg: string, type: string) {
+    this.objMsg.display = true;
+    this.objMsg.msg = msg;
+    this.objMsg.type = type;
+    setTimeout(() => {
+      this.clearMsg();
+    }, 3000);
+  }
+
+  clearMsg() {
+    this.objMsg.display = false;
+    this.objMsg.msg = '';
+    this.objMsg.type = '';
   }
 
 }
