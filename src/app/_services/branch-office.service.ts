@@ -29,7 +29,9 @@ export class BranchOfficeService {
     return this.http
       .post<DataTablesResponse>(
         'http://localhost:3000/branch-offices/datatables',
-        dataTablesParameters, {}
+        dataTablesParameters, {
+          headers: this.getHeaders()
+        }
       )
   }
 
@@ -40,7 +42,9 @@ export class BranchOfficeService {
   }
 
   add(form: any) {
-    return this.http.post('http://localhost:3000/branch-offices', form);
+    return this.http.post('http://localhost:3000/branch-offices', form, {
+      headers: this.getHeaders()
+    });
   }
 
   edit(form: any) {
