@@ -15,14 +15,36 @@
           </div>
         </div>
         <div class="col-md-6">
-          <h3>{{nameProduct}}</h3>
-          <h5>{{descProduct}}</h5>
-          <p>{{genderProduct}}</p>
+          <div>
+            <h3>{{productName}}</h3>
+            <h5>{{productDesc}}</h5>
+            <p>{{productGender}}</p>
+          </div>
+
+          <div class="mb-2">
+            <label>Tallas disponibles</label> <br>
+            <select id="cbx_sizes" (change)="getPrice($event.target.value)">
+              <option *ngFor="let item of productSizes" [value]="item.Size.id">
+                {{item.Size.description}} ({{item.quantity > 0 ? 'Disponible' : 'No disponible'}})
+              </option>
+            </select>
+          </div>
+          <div>
+            <label for="" class="mr-2">Precio :</label>
+            <nav class="nav_price">{{priceModal}}</nav>
+          </div>
+          <div>
+            <label for="" class="mr-2">Cantidad :</label>
+            <input type="number" [(ngModel)]="txtQuantity" min="0" max="10">
+          </div>
+          <div>
+            <button class="btn btn-default position-btn-cart" (click)="saveCart()">AGREGAR AL CARRITO</button>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-  </div>
 </ng-template>
+
+<notifier-container></notifier-container>
