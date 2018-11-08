@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarService } from 'src/app/_services/navbar.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { DataService } from 'src/app/_services/data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public navbarService: NavbarService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataService: DataService
   ) { }
 
   ngOnInit() {
@@ -21,5 +23,9 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
+  }
+
+  displayCheckout() {
+    this.dataService.changeMessage(JSON.stringify({checkout: 'toggle'}));
   }
 }

@@ -18,7 +18,6 @@ export class ShoppingcartService {
       for (let index = 0; index < countProduct; index++) {
         const element = tmpCart[index];
         if (element.productId == product.productId && element.genderId == element.genderId && element.sizeId == product.sizeId) {
-          console.log("???")
           tmpCart[index].quantity = product.quantity;
           tmpCart[index].price = product.price;
 
@@ -32,5 +31,10 @@ export class ShoppingcartService {
     } else {
       localStorage.setItem("ProductCart", JSON.stringify([product]));
     }
+  }
+
+  getProductLocalStorage() {
+    let productCart = localStorage.getItem('ProductCart');
+    return productCart;
   }
 }
