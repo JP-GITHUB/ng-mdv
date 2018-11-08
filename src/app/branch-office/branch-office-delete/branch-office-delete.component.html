@@ -1,3 +1,13 @@
-<p>
-  branch-office-delete works!
-</p>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Eliminar sucursal</h4>
+  </div>
+  <div class="modal-body">
+    <div class="mx-auto msg-modal">
+        <h5 class="mb-5">Estas seguro? pero seguro?!!</h5>
+    </div>
+
+    <button type="button" class="btn btn-danger mr-3" (click)="onSubmit()">Eliminar</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+  </div>
+</ng-template>
