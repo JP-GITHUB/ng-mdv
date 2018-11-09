@@ -18,8 +18,8 @@
         <td>{{ branchOffice.location }}</td>
         <td>{{ branchOffice.telephone }}</td>
         <td>
-          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(branchOffice.id, branchOffice.name, branchOffice.lastname)"><img class="img-table" src="/assets/images/pencil.png"></button>
-          <button class="btn btn-md p-0" (click)="modalDelete.open(branchOffice.id)"><img class="img-table" src="/assets/images/cancel.png"></button>
+          <button class="btn btn-md btn-warning p-0 mr-3" (click)="modalEdit.open(branchOffice.id, branchOffice.name, branchOffice.lastname)"><img class="img-table" src="/assets/images/pencil.png"></button>
+          <button class="btn btn-md btn-danger p-0" (click)="modalDelete.open(branchOffice.id)"><img class="img-table" src="/assets/images/cancel.png"></button>
         </td>
       </tr>
     </tbody>

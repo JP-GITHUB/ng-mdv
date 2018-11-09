@@ -63,12 +63,8 @@ export class BranchOfficeAddComponent implements OnInit {
 
     data = {
       name: this.dataForm.name.value,
-      lastname: this.dataForm.lastname.value,
-      rut: this.dataForm.rut.value,
-      mail: this.dataForm.mail.value,
-      telephone: this.dataForm.telephone.value,
-      password: this.dataForm.password.value,
-      repassword: this.dataForm.repassword.value
+      location: this.dataForm.location.value,
+      telephone: this.dataForm.telephone.value
     }
 
     this.branchOfficeService.add(data).subscribe(
