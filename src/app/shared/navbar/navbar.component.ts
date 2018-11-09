@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { NavbarService } from 'src/app/_services/navbar.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public navbarService: NavbarService,
     private authService: AuthService,
+    private scService: ShoppingcartService,
     private location: Location,
     private router: Router
   ) { }

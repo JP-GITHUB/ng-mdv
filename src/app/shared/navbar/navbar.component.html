@@ -10,7 +10,7 @@
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
           <a [routerLink]="[ '/carrito' ]" class="nav-link m-2 menu-item nav-active">
-            <i class="fas fa-shopping-cart"></i> 0
+            <i class="fas fa-shopping-cart"></i> {{scService.total}}
           </a>
         </li>
         <li class="nav-item" *ngIf="route == 'ROOT'">

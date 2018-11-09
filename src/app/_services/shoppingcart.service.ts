@@ -1,11 +1,27 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingcartService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  private getHeaders() {
+    let localSession = localStorage.getItem('currentUser');
+    let headers = null;
+    if (localSession) {
+      let userData = JSON.parse(localSession);
+      headers = new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', 'Bearer ' + userData.token);
+    }
+
+    return headers;
+  }
 
   saveProductLocalStorage(product: any) {
     let productCart = localStorage.getItem('ProductCart');
@@ -38,7 +54,7 @@ export class ShoppingcartService {
               tmpCart[index].sizes[internalIndex].sizeId = product.sizeId;
               tmpCart[index].sizes[internalIndex].quantity = product.quantity;
               break;
-            }else{
+            } else {
               tmpCart[index].sizes.push({ sizeId: product.sizeId, textSize: product.textSize, quantity: product.quantity, price: product.price });
               break;
             }
@@ -56,7 +72,14 @@ export class ShoppingcartService {
     }
   }
 
-  setResumeProduct(resumeProduct, totalPrices){
+  get total() {
+    let productCart = localStorage.getItem('ProductCart');
+    let tmpCart = JSON.parse(productCart);
+    
+    return (tmpCart) ? tmpCart.length : 0;
+  }
+
+  setResumeProduct(resumeProduct, totalPrices) {
     localStorage.setItem("ProductCart", JSON.stringify(resumeProduct));
     localStorage.setItem("TotalPrices", totalPrices);
   }
@@ -64,5 +87,16 @@ export class ShoppingcartService {
   getProductLocalStorage() {
     let productCart = localStorage.getItem('ProductCart');
     return productCart;
+  }
+
+  clearProductLocalStorage() {
+    localStorage.removeItem('ProductCart');
+    localStorage.removeItem('TotalPrices');
+  }
+
+  makeSale(formData: any) {
+    return this.http.post('http://localhost:3000/sales', formData, {
+      headers: this.getHeaders()
+    });
   }
 }
