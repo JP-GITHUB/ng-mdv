@@ -9,13 +9,27 @@ import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
 })
 export class ShoppingcartComponent implements OnInit {
   public productSaved: any;
-  public totalProductCart = 0;
+  public productResume: any = [];
+  public totalPrices = 0;
 
   constructor(
     private shoppingcartService: ShoppingcartService
   ) { }
 
   ngOnInit() {
-    console.log(this.shoppingcartService.getProductLocalStorage())
+    this.productSaved = JSON.parse(this.shoppingcartService.getProductLocalStorage());
+
+    this.productSaved.forEach(element => {
+      let internalElement = element;
+      let sumPrice = 0;
+      for (let index = 0; index < element.sizes.length; index++) {
+        let internalSizes = element.sizes[index];
+        sumPrice += internalSizes.price;
+      }
+
+      internalElement.totalPrice = sumPrice;
+      this.totalPrices += sumPrice;
+      this.productResume.push(internalElement);
+    });
   }
 }

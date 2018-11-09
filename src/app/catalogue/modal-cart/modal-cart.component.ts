@@ -24,6 +24,7 @@ export class ModalCartComponent implements OnInit {
 
   /** Control Access */
   private selectedSize: Number;
+  private textCurrentSize: String;
   private quantityProdSelected: Number;
   private priceModal: Number;
   private txtQuantity: Number;
@@ -70,6 +71,7 @@ export class ModalCartComponent implements OnInit {
       if (Number(element.Size.id) === this.selectedSize) {
         this.priceModal = element.price;
         this.quantityProdSelected = element.quantity;
+        this.textCurrentSize = element.Size.description;
       }
     });
   }
@@ -77,8 +79,10 @@ export class ModalCartComponent implements OnInit {
   saveCart() {
     this.shoppingcService.saveProductLocalStorage({
       productId: this.productId,
+      productName: this.productName,
       sizeId: this.selectedSize,
-      genderId: this.productGenderId,
+      textSize: this.textCurrentSize,
+      genderText: this.productGender,
       quantity: this.txtQuantity,
       price: this.priceModal
     });

@@ -7,6 +7,7 @@ import { UserComponent } from './user/user.component';
 import { CatalogueComponent } from './catalogue/catalogue/catalogue.component';
 import { BranchOfficeComponent } from './branch-office/branch-office.component'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'usuario', component: UserComponent },
     { path: 'catalogo/sucursal/:id', component: CatalogueComponent },
     { path: 'sucursal', component: BranchOfficeComponent },
-    { path: 'carrito', component: ShoppingcartComponent }
+    { path: 'carrito', component: ShoppingcartComponent },
+    { path: 'checkout', component: CheckoutComponent }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
