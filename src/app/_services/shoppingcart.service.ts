@@ -17,10 +17,14 @@ export class ShoppingcartService {
 
       for (let index = 0; index < countProduct; index++) {
         const element = tmpCart[index];
-        if (element.productId == product.productId && element.genderId == element.genderId && element.sizeId == product.sizeId) {
-          tmpCart[index].quantity = product.quantity;
-          tmpCart[index].price = product.price;
-
+        if (element.productId == product.productId) {
+          for (let internalIndex = 0; internalIndex < tmpCart[index].sizes.length; internalIndex++) {
+            const element = tmpCart[index].sizes[internalIndex];
+            if (element.sizeId == product.sizeId) {
+              tmpCart[index].sizes[internalIndex].quantity = product.quantity;
+              tmpCart[index].sizes[internalIndex].price = product.price;
+            }
+          }
           localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
           return;
         }
@@ -29,7 +33,19 @@ export class ShoppingcartService {
       tmpCart.push(product);
       localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
     } else {
-      localStorage.setItem("ProductCart", JSON.stringify([product]));
+      let tmpProduct = [{
+        productId: product.productId,
+        genderId: product.genderId,
+        sizes: [
+          {
+            sizeId: product.sizeId,
+            quantity: product.quantity,
+            price: product.price
+          }
+        ]
+      }];
+      console.log(tmpProduct)
+      localStorage.setItem("ProductCart", JSON.stringify(tmpProduct));
     }
   }
 

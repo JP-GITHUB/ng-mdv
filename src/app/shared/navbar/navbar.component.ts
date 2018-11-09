@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
 import { NavbarService } from 'src/app/_services/navbar.service';
 import { AuthService } from 'src/app/_services/auth.service';
-import { DataService } from 'src/app/_services/data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,14 +11,23 @@ import { DataService } from 'src/app/_services/data.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  route: string;
 
   constructor(
     public navbarService: NavbarService,
     private authService: AuthService,
-    private dataService: DataService
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.router.events.subscribe((val) => {
+      if (this.location.path() != '') {
+        this.route = this.location.path();
+      } else {
+        this.route = 'ROOT'
+      }
+    })
   }
 
   get loggedIn() { return this.authService.isLoggedIn; }
@@ -26,6 +37,5 @@ export class NavbarComponent implements OnInit {
   }
 
   displayCheckout() {
-    this.dataService.changeMessage(JSON.stringify({checkout: 'toggle'}));
   }
 }

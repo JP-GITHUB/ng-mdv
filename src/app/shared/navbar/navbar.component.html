@@ -1,27 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
+  <div class="container-fluid">
     <div class="d-flex flex-grow-1">
       <a class="navbar-brand" [routerLink]="['/']">
         <img src="assets/images/img-navbar.png" height="35" class="d-inline-block align-top" alt="">
       </a>
     </div>
-    <div>
-      <div>
-        <nav class="nv-icon-cart pointer-hand" (click)="displayCheckout()"><i class="fas fa-shopping-cart"></i> 4</nav>
-      </div>
-    </div>
+
     <div class="collapse navbar-collapse flex-grow-1 text-right">
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
+          <a [routerLink]="[ '/carrito' ]" class="nav-link m-2 menu-item nav-active">
+            <i class="fas fa-shopping-cart"></i> 0
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="route == 'ROOT'">
           <a [ngx-scroll-to]="'#company'" class="nav-link m-2 menu-item nav-active">EMPRESA</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="route == 'ROOT'">
+          <a [ngx-scroll-to]="'#company'" class="nav-link m-2 menu-item nav-active">EMPRESA</a>
+        </li>
+        <li class="nav-item" *ngIf="route == 'ROOT'">
           <a [ngx-scroll-to]="'#clothes'" class="nav-link m-2 menu-item">UNIFORME</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="route == 'ROOT'">
           <a [ngx-scroll-to]="'#location'" class="nav-link m-2 menu-item">UBICACIÓN</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="route == 'ROOT'">
           <a [ngx-scroll-to]="'#contact'" class="nav-link m-2 menu-item">CONTACTO</a>
         </li>
       </ul>

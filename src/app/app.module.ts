@@ -20,6 +20,7 @@ import { RegistryComponent } from './registry/registry.component';
 import { UserModule } from './user/user.module';
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { BranchOfficeModule } from './branch-office/branch-office.module'
+import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { BranchOfficeModule } from './branch-office/branch-office.module'
     HomeComponent,
     LoginComponent,
     RegistryComponent,
-    
+    ShoppingcartComponent
   ],
   imports: [
     AppRoutingModule,

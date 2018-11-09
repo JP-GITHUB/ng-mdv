@@ -8,7 +8,6 @@ import { NotifierModule } from 'angular-notifier';
 
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { ModalCartComponent } from './modal-cart/modal-cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -20,6 +19,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
     FormsModule,
     NotifierModule
   ],
-  declarations: [CatalogueComponent, ModalCartComponent, CheckoutComponent]
+  declarations: [CatalogueComponent, ModalCartComponent]
 })
 export class CatalogueModule { }
