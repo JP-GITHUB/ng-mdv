@@ -31,5 +31,7 @@ export class ShoppingcartComponent implements OnInit {
       this.totalPrices += sumPrice;
       this.productResume.push(internalElement);
     });
+
+    this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
   }
 }

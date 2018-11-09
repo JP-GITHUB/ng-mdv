@@ -39,6 +39,12 @@ export class UserService {
     });
   }
 
+  getUserInToken() {
+    return this.http.get('http://localhost:3000/info_token', {
+      headers: this.getHeaders()
+    });
+  }
+
   registry(form: any) {
     return this.http.post('http://localhost:3000/users/register', form);
   }

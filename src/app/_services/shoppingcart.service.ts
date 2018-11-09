@@ -56,6 +56,11 @@ export class ShoppingcartService {
     }
   }
 
+  setResumeProduct(resumeProduct, totalPrices){
+    localStorage.setItem("ProductCart", JSON.stringify(resumeProduct));
+    localStorage.setItem("TotalPrices", totalPrices);
+  }
+
   getProductLocalStorage() {
     let productCart = localStorage.getItem('ProductCart');
     return productCart;
