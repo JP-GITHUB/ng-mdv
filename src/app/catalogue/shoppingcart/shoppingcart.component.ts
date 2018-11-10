@@ -28,7 +28,7 @@ export class ShoppingcartComponent implements OnInit {
       let sumPrice = 0;
       for (let index = 0; index < element.sizes.length; index++) {
         let internalSizes = element.sizes[index];
-        sumPrice += internalSizes.price;
+        sumPrice += (internalSizes.price * internalSizes.quantity);
       }
 
       internalElement.totalPrice = sumPrice;
@@ -51,22 +51,25 @@ export class ShoppingcartComponent implements OnInit {
     }
     localStorage.setItem("ProductCart", JSON.stringify(tmpProducts));
     this.obsProductSaved = of(tmpProducts);
+    if(tmpProducts.length == 0 ){
+      this.totalPrices = 0
+    }
 
     this.productResume = []
     tmpProducts.forEach(element => {
       let internalElement = element;
-      let sumPrice = 0;
+
       for (let index = 0; index < element.sizes.length; index++) {
         let internalSizes = element.sizes[index];
-        sumPrice += internalSizes.price;
+        sumPrice += (internalSizes.price * internalSizes.quantity);
       }
 
       internalElement.totalPrice = sumPrice;
-      this.totalPrices += sumPrice;
+      this.totalPrices = sumPrice;
       this.productResume.push(internalElement);
     });
     this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
-    this.obsProductSaved = of(this.productResume);
+    this.obsProductResume = of(this.productResume);
 
   }
 }
