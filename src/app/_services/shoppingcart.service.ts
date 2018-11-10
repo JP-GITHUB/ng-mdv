@@ -101,7 +101,7 @@ export class ShoppingcartService {
   }
 
   makeSale(formData: any) {
-    return this.http.post('http://localhost:3000/sales', formData, {
+    return this.http.post('https://api-mdv.herokuapp.com/sales', formData, {
       headers: this.getHeaders()
     });
   }

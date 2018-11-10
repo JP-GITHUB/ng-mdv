@@ -24,13 +24,13 @@ export class SaleService {
   }
 
   getSales(code: String) {
-    return this.http.get('http://localhost:3000/sales/' + code, {
+    return this.http.get('https://api-mdv.herokuapp.com/sales/' + code, {
       headers: this.getHeaders()
     });
   }
 
   deliver(code: String) {
-    return this.http.post('http://localhost:3000/sales/deliver', { code: code }, {
+    return this.http.post('https://api-mdv.herokuapp.com/sales/deliver', { code: code }, {
       headers: this.getHeaders()
     });
   }

@@ -28,7 +28,7 @@ export class BranchOfficeService {
   getDatatablesData(dataTablesParameters) {
     return this.http
       .post<DataTablesResponse>(
-        'http://localhost:3000/branch-offices/datatables',
+        'https://api-mdv.herokuapp.com/branch-offices/datatables',
         dataTablesParameters, {
           headers: this.getHeaders()
         }
@@ -36,25 +36,25 @@ export class BranchOfficeService {
   }
 
   getBranchOfficeById(branchOfficeId: number) {
-    return this.http.get('http://localhost:3000/branch-offices/' + branchOfficeId, {
+    return this.http.get('https://api-mdv.herokuapp.com/branch-offices/' + branchOfficeId, {
       headers: this.getHeaders()
     });
   }
 
   add(form: any) {
-    return this.http.post('http://localhost:3000/branch-offices', form, {
+    return this.http.post('https://api-mdv.herokuapp.com/branch-offices', form, {
       headers: this.getHeaders()
     });
   }
 
   edit(form: any) {
-    return this.http.put('http://localhost:3000/branch-offices', form, {
+    return this.http.put('https://api-mdv.herokuapp.com/branch-offices', form, {
       headers: this.getHeaders()
     });
   }
 
   delete(branchOfficeId: Number) {
-    return this.http.delete('http://localhost:3000/branch-offices/' + branchOfficeId, {
+    return this.http.delete('https://api-mdv.herokuapp.com/branch-offices/' + branchOfficeId, {
       headers: this.getHeaders()
     });
   }  

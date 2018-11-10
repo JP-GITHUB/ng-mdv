@@ -28,39 +28,39 @@ export class UserService {
   getDatatablesData(dataTablesParameters) {
     return this.http
       .post<DataTablesResponse>(
-        'http://localhost:3000/users/datatables',
+        'https://api-mdv.herokuapp.com/users/datatables',
         dataTablesParameters, {}
       )
   }
 
   getUserById(userId: number) {
-    return this.http.get('http://localhost:3000/users/' + userId, {
+    return this.http.get('https://api-mdv.herokuapp.com/users/' + userId, {
       headers: this.getHeaders()
     });
   }
 
   getUserInToken() {
-    return this.http.get('http://localhost:3000/info_token', {
+    return this.http.get('https://api-mdv.herokuapp.com/info_token', {
       headers: this.getHeaders()
     });
   }
 
   registry(form: any) {
-    return this.http.post('http://localhost:3000/users/register', form);
+    return this.http.post('https://api-mdv.herokuapp.com/users/register', form);
   }
 
   add(form: any) {
-    return this.http.post('http://localhost:3000/users', form);
+    return this.http.post('https://api-mdv.herokuapp.com/users', form);
   }
 
   edit(form: any) {
-    return this.http.put('http://localhost:3000/users', form, {
+    return this.http.put('https://api-mdv.herokuapp.com/users', form, {
       headers: this.getHeaders()
     });
   }
 
   delete(id: Number) {
-    return this.http.delete('http://localhost:3000/users/' + id, {
+    return this.http.delete('https://api-mdv.herokuapp.com/users/' + id, {
       headers: this.getHeaders()
     });
   }

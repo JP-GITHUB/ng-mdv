@@ -11,6 +11,6 @@ export class CatalogueService {
   ) { }
 
   getShoolsByBranchoffice(branchoffice_id: Number) {
-    return this.http.get('http://localhost:3000/schools/branchoffice/' + branchoffice_id);
+    return this.http.get('https://api-mdv.herokuapp.com/schools/branchoffice/' + branchoffice_id);
   }
 }

@@ -11,6 +11,6 @@ export class ProductService {
   ) { }
 
   getProductBySchool(school_id: Number) {
-    return this.http.get('http://localhost:3000/products/school/' + school_id);
+    return this.http.get('https://api-mdv.herokuapp.com/products/school/' + school_id);
   }
 }
