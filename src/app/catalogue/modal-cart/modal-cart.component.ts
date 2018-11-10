@@ -76,8 +76,8 @@ export class ModalCartComponent implements OnInit {
     });
   }
 
-  saveCart() {
-    this.shoppingcService.saveProductLocalStorage({
+  async saveCart() {
+    await this.shoppingcService.saveProductLocalStorage({
       productId: this.productId,
       productName: this.productName,
       sizeId: this.selectedSize,

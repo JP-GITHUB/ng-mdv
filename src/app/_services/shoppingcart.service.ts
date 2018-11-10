@@ -62,8 +62,11 @@ export class ShoppingcartService {
 
           localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
         } else {
-          tmpCart.push(tmpNewProduct);
-          localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
+          let dato = tmpCart.find(o => o.productId == tmpNewProduct.productId);
+          if (dato == undefined) {
+            tmpCart.push(tmpNewProduct);
+            localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
+          }
         }
         return;
       }
