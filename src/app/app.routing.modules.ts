@@ -9,15 +9,17 @@ import { BranchOfficeComponent } from './branch-office/branch-office.component'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
+import { AuthGuard } from './_guards/auth.guard';
+
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistryComponent },
-    { path: 'usuario', component: UserComponent },
+    { path: 'usuario', component: UserComponent, canActivate: [AuthGuard] },
     { path: 'catalogo/sucursal/:id', component: CatalogueComponent },
     { path: 'sucursal', component: BranchOfficeComponent },
     { path: 'carrito', component: ShoppingcartComponent },
-    { path: 'checkout', component: CheckoutComponent }
+    { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
