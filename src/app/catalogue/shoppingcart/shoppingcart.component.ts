@@ -37,6 +37,7 @@ export class ShoppingcartComponent implements OnInit {
     });
 
     this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
+    this.obsProductResume = of(this.productResume);
   }
 
   deleteProductCart(productId) {
