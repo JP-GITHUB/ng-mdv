@@ -22,6 +22,7 @@ import { CatalogueModule } from './catalogue/catalogue.module';
 import { BranchOfficeModule } from './branch-office/branch-office.module'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { RetirementComponent } from './retirement/retirement.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     LoginComponent,
     RegistryComponent,
     ShoppingcartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    RetirementComponent
   ],
   imports: [
     AppRoutingModule,

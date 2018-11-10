@@ -8,6 +8,7 @@ import { CatalogueComponent } from './catalogue/catalogue/catalogue.component';
 import { BranchOfficeComponent } from './branch-office/branch-office.component'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { RetirementComponent } from './retirement/retirement.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: 'catalogo/sucursal/:id', component: CatalogueComponent },
     { path: 'sucursal', component: BranchOfficeComponent },
     { path: 'carrito', component: ShoppingcartComponent },
-    { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] }
+    { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
+    { path: 'retiro', component: RetirementComponent, canActivate: [AuthGuard] }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

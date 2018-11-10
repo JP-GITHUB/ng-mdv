@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mt-5 mb-3">
+        <div class="form-inline">
+          <h2 class="mb-2">Retiro de productos</h2>
+          <label class="sr-only" for="input_search">Busqueda</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control" id="input_search" #inputSearch placeholder="Busqueda">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" (click)="getSales(inputSearch.value)">Go</button>
+        </div>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">rut_entirement</th>
+            <th scope="col">product_id</th>
+            <th scope="col">quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sales">
+            <th>{{item.id}}</th>
+            <td>{{item.rut_retirement}}</td>
+            <td>{{item.product_id}}</td>
+            <td>{{item.quantity}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

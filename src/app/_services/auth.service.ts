@@ -24,6 +24,24 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
+  get permissions() {
+    try {
+      let dataUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (dataUser) {
+        let permission = [];
+        dataUser['permissions'].forEach(element => {
+          permission.push(element.name);
+        });
+
+        return permission;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      return [];
+    }
+  }
+
   get isLoggedIn() {
     return (localStorage.getItem('currentUser') !== null ? true : false);
   }

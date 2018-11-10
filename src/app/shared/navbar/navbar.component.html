@@ -10,7 +10,7 @@
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
           <a [routerLink]="[ '/carrito' ]" class="nav-link m-2 menu-item nav-active">
-            <i class="fas fa-shopping-cart"></i> {{scService.total}}
+            <i class="fas fa-shopping-cart"></i> {{scService?.total}}
           </a>
         </li>
         <li class="nav-item" *ngIf="route == 'ROOT'">
@@ -29,6 +29,19 @@
           <a [ngx-scroll-to]="'#contact'" class="nav-link m-2 menu-item">CONTACTO</a>
         </li>
       </ul>
+    </div>
+    <div>
+
+      <div>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>Opciones</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <a class="dropdown-item" [routerLink]="[ '/usuario']" *ngIf="authService.permissions.indexOf('users') > -1">Usuarios</a>
+            <a class="dropdown-item" [routerLink]="[ '/retiro']" *ngIf="authService.permissions.indexOf('retirement') > -1">Retiro</a>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="d-flex ml-4" *ngIf="!loggedIn">
       <a [routerLink]="['/login']" class="btn btn-outline-light btn-login float-right">Login</a>
