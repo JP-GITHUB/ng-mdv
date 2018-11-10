@@ -12,6 +12,8 @@ export class ShoppingcartComponent implements OnInit {
   public obsProductSaved: Observable<any>;
 
   public productResume: any = [];
+  public obsProductResume: Observable<any>;
+
   public totalPrices = 0;
 
   constructor(
@@ -26,7 +28,7 @@ export class ShoppingcartComponent implements OnInit {
       let sumPrice = 0;
       for (let index = 0; index < element.sizes.length; index++) {
         let internalSizes = element.sizes[index];
-        sumPrice += internalSizes.price;
+        sumPrice += (internalSizes.price * internalSizes.quantity);
       }
 
       internalElement.totalPrice = sumPrice;
@@ -35,10 +37,13 @@ export class ShoppingcartComponent implements OnInit {
     });
 
     this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
+    this.obsProductResume = of(this.productResume);
   }
 
   deleteProductCart(productId) {
     let tmpProducts = [];
+    let sumPrice = 0;
+
     this.productSaved = JSON.parse(this.shoppingcartService.getProductLocalStorage()) as Array<any>;
     for (let index = 0; index < this.productSaved.length; index++) {
       if (this.productSaved[index].productId != productId) {
@@ -47,5 +52,25 @@ export class ShoppingcartComponent implements OnInit {
     }
     localStorage.setItem("ProductCart", JSON.stringify(tmpProducts));
     this.obsProductSaved = of(tmpProducts);
+    if(tmpProducts.length == 0 ){
+      this.totalPrices = 0
+    }
+
+    this.productResume = []
+    tmpProducts.forEach(element => {
+      let internalElement = element;
+
+      for (let index = 0; index < element.sizes.length; index++) {
+        let internalSizes = element.sizes[index];
+        sumPrice += (internalSizes.price * internalSizes.quantity);
+      }
+
+      internalElement.totalPrice = sumPrice;
+      this.totalPrices = sumPrice;
+      this.productResume.push(internalElement);
+    });
+    this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
+    this.obsProductResume = of(this.productResume);
+
   }
 }
