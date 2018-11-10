@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="row">
-          <div class="col-md-4" *ngFor="let item of productSaved">
+          <div class="col-md-4" *ngFor="let item of (obsProductSaved | async)">
             <div class="card">
               <div class="content-img mx-auto">
                 <img class="img-shoppingcart" src="https://via.placeholder.com/150" alt="Card image cap">
@@ -24,7 +24,7 @@
                   <hr>
                 </div>
 
-                <nav><i class="far fa-trash-alt"></i></nav>
+                <nav><button class="btn btn-default" (click)="deleteProductCart(item.productId)"><i class="far fa-trash-alt"></i></button></nav>
               </div>
             </div>
           </div>
