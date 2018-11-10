@@ -1,0 +1,46 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Editar Sucursal</h4>
+  </div>
+  <div class="modal-body">
+    <form class="registry-form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_name">Nombre</label>
+          <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+            placeholder="Nombre">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_location">Dirección</label>
+          <input type="text" class="form-control" formControlName="location" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }"
+            placeholder="Dirección">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_telephone">Telefono</label>
+          <input type="number" class="form-control" formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"
+            placeholder="Telefono">
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
+          <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="pl-3 pr-3">
+    <div *ngIf="objMsg.display" class="alert" [ngClass]="{'alert-success': objMsg.type == 'success', 'alert-danger': objMsg.type == 'error'}">
+      {{objMsg.msg}}
+    </div>
+  </div>
+</ng-template>

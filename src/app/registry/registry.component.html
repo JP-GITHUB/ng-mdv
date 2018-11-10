@@ -1,0 +1,56 @@
+<div class="registry-block">
+  <div class="container">
+    <div class="row content-registry">
+      <div class="col-md-12 registry-sec">
+        <h2 class="text-center">Registro</h2>
+        <form class="registry-form" [formGroup]="registryForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input_name">Nombre</label>
+              <input type="email" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Nombre">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="input_lastname">Apellido</label>
+              <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" placeholder="Apellido">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input_rut">Rut</label>
+              <input type="text" class="form-control" formControlName="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }" placeholder="Rut">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input_email">Email</label>
+              <input type="email" class="form-control" formControlName="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" placeholder="Email">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="input_telephone">Telefono</label>
+              <input type="text" class="form-control" formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" placeholder="Telefono">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="password">Reingresar Password</label>
+              <input type="password" class="form-control" formControlName="repassword" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" placeholder="Reingresar Password">
+            </div>
+          </div>
+
+          <div class="">
+            <button type="submit" class="btn btn-registry mr-2" [disabled]="loading">Enviar</button>
+            <a [routerLink]="['/']" class="btn btn-registry">Volver</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <notifier-container></notifier-container>

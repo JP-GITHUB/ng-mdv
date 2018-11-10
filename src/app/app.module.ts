@@ -1,23 +1,60 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { NotifierModule } from 'angular-notifier';
+
+import { AppRoutingModule } from './app.routing.modules';
 
 import { AppComponent } from './app.component';
+import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ParallaxHomeComponent } from './shared/parallax-home/parallax-home.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { RegistryComponent } from './registry/registry.component';
+
+import { UserModule } from './user/user.module';
+import { CatalogueModule } from './catalogue/catalogue.module';
+import { BranchOfficeModule } from './branch-office/branch-office.module'
+import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { RetirementComponent } from './retirement/retirement.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ContactComponent,
     NavbarComponent,
     ParallaxHomeComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    RegistryComponent,
+    ShoppingcartComponent,
+    CheckoutComponent,
+    RetirementComponent
   ],
   imports: [
+    AppRoutingModule,
+    UserModule,
+    CatalogueModule,
+    HttpClientModule,
     BrowserModule,
-    NgbModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    BranchOfficeModule,
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'right',
+        }
+      }
+    }),
+    ScrollToModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

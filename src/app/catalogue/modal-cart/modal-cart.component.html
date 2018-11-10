@@ -1,0 +1,53 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ficha del producto</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="content-img">
+            <img src="http://www.margaritadelvillar.cl/wp-content/uploads/sites/1301/2016/01/confecciones-margarita-del-villar-liceo-manuel-de-salas-7.jpg"
+              alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <h3>{{productName}}</h3>
+            <h5>{{productDesc}}</h5>
+            <p>{{productGender}}</p>
+          </div>
+
+          <div class="mb-2">
+            <label>Tallas disponibles</label> <br>
+            <select id="cbx_sizes" #cbx_sizes (change)="getPrice($event.target.value)">
+              <option value=0>Seleccione una talla</option>
+              <option *ngFor="let item of productSizes" [value]="item.Size.id">
+                Tall {{item.Size.description}} ({{item.quantity > 0 ? 'Disponible' : 'No disponible'}})
+              </option>
+            </select>
+          </div>
+          <div>
+            <label for="" class="mr-2">Precio :</label>
+            <nav class="nav_price">{{priceModal ? priceModal : 0}}</nav>
+          </div>
+          <div>
+            <label for="" class="mr-2">Cantidad :</label>
+            <input type="number" [(ngModel)]="txtQuantity" min="0" max="{{quantityProdSelected}}">
+          </div>
+          <div>
+            <button class="btn btn-default position-btn-cart" [disabled]="cbx_sizes.value == 0 || txtQuantity == 0 || txtQuantity == undefined"
+              (click)="saveCart()">AGREGAR
+              AL CARRITO</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<notifier-container></notifier-container>

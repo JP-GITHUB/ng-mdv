@@ -1,8 +1,53 @@
 @import "~reset-css/reset.css";
 @import "~bootstrap/dist/css/bootstrap.css";
-@import "~font-awesome/css/font-awesome.css";
-
+@import "~angular-notifier/styles.css";
 .no-padding {
     padding-right: 0;
     padding-left: 0;
+}
+
+.pointer-hand {
+    cursor: pointer
+}
+
+.dataTables_empty {
+    display: none;
+}
+
+.btn-outline-app {
+    color: #f71f44;
+    background-color: transparent;
+    background-image: none;
+    border-color: #f71f44;
+    border-radius: 0;
+}
+
+.btn-outline-app:hover {
+    color: #ffffff;
+    background-color: #f71f44;
+}
+
+/* Modal NG-BOOTSTRAP Styles */
+
+.modal-content {
+    border-radius: 0;
+}
+
+.modal-header {
+    background-color: #f71f44;
+    color: #ffffff;
+    border-radius: 0;
+}
+
+.modal-cart .modal-dialog {
+    max-width: 900px;
+}
+
+/* Modal NG-BOOTSTRAP size */
+
+@media (min-width: 576px) {
+    .modal-add-user .modal-dialog,
+    .modal-edit-user .modal-dialog {
+        max-width: 600px;
+    }
 }

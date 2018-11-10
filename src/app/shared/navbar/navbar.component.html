@@ -1,31 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
+  <div class="container-fluid">
     <div class="d-flex flex-grow-1">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" [routerLink]="['/']">
         <img src="assets/images/img-navbar.png" height="35" class="d-inline-block align-top" alt="">
       </a>
     </div>
+
     <div class="collapse navbar-collapse flex-grow-1 text-right">
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
-          <a href="#" class="nav-link m-2 menu-item nav-active">EMPRESA</a>
+          <a [routerLink]="[ '/carrito' ]" class="nav-link m-2 menu-item nav-active">
+            <i class="fas fa-shopping-cart"></i> {{scService?.total}}
+          </a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link m-2 menu-item">UNIFORME</a>
+        <li class="nav-item" *ngIf="route == 'ROOT'">
+          <a [ngx-scroll-to]="'#company'" class="nav-link m-2 menu-item nav-active">EMPRESA</a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link m-2 menu-item">PROMOCIONES</a>
+        <li class="nav-item" *ngIf="route == 'ROOT'">
+          <a [ngx-scroll-to]="'#company'" class="nav-link m-2 menu-item nav-active">EMPRESA</a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link m-2 menu-item">UBICACIÓN</a>
+        <li class="nav-item" *ngIf="route == 'ROOT'">
+          <a [ngx-scroll-to]="'#clothes'" class="nav-link m-2 menu-item">UNIFORME</a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link m-2 menu-item">CONTACTO</a>
+        <li class="nav-item" *ngIf="route == 'ROOT'">
+          <a [ngx-scroll-to]="'#location'" class="nav-link m-2 menu-item">UBICACIÓN</a>
+        </li>
+        <li class="nav-item" *ngIf="route == 'ROOT'">
+          <a [ngx-scroll-to]="'#contact'" class="nav-link m-2 menu-item">CONTACTO</a>
         </li>
       </ul>
     </div>
-    <div class="d-flex flex-grow-1 ml-4">
-      <button type="button" class="btn btn-outline-light btn-login">Login</button>
+    <div>
+
+      <div>
+        <div *ngIf="loggedIn" ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>Opciones</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <a class="dropdown-item" [routerLink]="[ '/usuario']" *ngIf="authService.permissions.indexOf('users') > -1">Usuarios</a>
+            <a class="dropdown-item" [routerLink]="[ '/retiro']" *ngIf="authService.permissions.indexOf('retirement') > -1">Retiro</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="d-flex ml-4" *ngIf="!loggedIn">
+      <a [routerLink]="['/login']" class="btn btn-outline-light btn-login float-right">Login</a>
+    </div>
+    <div class="d-flex ml-4" *ngIf="loggedIn">
+      <a (click)="onLogout()" class="btn btn-outline-light btn-logout float-right">Cerrar Sesión</a>
     </div>
   </div>
 </nav>

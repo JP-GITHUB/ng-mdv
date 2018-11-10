@@ -1,0 +1,30 @@
+<div class="login-block">
+  <div class="container">
+    <div class="row content-login">
+      <div class="col-md-4 login-sec">
+        <h2 class="text-center">Ingresar ahora</h2>
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="" class="text-uppercase">Email</label>
+            <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="" class="text-uppercase">Clave</label>
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="">
+          </div>
+
+          <div class="">
+            <a [routerLink]="['/registro']" class="btn btn-login mr-2">Registrarse</a>
+            <button type="submit" class="btn btn-login" [disabled]="loading">Ingresar</button>
+          </div>
+          <br>
+          <div>
+            <a [routerLink]="['/']" class="btn btn-login">Volver</a>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-8 banner-sec d-none d-md-block d-lg-block"></div>
+    </div>
+  </div>
+
+  <notifier-container></notifier-container>

@@ -3,15 +3,41 @@
 }
 
 .navbar .menu-item {
-    color:white;
+    color: white;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .navbar .menu-item:hover {
     color: #dbd6d6;
 }
 
-.btn-login {
-    width: 100%;
+.btn-login,
+.btn-logout {
+    width: 200px;
     border-radius: 0;
+    color: white !important;
+}
+
+.btn-login:hover,
+.btn-logout:hover {
+    color: rgb(0, 0, 0) !important;
+}
+
+.nv-icon-cart:hover {
+    color: #3c3f42
+}
+
+@media (max-width: 575.98px) {
+    .btn-login,
+    .btn-logout {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .btn-login,
+    .btn-logout {
+        width: 70vw;
+    }
 }

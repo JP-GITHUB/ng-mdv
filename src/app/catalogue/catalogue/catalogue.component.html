@@ -1,0 +1,46 @@
+<div class="container-fluid pr-5 pl-5">
+  <div class="row mt-4">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+      <div class="content-list d-none d-sm-block">
+        <h3 class="mb-4 display-4">Colegios</h3>
+        <ul class="list-group list-group-flush">
+          <li *ngIf="schools.length == 0">Sin colegios para mostrar</li>
+          <li class="list-group-item" *ngFor="let item of schools" [ngClass]="{'active': activeElementSchool == item}" (click)="changeSchool(item);">
+            {{item.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div ngbDropdown class="ddschools d-inline-block d-block d-sm-none">
+          <button class="btn btn-outline-primary" id="ddmobile_schools" ngbDropdownToggle>Seleccionar Colegio</button>
+          <div ngbDropdownMenu aria-labelledby="ddmobile_schools">
+            <button class="dropdown-item" *ngFor="let item of schools" (click)="changeSchool(item);">{{item.name}}</button>
+          </div>
+        </div>
+    </div>
+
+    <div class="content-catalogue col-xs-12 col-sm-12 col-md-9 col-lg-10">
+      <div class="container-fluid no-gutters">
+        <div class="row mt-5">
+          <div *ngIf="products.length == 0">
+            <img src="https://lightningdesignsystem.com/assets/images/messaging/illustration-page-not-found.png" alt="empty">
+          </div>
+          <div *ngFor="let item of products" class="col-md-3">
+            <div class="content-product">
+              <div class="content-img img-thumbnail">
+                <img class="card-img-top" src="http://www.margaritadelvillar.cl/wp-content/uploads/sites/1301/2016/01/confecciones-margarita-del-villar-liceo-manuel-de-salas-7.jpg"
+                  alt="Card image cap" (click)="modalCart.open(item)">
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title mb-0" (click)="modalCart.open(item)">{{item?.name}}</h5>
+                <p class="card-desc mb-0">{{item?.Gender.description}}</p>
+                <p class="card-text mb-0">${{item?.min_price}} - ${{item?.max_price}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-modal-cart #modalCart></app-modal-cart>

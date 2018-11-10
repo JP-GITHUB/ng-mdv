@@ -1,0 +1,54 @@
+<div id="contact" class="content-contact">
+  <div class="container">
+    <div class="row contact">
+      <div class="col-md-4 col-12">
+        <h2>Contacto</h2>
+        <h4>Margarita del Villar</h4>
+        <h4>Confecciones</h4>
+        <ul>
+          <li>Celular:</li>
+          <li>+56 9 9165 2184</li>
+          <li>+56 9 9222 1890</li>
+          <li>E-mail:</li>
+          <li>m.caceres@margaritadelvillar.cl</li> 
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <form class="form-inline" [formGroup]="contactForm" (ngSubmit)="send()">
+          <div class="form-group col-md-6">
+            <label for="txt_name" class="label">Nombre</label>
+            <input formControlName="name" placeholder="Nombre del contacto" class="input col-md-12" required>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="txt_company" class="label">Empresa</label>
+            <input formControlName="company" placeholder="Nombre de la empresa" class="input col-md-12" id="txt_company">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="txt_contact" class="label">Contacto</label>
+            <input formControlName="contact" placeholder="Telefono o Email de contacto" class="input col-md-12" id="txt_contact" required>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="txt_subject" class="label">Asunto</label>
+            <input formControlName="subject" placeholder="Asunto" class="input col-md-12" id="txt_subject">
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="txa_message" class="label">Mensaje</label>
+            <textarea formControlName="message" class="textarea col-md-12" rows="5" id="txa_message"></textarea>
+          </div>
+
+          <div class="form-group col-md-12">
+            <br>
+            <div class="col-md-4 text-center btn-sep">
+              <button class="btn-send btn btn-outline-light text-center col-md-9" id="btn_send">Enviar</button>
+            </div>
+          </div>
+          <br>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

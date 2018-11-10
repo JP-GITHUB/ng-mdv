@@ -1,0 +1,15 @@
+.shoppingcart {
+    position: absolute;
+    background-color: white;
+    height: 80vh;
+    width: 90vw;
+    z-index: 999;
+}
+
+.content-img {
+    height: 150px;
+}
+
+.img-shoppingcart {
+    max-height: 200px;
+}
