@@ -31,11 +31,11 @@
           </div>
           <div>
             <label for="" class="mr-2">Precio :</label>
-            <nav class="nav_price">{{priceModal}}</nav>
+            <nav class="nav_price">{{priceModal ? priceModal : 0}}</nav>
           </div>
           <div>
             <label for="" class="mr-2">Cantidad :</label>
-            <input type="number" [(ngModel)]="txtQuantity" min="0" max="10">
+            <input type="number" [(ngModel)]="txtQuantity" min="0" max="{{quantityProdSelected}}">
           </div>
           <div>
             <button class="btn btn-default position-btn-cart" (click)="saveCart()">AGREGAR AL CARRITO</button>
