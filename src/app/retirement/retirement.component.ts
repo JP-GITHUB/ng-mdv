@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SaleService } from '../_services/sale.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-retirement',
@@ -7,32 +8,41 @@ import { SaleService } from '../_services/sale.service';
   styleUrls: ['./retirement.component.css']
 })
 export class RetirementComponent implements OnInit {
-  public sales: any;
+  public sale: any;
+  private currentCode;
 
   constructor(
-    private saleService: SaleService
+    private saleService: SaleService,
+    private notifierService: NotifierService
   ) { }
 
   ngOnInit() {
   }
 
-  getSales(rut: String) {
-    this.sales = [
-      {
-        id: 1,
-        rut_retirement: '0017665721-9',
-        shoppingcart_id: 1,
-        product_id: 1,
-        quantity: 4
-      },
-      {
-        id: 2,
-        rut_retirement: '0017665721-9',
-        shoppingcart_id: 2,
-        product_id: 2,
-        quantity: 4
+  getSales(code: String) {
+    this.currentCode = code;
+    this.saleService.getSales(code).subscribe(
+      (data) => {
+        if (data['delivered']) {
+          this.notifierService.notify('warning', 'La venta ya ha sido entregada anteriormente.');
+        } else {
+          this.sale = data;
+        }
+
       }
-    ]
+    );
+  }
+
+  deliver() {
+    this.saleService.deliver(this.currentCode).subscribe(
+      (resp) => {
+        if (resp['status']) {
+          this.notifierService.notify('success', resp['msg']);
+        } else {
+          this.notifierService.notify('error',  resp['msg']);
+        }
+      }
+    );
   }
 
 }

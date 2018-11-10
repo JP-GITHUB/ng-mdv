@@ -7,32 +7,59 @@
           <label class="sr-only" for="input_search">Busqueda</label>
           <div class="input-group mb-2 mr-sm-2">
             <div class="input-group-prepend">
-              <div class="input-group-text">@</div>
+              <div class="input-group-text"><i class="fas fa-search"></i></div>
             </div>
             <input type="text" class="form-control" id="input_search" #inputSearch placeholder="Busqueda">
           </div>
-          <button type="submit" class="btn btn-primary mb-2" (click)="getSales(inputSearch.value)">Go</button>
+          <button type="submit" class="btn btn-primary mb-2" (click)="getSales(inputSearch.value)">Buscar</button>
         </div>
       </div>
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">rut_entirement</th>
-            <th scope="col">product_id</th>
-            <th scope="col">quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of sales">
-            <th>{{item.id}}</th>
-            <td>{{item.rut_retirement}}</td>
-            <td>{{item.product_id}}</td>
-            <td>{{item.quantity}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div *ngIf="sale">
+        <div class="card mb-4">
+          <div class="card-header">
+            Detalles del Retiro
+          </div>
+          <div class="card-body">
+            <div>
+              <label class="mr-2">Nombre de quien retira: </label> <label>{{sale.name_retirement}}</label>
+            </div>
+            <div>
+              <label class="mr-2">Rut de quien retira: </label> <label>{{sale.rut_retirement}}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header">
+            Productos
+          </div>
+          <div class="card-body">
+            <ul class="list-group" *ngIf="sale?.Shoppingcart.Products.length > 0">
+              <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of sale?.Shoppingcart.Products">
+
+                <div class="col-md-4">
+                  {{ item.name }}
+                </div>
+                <div class="col-md-4">
+                  {{ item.description }}
+                </div>
+                <div class="col-md-3">
+                  {{ item.ProductCart.price }}
+                </div>
+                <span class="badge badge-primary badge-pill">{{item.ProductCart.shop_quantity}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-success" (click)="deliver()">Guardar</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
+<notifier-container></notifier-container>

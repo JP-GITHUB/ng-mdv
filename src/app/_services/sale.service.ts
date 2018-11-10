@@ -23,8 +23,14 @@ export class SaleService {
     return headers;
   }
 
-  getSales(rut: String) {
-    return this.http.get('http://localhost:3000/sales/' + rut, {
+  getSales(code: String) {
+    return this.http.get('http://localhost:3000/sales/' + code, {
+      headers: this.getHeaders()
+    });
+  }
+
+  deliver(code: String) {
+    return this.http.post('http://localhost:3000/sales/deliver', { code: code }, {
       headers: this.getHeaders()
     });
   }
