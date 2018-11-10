@@ -35,7 +35,7 @@
         <h2>Tu carrito</h2>
         <div class="card">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let item of productResume">
+            <li class="list-group-item" *ngFor="let item of (obsProductSaved | async)">
               {{ item.productName }} | ${{ item.totalPrice }}
             </li>
           </ul>

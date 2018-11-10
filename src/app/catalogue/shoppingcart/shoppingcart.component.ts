@@ -12,6 +12,8 @@ export class ShoppingcartComponent implements OnInit {
   public obsProductSaved: Observable<any>;
 
   public productResume: any = [];
+  public obsProductResume: Observable<any>;
+
   public totalPrices = 0;
 
   constructor(
@@ -39,6 +41,8 @@ export class ShoppingcartComponent implements OnInit {
 
   deleteProductCart(productId) {
     let tmpProducts = [];
+    let sumPrice = 0;
+
     this.productSaved = JSON.parse(this.shoppingcartService.getProductLocalStorage()) as Array<any>;
     for (let index = 0; index < this.productSaved.length; index++) {
       if (this.productSaved[index].productId != productId) {
@@ -47,5 +51,22 @@ export class ShoppingcartComponent implements OnInit {
     }
     localStorage.setItem("ProductCart", JSON.stringify(tmpProducts));
     this.obsProductSaved = of(tmpProducts);
+
+    this.productResume = []
+    tmpProducts.forEach(element => {
+      let internalElement = element;
+      let sumPrice = 0;
+      for (let index = 0; index < element.sizes.length; index++) {
+        let internalSizes = element.sizes[index];
+        sumPrice += internalSizes.price;
+      }
+
+      internalElement.totalPrice = sumPrice;
+      this.totalPrices += sumPrice;
+      this.productResume.push(internalElement);
+    });
+    this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
+    this.obsProductSaved = of(this.productResume);
+
   }
 }
