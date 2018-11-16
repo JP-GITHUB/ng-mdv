@@ -13,6 +13,7 @@ export class CatalogueComponent implements OnInit {
   public products = [];
 
   public activeElementSchool = null;
+  public hostImages = 'http://localhost:3000';
 
   constructor(
     private activatedRoute: ActivatedRoute,

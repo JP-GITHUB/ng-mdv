@@ -11,6 +11,8 @@ import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
   styleUrls: ['./modal-cart.component.css']
 })
 export class ModalCartComponent implements OnInit {
+  public hostImages = 'http://localhost:3000';
+  
   closeResult: string;
   private productSizes: any;
 
@@ -21,6 +23,8 @@ export class ModalCartComponent implements OnInit {
   private productName: String;
   private productDesc: String;
   private productGender: String;
+
+  private productImages: any;
 
   /** Control Access */
   private selectedSize: Number;
@@ -44,6 +48,8 @@ export class ModalCartComponent implements OnInit {
     this.productDesc = product.description;
     this.productGenderId = product.Gender.id;
     this.productGender = product.Gender.description;
+
+    this.productImages = product.ProductImages;
 
     this.productSizes = product.ProductSizes;
 
