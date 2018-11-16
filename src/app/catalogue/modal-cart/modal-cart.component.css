@@ -4,6 +4,7 @@
 
 .content-img img {
     height: 100%;
+    max-width: 100%;
 }
 
 .nav_price {

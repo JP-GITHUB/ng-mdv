@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { DataTablesResponse } from '../_classes/data-tables-response';
+
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  public url: String;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(public http: HttpClient) {
+    this.url = environment.apiEndPoint;
+  }
 
   private getHeaders() {
     let localSession = localStorage.getItem('currentUser');
@@ -28,39 +30,39 @@ export class UserService {
   getDatatablesData(dataTablesParameters) {
     return this.http
       .post<DataTablesResponse>(
-        'https://api-mdv.herokuapp.com/users/datatables',
+        this.url + '/users/datatables',
         dataTablesParameters, {}
       )
   }
 
   getUserById(userId: number) {
-    return this.http.get('https://api-mdv.herokuapp.com/users/' + userId, {
+    return this.http.get(this.url + '/users/' + userId, {
       headers: this.getHeaders()
     });
   }
 
   getUserInToken() {
-    return this.http.get('https://api-mdv.herokuapp.com/info_token', {
+    return this.http.get(this.url + '/info_token', {
       headers: this.getHeaders()
     });
   }
 
   registry(form: any) {
-    return this.http.post('https://api-mdv.herokuapp.com/users/register', form);
+    return this.http.post(this.url + '/users/register', form);
   }
 
   add(form: any) {
-    return this.http.post('https://api-mdv.herokuapp.com/users', form);
+    return this.http.post(this.url + '/users', form);
   }
 
   edit(form: any) {
-    return this.http.put('https://api-mdv.herokuapp.com/users', form, {
+    return this.http.put(this.url + '/users', form, {
       headers: this.getHeaders()
     });
   }
 
   delete(id: Number) {
-    return this.http.delete('https://api-mdv.herokuapp.com/users/' + id, {
+    return this.http.delete(this.url + '/users/' + id, {
       headers: this.getHeaders()
     });
   }

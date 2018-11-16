@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingcartService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  public url: String;
+
+  constructor(public http: HttpClient) {
+    this.url = environment.apiEndPoint;
+  }
 
   private getHeaders() {
     let localSession = localStorage.getItem('currentUser');
@@ -101,7 +105,7 @@ export class ShoppingcartService {
   }
 
   makeSale(formData: any) {
-    return this.http.post('https://api-mdv.herokuapp.com/sales', formData, {
+    return this.http.post(this.url + '/sales', formData, {
       headers: this.getHeaders()
     });
   }

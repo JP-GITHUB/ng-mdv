@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { DataTablesResponse } from '../_classes/data-tables-response';
+
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BranchOfficeService {
+  public url: String;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(public http: HttpClient) {
+    this.url = environment.apiEndPoint;
+  }
   
   private getHeaders() {
     let localSession = localStorage.getItem('currentUser');
@@ -28,7 +30,7 @@ export class BranchOfficeService {
   getDatatablesData(dataTablesParameters) {
     return this.http
       .post<DataTablesResponse>(
-        'https://api-mdv.herokuapp.com/branch-offices/datatables',
+        this.url + '/branch-offices/datatables',
         dataTablesParameters, {
           headers: this.getHeaders()
         }
@@ -36,25 +38,25 @@ export class BranchOfficeService {
   }
 
   getBranchOfficeById(branchOfficeId: number) {
-    return this.http.get('https://api-mdv.herokuapp.com/branch-offices/' + branchOfficeId, {
+    return this.http.get(this.url + '/branch-offices/' + branchOfficeId, {
       headers: this.getHeaders()
     });
   }
 
   add(form: any) {
-    return this.http.post('https://api-mdv.herokuapp.com/branch-offices', form, {
+    return this.http.post(this.url + '/branch-offices', form, {
       headers: this.getHeaders()
     });
   }
 
   edit(form: any) {
-    return this.http.put('https://api-mdv.herokuapp.com/branch-offices', form, {
+    return this.http.put(this.url + '/branch-offices', form, {
       headers: this.getHeaders()
     });
   }
 
   delete(branchOfficeId: Number) {
-    return this.http.delete('https://api-mdv.herokuapp.com/branch-offices/' + branchOfficeId, {
+    return this.http.delete(this.url + '/branch-offices/' + branchOfficeId, {
       headers: this.getHeaders()
     });
   }  

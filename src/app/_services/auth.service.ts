@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  public url: String;
+
+  constructor(public http: HttpClient) {
+    this.url = environment.apiEndPoint;
+  }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`https://api-mdv.herokuapp.com/auth/login`, { mail: email, password: password })
+    return this.http.post<any>(`${this.url}/auth/login`, { mail: email, password: password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));

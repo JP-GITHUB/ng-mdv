@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotifierModule } from 'angular-notifier';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { ModalCartComponent } from './modal-cart/modal-cart.component';
@@ -17,7 +18,8 @@ import { ModalCartComponent } from './modal-cart/modal-cart.component';
     CommonModule,
     NgbModule,
     FormsModule,
-    NotifierModule
+    NotifierModule,
+    NgxGalleryModule
   ],
   declarations: [CatalogueComponent, ModalCartComponent]
 })
