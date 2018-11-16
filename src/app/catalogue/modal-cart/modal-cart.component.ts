@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NotifierService } from 'angular-notifier';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+
 import * as _ from 'lodash';
 
 import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
@@ -12,7 +14,9 @@ import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
 })
 export class ModalCartComponent implements OnInit {
   public hostImages = 'http://localhost:3000';
-  
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
+
   closeResult: string;
   private productSizes: any;
 
@@ -23,8 +27,6 @@ export class ModalCartComponent implements OnInit {
   private productName: String;
   private productDesc: String;
   private productGender: String;
-
-  private productImages: any;
 
   /** Control Access */
   private selectedSize: Number;
@@ -40,6 +42,16 @@ export class ModalCartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.galleryOptions = [
+      {
+        width: '100%',
+        height: '100%',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+
+      },
+    ];
   }
 
   open(product) {
@@ -49,9 +61,27 @@ export class ModalCartComponent implements OnInit {
     this.productGenderId = product.Gender.id;
     this.productGender = product.Gender.description;
 
-    this.productImages = product.ProductImages;
-
     this.productSizes = product.ProductSizes;
+
+    this.galleryImages = [];
+
+    if (product.ProductImages.length > 0) {
+      product.ProductImages.forEach(element => {
+        this.galleryImages.push({
+          small: this.hostImages + element.location,
+          medium: this.hostImages + element.location,
+          big: this.hostImages + element.location
+        });
+      });
+    } else {
+      this.galleryImages.push({
+        small: 'https://cdn.browshot.com/static/images/not-found.png',
+        medium: 'https://cdn.browshot.com/static/images/not-found.png',
+        big: 'https://cdn.browshot.com/static/images/not-found.png'
+      });
+    }
+
+
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-cart" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
