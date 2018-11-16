@@ -1,6 +1,14 @@
 .content-img {
     height: 300px;
+    border: 2px solid #b4b1b1 0.4;
     overflow: hidden;
+}
+
+.content-img:hover img {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
 }
 
 .content-list .list-group-item.active {
@@ -16,14 +24,22 @@
     border-bottom: 0;
 }
 
+.card-img-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 .content-product .img-thumbnail {
     border-radius: 0;
 }
 
-.ddschools button, .ddschools .dropdown-menu{
+.ddschools button,
+.ddschools .dropdown-menu {
     width: 100%;
 }
 
-.list-group-item, .card-img-top, .card-title {
+.list-group-item,
+.card-img-top,
+.card-title {
     cursor: pointer;
 }

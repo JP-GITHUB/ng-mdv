@@ -27,7 +27,7 @@
           </div>
           <div *ngFor="let item of products" class="col-md-3">
             <div class="content-product">
-              <div class="content-img img-thumbnail">
+              <div class="content-img">
                 <img class="card-img-top" src="{{ item.ProductImages[0]?.location ? hostImages + item.ProductImages[0]?.location : 'https://cdn.browshot.com/static/images/not-found.png'}}"
                   alt="Card image cap" (click)="modalCart.open(item)">
               </div>
