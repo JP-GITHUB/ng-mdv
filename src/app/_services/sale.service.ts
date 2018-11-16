@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SaleService {
+  public url: String;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(public http: HttpClient) {
+    this.url = environment.apiEndPoint;
+  }
 
   private getHeaders() {
     let localSession = localStorage.getItem('currentUser');
@@ -24,13 +27,13 @@ export class SaleService {
   }
 
   getSales(code: String) {
-    return this.http.get('http://localhost:3000/sales/' + code, {
+    return this.http.get(this.url + '/sales/' + code, {
       headers: this.getHeaders()
     });
   }
 
   deliver(code: String) {
-    return this.http.post('http://localhost:3000/sales/deliver', { code: code }, {
+    return this.http.post(this.url + '/sales/deliver', { code: code }, {
       headers: this.getHeaders()
     });
   }

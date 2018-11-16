@@ -6,6 +6,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import * as _ from 'lodash';
 
 import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
+import { DataService } from 'src/app/_services/data.service';
 
 @Component({
   selector: 'app-modal-cart',
@@ -13,7 +14,6 @@ import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
   styleUrls: ['./modal-cart.component.css']
 })
 export class ModalCartComponent implements OnInit {
-  public hostImages = 'http://localhost:3000';
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
@@ -38,7 +38,8 @@ export class ModalCartComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private shoppingcService: ShoppingcartService,
-    private notifierService: NotifierService
+    private dataService: DataService,
+    private notifierService: NotifierService,
   ) { }
 
   ngOnInit() {
@@ -68,9 +69,9 @@ export class ModalCartComponent implements OnInit {
     if (product.ProductImages.length > 0) {
       product.ProductImages.forEach(element => {
         this.galleryImages.push({
-          small: this.hostImages + element.location,
-          medium: this.hostImages + element.location,
-          big: this.hostImages + element.location
+          small: this.dataService.getUrl() + element.location,
+          medium: this.dataService.getUrl() + element.location,
+          big: this.dataService.getUrl() + element.location
         });
       });
     } else {
