@@ -23,18 +23,21 @@ export class ShoppingcartComponent implements OnInit {
   ngOnInit() {
     this.productSaved = JSON.parse(this.shoppingcartService.getProductLocalStorage());
     this.obsProductSaved = of(this.productSaved);
-    this.productSaved.forEach(element => {
-      let internalElement = element;
-      let sumPrice = 0;
-      for (let index = 0; index < element.sizes.length; index++) {
-        let internalSizes = element.sizes[index];
-        sumPrice += (internalSizes.price * internalSizes.quantity);
-      }
 
-      internalElement.totalPrice = sumPrice;
-      this.totalPrices += sumPrice;
-      this.productResume.push(internalElement);
-    });
+    if (this.productSaved.length > 0) {
+      this.productSaved.forEach(element => {
+        let internalElement = element;
+        let sumPrice = 0;
+        for (let index = 0; index < element.sizes.length; index++) {
+          let internalSizes = element.sizes[index];
+          sumPrice += (internalSizes.price * internalSizes.quantity);
+        }
+
+        internalElement.totalPrice = sumPrice;
+        this.totalPrices += sumPrice;
+        this.productResume.push(internalElement);
+      });
+    }
 
     this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
     this.obsProductResume = of(this.productResume);
@@ -52,7 +55,7 @@ export class ShoppingcartComponent implements OnInit {
     }
     localStorage.setItem("ProductCart", JSON.stringify(tmpProducts));
     this.obsProductSaved = of(tmpProducts);
-    if(tmpProducts.length == 0 ){
+    if (tmpProducts.length == 0) {
       this.totalPrices = 0
     }
 
