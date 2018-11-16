@@ -13,9 +13,11 @@ import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
 })
 export class NavbarComponent implements OnInit {
   route: string;
+  total: Number;
 
   constructor(
     public navbarService: NavbarService,
+    private scService: ShoppingcartService,
     private authService: AuthService,
     private location: Location,
     private router: Router
@@ -33,6 +35,8 @@ export class NavbarComponent implements OnInit {
 
   get loggedIn() { return this.authService.isLoggedIn; }
 
+  get totalItems() { return this.scService.total; }
+  
   onLogout() {
     this.authService.logout();
   }

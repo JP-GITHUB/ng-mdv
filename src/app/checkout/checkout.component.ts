@@ -8,7 +8,7 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  private position = 'checkout';
+  public position = 'checkout';
   private messageSale: String;
   private statusSale: boolean;
 
