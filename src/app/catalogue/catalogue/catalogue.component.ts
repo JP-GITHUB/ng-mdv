@@ -3,6 +3,7 @@ import { CatalogueService } from 'src/app/_services/catalogue.service';
 import { ProductService } from 'src/app/_services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/_services/data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-catalogue',
@@ -20,7 +21,8 @@ export class CatalogueComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private catalogueService: CatalogueService,
     private dataService: DataService,
-    private productService: ProductService
+    private productService: ProductService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -51,6 +53,10 @@ export class CatalogueComponent implements OnInit {
         }
       }
     );
+  }
+
+  backButton(){
+    this.location.back();
   }
 
   changeSchool(item) {

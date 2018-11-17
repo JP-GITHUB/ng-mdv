@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-shoppingcart',
@@ -17,7 +18,8 @@ export class ShoppingcartComponent implements OnInit {
   public totalPrices = 0;
 
   constructor(
-    private shoppingcartService: ShoppingcartService
+    private shoppingcartService: ShoppingcartService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -75,5 +77,9 @@ export class ShoppingcartComponent implements OnInit {
     this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
     this.obsProductResume = of(this.productResume);
 
+  }
+
+  backButton(){
+    this.location.back();
   }
 }
