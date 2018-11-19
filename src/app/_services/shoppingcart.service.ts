@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingcartService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  public url: String;
+
+  constructor(public http: HttpClient) {
+    this.url = environment.apiEndPoint;
+  }
 
   private getHeaders() {
     let localSession = localStorage.getItem('currentUser');
@@ -44,28 +48,34 @@ export class ShoppingcartService {
     if (productCart) {
       tmpCart = JSON.parse(productCart) as Array<any>;
       let countProduct = tmpCart.length;
+      if (countProduct > 0) {
+        for (let index = 0; index < countProduct; index++) {
+          const element = tmpCart[index];
+          if (element.productId == product.productId) {
+            for (let internalIndex = 0; internalIndex < tmpCart[index].sizes.length; internalIndex++) {
+              const element = tmpCart[index].sizes[internalIndex];
+              if (element.sizeId == product.sizeId) {
+                tmpCart[index].sizes[internalIndex].sizeId = product.sizeId;
+                tmpCart[index].sizes[internalIndex].quantity = product.quantity;
+                break;
+              } else {
+                tmpCart[index].sizes.push({ sizeId: product.sizeId, textSize: product.textSize, quantity: product.quantity, price: product.price });
+                break;
+              }
+            }
 
-      for (let index = 0; index < countProduct; index++) {
-        const element = tmpCart[index];
-        if (element.productId == product.productId) {
-          for (let internalIndex = 0; internalIndex < tmpCart[index].sizes.length; internalIndex++) {
-            const element = tmpCart[index].sizes[internalIndex];
-            if (element.sizeId == product.sizeId) {
-              tmpCart[index].sizes[internalIndex].sizeId = product.sizeId;
-              tmpCart[index].sizes[internalIndex].quantity = product.quantity;
-              break;
-            } else {
-              tmpCart[index].sizes.push({ sizeId: product.sizeId, textSize: product.textSize, quantity: product.quantity, price: product.price });
-              break;
+            localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
+          } else {
+            let dato = tmpCart.find(o => o.productId == tmpNewProduct.productId);
+            if (dato == undefined) {
+              tmpCart.push(tmpNewProduct);
+              localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
             }
           }
-
-          localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
-        } else {
-          tmpCart.push(tmpNewProduct);
-          localStorage.setItem("ProductCart", JSON.stringify(tmpCart));
+          return;
         }
-        return;
+      } else {
+        localStorage.setItem("ProductCart", JSON.stringify([tmpNewProduct]));
       }
     } else {
       localStorage.setItem("ProductCart", JSON.stringify([tmpNewProduct]));
@@ -75,7 +85,7 @@ export class ShoppingcartService {
   get total() {
     let productCart = localStorage.getItem('ProductCart');
     let tmpCart = JSON.parse(productCart);
-    
+
     return (tmpCart) ? tmpCart.length : 0;
   }
 
@@ -95,7 +105,7 @@ export class ShoppingcartService {
   }
 
   makeSale(formData: any) {
-    return this.http.post('http://localhost:3000/sales', formData, {
+    return this.http.post(this.url + '/sales', formData, {
       headers: this.getHeaders()
     });
   }

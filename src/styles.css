@@ -43,6 +43,10 @@
     max-width: 900px;
 }
 
+ngx-gallery /deep/ .ngx-gallery-image {
+    background-position: unset !important;
+}
+
 /* Modal NG-BOOTSTRAP size */
 
 @media (min-width: 576px) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CatalogueService } from 'src/app/_services/catalogue.service';
 import { ProductService } from 'src/app/_services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/_services/data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-catalogue',
@@ -13,15 +15,20 @@ export class CatalogueComponent implements OnInit {
   public products = [];
 
   public activeElementSchool = null;
+  public hostImages: String;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private catalogueService: CatalogueService,
-    private productService: ProductService
+    private dataService: DataService,
+    private productService: ProductService,
+    private location: Location
   ) { }
 
   ngOnInit() {
     let branchoffice_id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+
+    this.hostImages = this.dataService.getUrl();
     this.catalogueService.getShoolsByBranchoffice(branchoffice_id).subscribe(
       data => {
         if (data['status']) {
@@ -46,6 +53,10 @@ export class CatalogueComponent implements OnInit {
         }
       }
     );
+  }
+
+  backButton(){
+    this.location.back();
   }
 
   changeSchool(item) {

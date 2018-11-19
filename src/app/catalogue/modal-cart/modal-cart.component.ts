@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NotifierService } from 'angular-notifier';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+
 import * as _ from 'lodash';
 
 import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
+import { DataService } from 'src/app/_services/data.service';
 
 @Component({
   selector: 'app-modal-cart',
@@ -11,6 +14,9 @@ import { ShoppingcartService } from 'src/app/_services/shoppingcart.service';
   styleUrls: ['./modal-cart.component.css']
 })
 export class ModalCartComponent implements OnInit {
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
+
   closeResult: string;
   private productSizes: any;
 
@@ -32,10 +38,21 @@ export class ModalCartComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private shoppingcService: ShoppingcartService,
-    private notifierService: NotifierService
+    private dataService: DataService,
+    private notifierService: NotifierService,
   ) { }
 
   ngOnInit() {
+
+    this.galleryOptions = [
+      {
+        width: '100%',
+        height: '100%',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+
+      },
+    ];
   }
 
   open(product) {
@@ -46,6 +63,26 @@ export class ModalCartComponent implements OnInit {
     this.productGender = product.Gender.description;
 
     this.productSizes = product.ProductSizes;
+
+    this.galleryImages = [];
+
+    if (product.ProductImages.length > 0) {
+      product.ProductImages.forEach(element => {
+        this.galleryImages.push({
+          small: this.dataService.getUrl() + element.location,
+          medium: this.dataService.getUrl() + element.location,
+          big: this.dataService.getUrl() + element.location
+        });
+      });
+    } else {
+      this.galleryImages.push({
+        small: 'https://cdn.browshot.com/static/images/not-found.png',
+        medium: 'https://cdn.browshot.com/static/images/not-found.png',
+        big: 'https://cdn.browshot.com/static/images/not-found.png'
+      });
+    }
+
+
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-cart" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -76,8 +113,8 @@ export class ModalCartComponent implements OnInit {
     });
   }
 
-  saveCart() {
-    this.shoppingcService.saveProductLocalStorage({
+  async saveCart() {
+    await this.shoppingcService.saveProductLocalStorage({
       productId: this.productId,
       productName: this.productName,
       sizeId: this.selectedSize,

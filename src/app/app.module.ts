@@ -22,10 +22,8 @@ import { CatalogueModule } from './catalogue/catalogue.module';
 import { BranchOfficeModule } from './branch-office/branch-office.module'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { ProductComponent } from './product/product.component';
-import { ProductAddComponent } from './product/product-add/product-add.component';
-import { ProductDeleteComponent } from './product/product-delete/product-delete.component';
-import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import { ProductModule } from './product/product.module';
+import { RetirementComponent } from './retirement/retirement.component';
 
 @NgModule({
   declarations: [
@@ -38,14 +36,12 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     RegistryComponent,
     ShoppingcartComponent,
     CheckoutComponent,
-    ProductComponent,
-    ProductAddComponent,
-    ProductDeleteComponent,
-    ProductEditComponent
+    RetirementComponent
   ],
   imports: [
     AppRoutingModule,
     UserModule,
+    ProductModule,
     CatalogueModule,
     HttpClientModule,
     BrowserModule,

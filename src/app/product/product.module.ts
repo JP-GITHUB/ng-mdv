@@ -17,4 +17,4 @@ import { ProductDeleteComponent } from './product-delete/product-delete.componen
   ],
   declarations: [ProductComponent, ProductAddComponent, ProductEditComponent, ProductDeleteComponent]
 })
-export class UserModule { }
+export class ProductModule { }

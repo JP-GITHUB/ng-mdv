@@ -10,8 +10,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="content-img">
-            <img src="http://www.margaritadelvillar.cl/wp-content/uploads/sites/1301/2016/01/confecciones-margarita-del-villar-liceo-manuel-de-salas-7.jpg"
-              alt="">
+              <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           </div>
         </div>
         <div class="col-md-6">
@@ -23,9 +22,10 @@
 
           <div class="mb-2">
             <label>Tallas disponibles</label> <br>
-            <select id="cbx_sizes" (change)="getPrice($event.target.value)">
+            <select id="cbx_sizes" #cbx_sizes (change)="getPrice($event.target.value)">
+              <option value=0>Seleccione una talla</option>
               <option *ngFor="let item of productSizes" [value]="item.Size.id">
-                {{item.Size.description}} ({{item.quantity > 0 ? 'Disponible' : 'No disponible'}})
+                Tall {{item.Size.description}} ({{item.quantity > 0 ? 'Disponible' : 'No disponible'}})
               </option>
             </select>
           </div>
@@ -38,7 +38,9 @@
             <input type="number" [(ngModel)]="txtQuantity" min="0" max="{{quantityProdSelected}}">
           </div>
           <div>
-            <button class="btn btn-default position-btn-cart" (click)="saveCart()">AGREGAR AL CARRITO</button>
+            <button class="btn btn-default position-btn-cart" [disabled]="cbx_sizes.value == 0 || txtQuantity == 0 || txtQuantity == undefined"
+              (click)="saveCart()">AGREGAR
+              AL CARRITO</button>
           </div>
         </div>
 

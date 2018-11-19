@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="row">
-          <div class="col-md-4" *ngFor="let item of productSaved">
+          <div class="col-md-4" *ngFor="let item of (obsProductSaved | async)">
             <div class="card">
               <div class="content-img mx-auto">
                 <img class="img-shoppingcart" src="https://via.placeholder.com/150" alt="Card image cap">
@@ -24,7 +24,7 @@
                   <hr>
                 </div>
 
-                <nav><button class= "btn btn-danger"><a class="far fa-trash-alt"></a></button></nav>
+                <nav><button class="btn btn-danger" (click)="deleteProductCart(item.productId)"><i class="far fa-trash-alt"></i></button></nav>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
         <h2>Tu carrito</h2>
         <div class="card">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let item of productResume">
+            <li class="list-group-item" *ngFor="let item of (obsProductResume | async)">
               {{ item.productName }} | ${{ item.totalPrice }}
             </li>
           </ul>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="mt-3">
-          <button class="btn btn-primary btn-lg btn-block" (click)="onSubmit()">Continuar comprando</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" (click)="backButton()">Volver atrás</button>
           <a [routerLink]="[ '/checkout' ]" class="btn btn-success btn-lg btn-block">Realizar pago</a>
         </div>
       </div>
