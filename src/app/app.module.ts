@@ -22,6 +22,10 @@ import { CatalogueModule } from './catalogue/catalogue.module';
 import { BranchOfficeModule } from './branch-office/branch-office.module'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductComponent } from './product/product.component';
+import { ProductAddComponent } from './product/product-add/product-add.component';
+import { ProductDeleteComponent } from './product/product-delete/product-delete.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { CheckoutComponent } from './checkout/checkout.component';
     LoginComponent,
     RegistryComponent,
     ShoppingcartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ProductComponent,
+    ProductAddComponent,
+    ProductDeleteComponent,
+    ProductEditComponent
   ],
   imports: [
     AppRoutingModule,
