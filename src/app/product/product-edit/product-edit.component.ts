@@ -58,8 +58,6 @@ export class ProductEditComponent implements OnInit {
     let data;
     this.submitted = true;
 
-    console.log(this.dataForm.name);
-
     if (this.editForm.invalid) {
       console.log("Invalid form");
       return;
