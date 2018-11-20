@@ -4,6 +4,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProductService } from 'src/app/_services/product.service';
 
+import { SchoolService } from 'src/app/_services/school.service'
+
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
@@ -16,23 +18,30 @@ export class ProductAddComponent implements OnInit {
   loading = false; //Utilizar para deshabilitar el boton de guardar, antySpam best choice award
   submitted = false;
   returnUrl: String;
+  private schools: any;
 
   @Output() reloadDt: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    private schoolService: SchoolService
   ) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
+      school: ['', Validators.required],
       name: ['', Validators.required],
-      description: ['', Validators.required]     
+      description: ['', Validators.required]
     });
   }
 
   open(content) {
+    this.schoolService.getSchools().subscribe(resp => {
+      this.schools = resp['obj'];
+      console.log(this.schools);
+    });
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass:"modal-add-user" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -66,10 +75,10 @@ export class ProductAddComponent implements OnInit {
     data = {
       name: this.f.name.value,
       description: this.f.description.value,
-      
+      school: this.f.school.value      
     }
 
-    console.log(data.hasOwnProperty('status'));
+    console.log(data);
 
     this.productService.add(data).subscribe(
       data => {

@@ -7,11 +7,23 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
+          <label>Colegios</label> <br>
+          <select id="cbx_schools" class="form-control" formControlName="school" [ngClass]="{ 'is-invalid': submitted && f.school.errors }">
+            <option value='0' selected>Seleccione un colegio</option>
+            <option *ngFor="let item of schools" [value]="item.id">
+              {{item.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
           <label for="input_name">Nombre</label>
           <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
             placeholder="Nombre">
         </div>
-      </div>2
+      </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -27,7 +39,7 @@
           <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Guardar</button>
         </div>
       </div>
-      
+
     </form>
   </div>
 </ng-template>
