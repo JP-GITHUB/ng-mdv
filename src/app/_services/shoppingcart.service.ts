@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ export class ShoppingcartService {
 
   public url: String;
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    private router: Router
+  ) {
     this.url = environment.apiEndPoint;
   }
 
@@ -35,6 +39,7 @@ export class ShoppingcartService {
       productId: product.productId,
       productName: product.productName,
       genderText: product.genderText,
+      image: product.image,
       sizes: [
         {
           sizeId: product.sizeId,
@@ -92,6 +97,10 @@ export class ShoppingcartService {
   setResumeProduct(resumeProduct, totalPrices) {
     localStorage.setItem("ProductCart", JSON.stringify(resumeProduct));
     localStorage.setItem("TotalPrices", totalPrices);
+    
+    if(resumeProduct.length == 0){
+      this.router.navigate(['/']);
+    }
   }
 
   getProductLocalStorage() {

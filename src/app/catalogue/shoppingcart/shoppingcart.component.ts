@@ -75,6 +75,7 @@ export class ShoppingcartComponent implements OnInit {
       this.productResume.push(internalElement);
     });
     this.shoppingcartService.setResumeProduct(this.productResume, this.totalPrices);
+    console.log(this.productResume)
     this.obsProductResume = of(this.productResume);
 
   }
