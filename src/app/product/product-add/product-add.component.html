@@ -1,3 +1,35 @@
-<p>
-  product-add works!
-</p>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar producto</h4>
+  </div>
+  <div class="modal-body">
+    <form class="registry-form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_name">Nombre</label>
+          <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+            placeholder="Nombre">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_description">Descripción</label>
+          <input type="text" class="form-control" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }"
+            placeholder="Dirección">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
+          <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Guardar</button>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+</ng-template>
+
+<button class="btn btn-outline-app mb-3" (click)="open(content)">Agregar</button>
