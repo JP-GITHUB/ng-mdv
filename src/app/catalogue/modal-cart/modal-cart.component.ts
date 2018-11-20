@@ -16,6 +16,7 @@ import { DataService } from 'src/app/_services/data.service';
 export class ModalCartComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  firstImage: String;
 
   closeResult: string;
   private productSizes: any;
@@ -76,13 +77,13 @@ export class ModalCartComponent implements OnInit {
       });
     } else {
       this.galleryImages.push({
-        small: 'https://cdn.browshot.com/static/images/not-found.png',
-        medium: 'https://cdn.browshot.com/static/images/not-found.png',
-        big: 'https://cdn.browshot.com/static/images/not-found.png'
+        small: '/assets/images/sin-imagen.gif',
+        medium: '/assets/images/sin-imagen.gif',
+        big: '/assets/images/sin-imagen.gif'
       });
     }
 
-
+    this.firstImage = String(this.galleryImages[0].medium);
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-cart" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -121,7 +122,8 @@ export class ModalCartComponent implements OnInit {
       textSize: this.textCurrentSize,
       genderText: this.productGender,
       quantity: this.txtQuantity,
-      price: this.priceModal
+      price: this.priceModal,
+      image: this.firstImage
     });
 
     this.notifierService.notify('success', 'Producto agregado al carrito correctamente.');

@@ -1,0 +1,18 @@
+.logo-checkout  {
+    -webkit-filter: grayscale(1);
+    filter: invert(1);
+    width: 300px;
+    height: 120px;
+}
+
+.title-checkout{
+    font-weight: 400;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.subtitules {
+    font-weight: 400;
+}
