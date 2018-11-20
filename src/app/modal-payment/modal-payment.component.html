@@ -1,0 +1,10 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pago Khipu</h4>
+  </div>
+  <div class="modal-body">
+    <iframe width="100%" height="800" allow="payment" *ngIf="externalPayUrl" [src]="externalPayUrl"></iframe>
+  </div>
+</ng-template>
+
+<button class="btn btn-outline-app mb-3 btn-pay" (click)="open(content)">Pagar</button>

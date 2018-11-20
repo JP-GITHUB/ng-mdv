@@ -23,6 +23,7 @@ import { BranchOfficeModule } from './branch-office/branch-office.module'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RetirementComponent } from './retirement/retirement.component';
+import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RetirementComponent } from './retirement/retirement.component';
     RegistryComponent,
     ShoppingcartComponent,
     CheckoutComponent,
-    RetirementComponent
+    RetirementComponent,
+    ModalPaymentComponent
   ],
   imports: [
     AppRoutingModule,
