@@ -48,7 +48,9 @@ export class ProductService {
   }
 
   add(form: any) {
-    return this.http.post(this.url + '/products', form);
+    return this.http.post(this.url + '/products', form,{
+      headers: this.getHeaders()
+    });
   }
 
   edit(form: any) {

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import { ProductService } from 'src/app/_services/Product.service';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
   selector: 'app-product-add',
@@ -68,6 +68,8 @@ export class ProductAddComponent implements OnInit {
       description: this.f.description.value,
       
     }
+
+    console.log(data.hasOwnProperty('status'));
 
     this.productService.add(data).subscribe(
       data => {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Renderer, AfterViewInit } from '@angular/
 import { DataTableDirective } from 'angular-datatables';
 
 import { Product } from '../_classes/product';
-import { ProductService } from '../_services/Product.service';
+import { ProductService } from '../_services/product.service';
 
 @Component({
   selector: 'app-product',
