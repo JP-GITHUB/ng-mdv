@@ -1,10 +1,8 @@
-.parallax-home { 
+.parallax-home {
     /* The image used */
-    background-image: url("https://smartslider3.com/wp-content/uploads/slider101/parallax-slider3.jpg");
-
+    background-image: url("../../../assets/images/GettyImages-929042436.jpg");
     /* Set a specific height */
-    height: 400px; 
-
+    height: 450px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
@@ -16,4 +14,21 @@
     color: white;
     position: relative;
     top: 30%;
+    font-style: italic;
+    font-family: initial;
+}
+
+.wrapper h1,
+.wrapper h3 {
+    font-weight: 700;
+}
+
+.wrapper h1 {
+    font-size: 3.5rem;
+    text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+}
+
+.wrapper h3 {
+    font-size: 2rem;
+    text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
 }
