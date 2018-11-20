@@ -24,6 +24,7 @@ import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.com
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductModule } from './product/product.module';
 import { RetirementComponent } from './retirement/retirement.component';
+import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { RetirementComponent } from './retirement/retirement.component';
     RegistryComponent,
     ShoppingcartComponent,
     CheckoutComponent,
-    RetirementComponent
+    RetirementComponent,
+    ModalPaymentComponent
   ],
   imports: [
     AppRoutingModule,

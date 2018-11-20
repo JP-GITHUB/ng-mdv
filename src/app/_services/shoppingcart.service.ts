@@ -109,4 +109,10 @@ export class ShoppingcartService {
       headers: this.getHeaders()
     });
   }
+
+  payment(formData: any) {
+    return this.http.post(this.url + '/payments', formData, {
+      headers: this.getHeaders()
+    });
+  }
 }
