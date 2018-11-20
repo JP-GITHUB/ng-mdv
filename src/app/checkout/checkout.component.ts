@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShoppingcartService } from '../_services/shoppingcart.service';
 import { UserService } from '../_services/user.service';
 
@@ -16,10 +16,12 @@ export class CheckoutComponent implements OnInit {
   public totalPrice: Number;
   public totalProduct: Number;
 
-  @ViewChild('firstName') firstName: ElementRef;
-  @ViewChild('lastName') lastName: ElementRef;
-  @ViewChild('mail') mail: ElementRef;
-  @ViewChild('rut') rut: ElementRef;
+  public externalPayUrl: String;
+
+  public firstName: String;
+  public lastName: String;
+  public mail: String;
+  public rut: String;
 
   constructor(
     private scService: ShoppingcartService,
@@ -34,44 +36,31 @@ export class CheckoutComponent implements OnInit {
     this.totalProduct = this.scService.total;
   }
 
-  loadInfoToken(){
+  loadInfoToken() {
     this.userService.getUserInToken().subscribe(
       resp => {
-        this.firstName.nativeElement.value = resp['data'].name;
-        this.lastName.nativeElement.value = resp['data'].lastname;
-        this.mail.nativeElement.value = resp['data'].mail;
-        this.rut.nativeElement.value = resp['data'].rut.trim();
+        this.firstName = resp['data'].name;
+        this.lastName = resp['data'].lastname;
+        this.mail = resp['data'].mail;
+        this.rut = resp['data'].rut.trim();
       }
     );
   }
 
-  makeSale() {
-    let formData = {
-      firstName: this.firstName.nativeElement.value,
-      lastName: this.lastName.nativeElement.value,
-      rut: this.rut.nativeElement.value,
-      mail: this.mail.nativeElement.value,
-      products: this.resumeProduct,
-      totalValue: this.totalPrice
-    };
+  public eventSale(event) {
+    let dataEvent = JSON.parse(event);
 
-    this.scService.makeSale(formData).subscribe(
-      data => {
-        console.log(data)
-        this.messageSale = data['msg'];
-        this.statusSale = data['status'];
-
-        if (data['status']) {
-          this.scService.clearProductLocalStorage();
-
-        }
-
-        this.position = 'messageSale';
-      }
-    );
+    if (dataEvent['status']) {
+      console.log(dataEvent['msg']);
+      this.messageSale = "Gracias por comprar en Confecciones MDV";
+      this.statusSale = dataEvent['status'];
+      this.position = 'messageSale';
+    }else{
+      this.showCheckout();
+    }
   }
 
-  showCheckout(){
+  showCheckout() {
     this.loadInfoToken();
     this.position = 'checkout';
   }
