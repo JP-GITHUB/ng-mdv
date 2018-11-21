@@ -1,3 +1,37 @@
-<p>
-  existance works!
-</p>
+<div class="container">
+  <h2 class="mt-4 mb-4">Listado de productos</h2>
+
+  <app-existance-add (reloadDt)="resetDatatables()"></app-existance-add>
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover tbl-products">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Product size</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="existances?.length != 0">
+      <tr *ngFor="let existance of existances">
+        <td>{{ existance.Product.name }}</td>
+        <td>{{ existance.price }}</td>
+        <td>{{ existance.quantity }}</td>
+        <td>{{ existance.Size.description }}</td>
+        <td>
+          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(existance.Product.name, existance.price, existance.quantity)"><img
+              class="img-table" src="/assets/images/pencil.png"></button>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="existances?.length == 0">
+      <tr>
+        <td colspan="3" class="no-data-available">no hay información para mostrar</td>
+      </tr>
+    <tbody>
+  </table>
+</div>
+
+<app-existance-edit #modalEdit (reloadDt)="resetDatatables()"></app-existance-edit>
+<app-existance-delete #modalDelete (reloadDt)="resetDatatables()"></app-existance-delete>

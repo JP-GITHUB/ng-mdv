@@ -22,7 +22,8 @@
         <td>{{ product.School.name }}</td>
         <td>{{ product.Gender.description }}</td>
         <td>
-          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(product.id, product.name, product.description, product.School.id, product.Gender.id )"><img class="img-table" src="/assets/images/pencil.png"></button>
+          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(product.id, product.name, product.description, product.School.id, product.Gender.id )"><img
+              class="img-table" src="/assets/images/pencil.png"></button>
           <button class="btn btn-md p-0" (click)="modalDelete.open(product.id)"><img class="img-table" src="/assets/images/cancel.png"></button>
         </td>
       </tr>

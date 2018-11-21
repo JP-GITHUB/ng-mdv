@@ -31,7 +31,6 @@ export class ProductComponent implements OnInit {
       ajax: (dataTablesParameters: any, callback) => {
         this.productService.getDatatablesData(dataTablesParameters).subscribe(resp => {
           that.products = resp.data.filter( data => data.status == true);
-          console.log(resp.data);
 
           callback({
             recordsTotal: resp.recordsTotal,
