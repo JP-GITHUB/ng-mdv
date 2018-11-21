@@ -2,7 +2,9 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import { ProductService } from 'src/app/_services/product.service'
+import { ProductService } from 'src/app/_services/product.service';
+
+import { SchoolService } from 'src/app/_services/school.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -14,6 +16,8 @@ export class ProductEditComponent implements OnInit {
 
   private productId: Number;
   closeResult: string;
+  private schools: any;
+  private genders: any;
 
   objMsg = {
     display: false,
@@ -30,19 +34,31 @@ export class ProductEditComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    private schoolService: SchoolService
   ) { }
 
   ngOnInit() {
     this.editForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
+      school: ['', Validators.required],
+      gender: ['', Validators.required]
     });
   }
 
   get dataForm() { return this.editForm.controls; }
 
-  open(id, name, description) {
+  open(id, name, description, school_id, gender_id) {
+    this.schoolService.getSchools().subscribe(resp => {
+      this.schools = resp['obj'];
+    });
+    this.productService.getGender().subscribe(resp => {
+      this.genders = resp['obj'];
+    });
+
+    this.dataForm.gender.setValue(gender_id);
+    this.dataForm.school.setValue(school_id);
     this.productId = id;
     this.dataForm.name.setValue(name);
     this.dataForm.description.setValue(description);
@@ -69,6 +85,8 @@ export class ProductEditComponent implements OnInit {
       id: this.productId,
       name: this.dataForm.name.value,
       description: this.dataForm.description.value,
+      school_id: this.dataForm.school.value,
+      gender_id: this.dataForm.gender.value
     }
 
     this.productService.edit(data).subscribe(

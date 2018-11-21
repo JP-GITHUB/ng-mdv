@@ -25,6 +25,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductModule } from './product/product.module';
 import { RetirementComponent } from './retirement/retirement.component';
 import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
+import { ExistanceModule } from './existance/existance.module';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
     ShoppingcartComponent,
     CheckoutComponent,
     RetirementComponent,
-    ModalPaymentComponent
+    ModalPaymentComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -51,6 +53,7 @@ import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
     ReactiveFormsModule,
     NgbModule,
     BranchOfficeModule,
+    ExistanceModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {

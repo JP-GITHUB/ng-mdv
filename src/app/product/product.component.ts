@@ -30,7 +30,8 @@ export class ProductComponent implements OnInit {
       processing: true,
       ajax: (dataTablesParameters: any, callback) => {
         this.productService.getDatatablesData(dataTablesParameters).subscribe(resp => {
-          that.products = resp.data;
+          that.products = resp.data.filter( data => data.status == true);
+          console.log(resp.data);
 
           callback({
             recordsTotal: resp.recordsTotal,
@@ -39,7 +40,8 @@ export class ProductComponent implements OnInit {
           });
         });
       },
-      columns: [{ data: 'id' }, { data: 'name', title: 'nombre' }, { data: 'description', title: 'descripción' }, { title: 'Acciones', width: '15%' }]
+      columns: [{ data: 'id' }, { data: 'name', title: 'nombre' }, { data: 'description', title: 'descripción' },
+      { data: 'School.name', title: 'colegio' }, { data: 'Gender.description', title: 'genero' }, { title: 'Acciones', width: '15%' }]
     };
   }
 

@@ -7,11 +7,23 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label>Colegios</label> <br>
-          <select id="cbx_schools" class="form-control" formControlName="school" [ngClass]="{ 'is-invalid': submitted && f.school.errors }">
-            <option value='0' selected>Seleccione un colegio</option>
+          <label>Colegio</label> <br>
+          <select id="cbx_schools" #cbx_schools class="form-control" formControlName="school" [ngClass]="{ 'is-invalid': submitted && f.school.errors }">
+            <option value='0'>Seleccione un colegio</option>
             <option *ngFor="let item of schools" [value]="item.id">
               {{item.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Genero</label> <br>
+          <select id="cbx_gender" #cbx_genders class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+            <option value='0'>Seleccione un genero</option>
+            <option *ngFor="let item of genders" [value]="item.id">
+              {{item.description}}
             </option>
           </select>
         </div>
@@ -28,7 +40,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="input_description">Descripción</label>
-          <input type="text" class="form-control" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }"
+          <input type="text" class="form-control" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
             placeholder="Descripción">
         </div>
       </div>
@@ -36,7 +48,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
-          <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Guardar</button>
+          <button type="button" class="btn btn-outline-dark" [disabled]="cbx_schools.value == 0 || cbx_genders.value == 0" (click)="onSubmit()">Guardar</button>
         </div>
       </div>
 

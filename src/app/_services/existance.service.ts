@@ -7,15 +7,11 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ExistanceService {
   public url: String;
 
   constructor(public http: HttpClient) {
     this.url = environment.apiEndPoint;
-  }
-
-  getProductBySchool(school_id: Number) {
-    return this.http.get(this.url + '/products/school/' + school_id);
   }
 
   private getHeaders() {
@@ -34,39 +30,35 @@ export class ProductService {
   getDatatablesData(dataTablesParameters) {
     return this.http
       .post<DataTablesResponse>(
-        this.url + '/products/datatables',
+        this.url + '/existances/datatables',
         dataTablesParameters, {
           headers: this.getHeaders()
         }
       );
   }
 
-  getProductById(userId: number) {
-    return this.http.get(this.url + '/products/' + userId, {
+  getExistanceById(userId: number) {
+    return this.http.get(this.url + '/existances/' + userId, {
       headers: this.getHeaders()
     });
   }
 
   add(form: any) {
-    return this.http.post(this.url + '/products', form,{
+    return this.http.post(this.url + '/existances', form,{
       headers: this.getHeaders()
     });
   }
 
   edit(form: any) {
-    return this.http.put(this.url + '/products', form, {
+    return this.http.put(this.url + '/existances', form, {
       headers: this.getHeaders()
     });
   }
 
   delete(id: Number) {
-    return this.http.delete(this.url + '/products/' + id, {
+    return this.http.delete(this.url + '/existances/' + id, {
       headers: this.getHeaders()
     });
-  }
-
-  getGender(){
-    return this.http.get(this.url+'/products/gender');
   }
 
 }

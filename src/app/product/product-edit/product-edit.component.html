@@ -7,6 +7,30 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
+          <label>Colegio</label> <br>
+          <select id="cbx_schools" #cbx_schools class="form-control" formControlName="school" [ngClass]="{ 'is-invalid': submitted && dataForm.school.errors }">
+            <option value='0' selected>Seleccione un colegio</option>
+            <option *ngFor="let item of schools" [value]="item.id">
+              {{item.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Genero</label> <br>
+          <select id="cbx_gender" #cbx_genders class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && dataForm.gender.errors }">
+            <option value='0' selected>Seleccione un genero</option>
+            <option *ngFor="let item of genders" [value]="item.id">
+              {{item.description}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
           <label for="input_name">Nombre</label>
           <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && dataForm.name.errors }"
             placeholder="Nombre">
@@ -20,7 +44,7 @@
             placeholder="Descripción">
         </div>
       </div>
-      
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
