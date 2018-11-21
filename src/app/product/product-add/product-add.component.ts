@@ -4,7 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProductService } from 'src/app/_services/product.service';
 
-import { SchoolService } from 'src/app/_services/school.service'
+import { SchoolService } from 'src/app/_services/school.service';
 
 @Component({
   selector: 'app-product-add',
@@ -19,6 +19,7 @@ export class ProductAddComponent implements OnInit {
   submitted = false;
   returnUrl: String;
   private schools: any;
+  private genders: any;
 
   @Output() reloadDt: EventEmitter<any> = new EventEmitter();
 
@@ -32,6 +33,7 @@ export class ProductAddComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       school: ['', Validators.required],
+      gender: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required]
     });
@@ -40,8 +42,12 @@ export class ProductAddComponent implements OnInit {
   open(content) {
     this.schoolService.getSchools().subscribe(resp => {
       this.schools = resp['obj'];
-      console.log(this.schools);
     });
+    this.productService.getGender().subscribe(resp => {
+      this.genders = resp['obj'];
+    });
+    this.f.gender.setValue(0);
+    this.f.school.setValue(0);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass:"modal-add-user" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -75,7 +81,8 @@ export class ProductAddComponent implements OnInit {
     data = {
       name: this.f.name.value,
       description: this.f.description.value,
-      school: this.f.school.value      
+      school: this.f.school.value,
+      gender: this.f.gender.value    
     }
 
     console.log(data);

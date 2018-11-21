@@ -65,4 +65,8 @@ export class ProductService {
     });
   }
 
+  getGender(){
+    return this.http.get(this.url+'/products/gender');
+  }
+
 }
