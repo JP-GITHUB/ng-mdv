@@ -1,11 +1,11 @@
-.logo-checkout  {
+.logo-checkout {
     -webkit-filter: grayscale(1);
     filter: invert(1);
-    width: 300px;
+    width: 400px;
     height: 120px;
 }
 
-.title-checkout{
+.title-checkout {
     font-weight: 400;
 }
 
@@ -15,4 +15,8 @@
 
 .subtitules {
     font-weight: 400;
+}
+
+.card-retirement, .btn-outline-success, .btn-outline-warning {
+    border-radius: 0;
 }
