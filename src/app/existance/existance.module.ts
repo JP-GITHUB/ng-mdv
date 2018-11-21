@@ -4,9 +4,9 @@ import { ExistanceComponent } from './existance.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DataTablesModule } from 'angular-datatables';
-import { ExistanceAddComponent } from './existance-add/Existance-add.component';
-import { ExistanceEditComponent } from './existance-edit/Existance-edit.component';
-import { ExistanceDeleteComponent } from './existance-delete/Existance-delete.component';
+import { ExistanceAddComponent } from './existance-add/existance-add.component';
+import { ExistanceEditComponent } from './existance-edit/existance-edit.component';
+import { ExistanceDeleteComponent } from './existance-delete/existance-delete.component';
 
 @NgModule({
   imports: [
