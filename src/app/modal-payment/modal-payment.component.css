@@ -1,0 +1,14 @@
+.btn-pay {
+    width: 100%;
+    height: 55px;
+}
+
+.image-error {
+    width: 50%;
+    height: 50%;
+}
+
+.error-msg {
+    font-size: 1.5rem;
+    font-weight: 600;
+}

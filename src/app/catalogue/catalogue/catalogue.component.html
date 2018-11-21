@@ -20,6 +20,9 @@
     </div>
 
     <div class="content-catalogue col-xs-12 col-sm-12 col-md-9 col-lg-10">
+      <div class="container no-gutters">
+        <button class="btn btn-light float-right" (click)="backButton()">Volver atrás</button>
+      </div>
       <div class="container-fluid no-gutters">
         <div class="row mt-5">
           <div *ngIf="products.length == 0">
@@ -28,7 +31,7 @@
           <div *ngFor="let item of products" class="col-md-3">
             <div class="content-product">
               <div class="content-img efectdiv">
-                <img class="card-img-top" src="{{ item.ProductImages[0]?.location ? hostImages + item.ProductImages[0]?.location : 'https://cdn.browshot.com/static/images/not-found.png'}}"
+                <img class="card-img-top" src="{{ item.ProductImages[0]?.location ? hostImages + item.ProductImages[0]?.location : '/assets/images/sin-imagen.gif'}}"
                   alt="Card image cap" (click)="modalCart.open(item)">
               </div>
               <div class="card-body text-center">

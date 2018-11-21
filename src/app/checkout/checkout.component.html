@@ -1,8 +1,7 @@
 <div class="container content-checkout" *ngIf="position == 'checkout'">
   <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt=""
-      width="72" height="72">
-    <h2>Checkout de productos</h2>
+    <img class="d-block mx-auto mb-2 logo-checkout" src="/assets/images/logo.png" alt="">
+    <h2 class="title-checkout">Checkout de productos</h2>
   </div>
 
   <div class="row">
@@ -25,19 +24,19 @@
       </ul>
     </div>
     <div class="col-md-8 order-md-1">
-      <h4 class="mb-3">Datos de pago</h4>
+      <h4 class="mb-3 subtitules">Datos de pago</h4>
       <form class="needs-validation" novalidate="">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nombre</label>
-            <input type="text" class="form-control" id="first_name" #firstName>
+            <input type="text" class="form-control" id="first_name" name="firstName" [(ngModel)]="firstName">
             <div class="invalid-feedback">
               Nombre debe ser válido
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Apellido</label>
-            <input type="text" class="form-control" id="last_name" #lastName>
+            <input type="text" class="form-control" id="last_name" name="lastName" [(ngModel)]="lastName">
             <div class="invalid-feedback">
               Apellido debe ser válido
             </div>
@@ -46,7 +45,7 @@
 
         <div class="mb-3">
           <label for="rut">Rut</label>
-          <input type="text" class="form-control" id="rut" #rut>
+          <input type="text" class="form-control" id="rut" name="rut" [(ngModel)]="rut">
           <div class="invalid-feedback">
             Por favor un rut válido
           </div>
@@ -54,7 +53,7 @@
 
         <div class="mb-3">
           <label for="email">Email <span class="text-muted">(Optional)</span></label>
-          <input type="email" class="form-control" id="mail" #mail placeholder="you@example.com">
+          <input type="email" class="form-control" id="mail" name="mail" [(ngModel)]="mail" placeholder="you@example.com">
           <div class="invalid-feedback">
             Por favor ingrese una dirección de email válida
           </div>
@@ -62,16 +61,17 @@
 
         <hr class="mb-4">
 
-        <h4 class="mb-3">Payment</h4>
+        <h4 class="mb-3 subtitules">Medios de pago</h4>
 
         <div class="d-block my-3">
           <div class="custom-control custom-radio">
-            <input id="kiphu" name="paymentMethod" type="radio" class="custom-control-input" required="">
+            <input id="kiphu" name="paymentMethod" type="radio" class="custom-control-input" required="" checked>
             <label class="custom-control-label" for="kiphu">Kiphu</label>
           </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="makeSale()">Pagar</button>
+        <app-modal-payment [resumeProduct]="resumeProduct" [totalPrice]="totalPrice" [firstName]="firstName" [lastName]="lastName"
+          [rut]="rut" [mail]="mail" (eventSale)="eventSale($event)"></app-modal-payment>
       </form>
     </div>
   </div>
@@ -83,14 +83,27 @@
 
 <div class="content-message" *ngIf="position == 'messageSale'">
   <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt=""
-      width="72" height="72">
-    <h2>Checkout de productos</h2>
+    <div class="container">
+      <img class="d-block mx-auto mb-4 logo-checkout" src="/assets/images/logo.png" alt="" width="72" height="72">
 
-    <h4>{{messageSale}}</h4>
-    
-    <a [routerLink]="[ '/']" class="btn btn-success" *ngIf="statusSale">Volver</a>
+      <img src="/assets/images/thanks.png" alt="">
+      <h4>{{messageSale}}</h4>
 
-    <a class="btn btn-warning" *ngIf="!statusSale" (click)="showCheckout()">Ir a checkout</a>
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="card card-retirement">
+            <div class="card-body">
+              <h5 class="card-title">Código de retiro</h5>
+              <p class="card-text font-weight-light">[ {{retirementCode}} ]</p>
+
+              <a [routerLink]="[ '/']" class="btn btn-outline-success" *ngIf="statusSale">Volver</a>
+
+              <a class="btn btn-outline-warning" *ngIf="!statusSale" (click)="showCheckout()">Ir a checkout</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

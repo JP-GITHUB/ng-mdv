@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="mt-4 mb-4">Listado de productos</h2>
+
+  <app-product-add (reloadDt)="resetDatatables()"></app-product-add>
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover tbl-products">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product name</th>
+        <th>Product description</th>
+        <th>Product school</th>
+        <th>Product gender</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="products?.length != 0">
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.School.name }}</td>
+        <td>{{ product.Gender.description }}</td>
+        <td>
+          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(product.id, product.name, product.description, product.School.id, product.Gender.id )"><img class="img-table" src="/assets/images/pencil.png"></button>
+          <button class="btn btn-md p-0" (click)="modalDelete.open(product.id)"><img class="img-table" src="/assets/images/cancel.png"></button>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="products?.length == 0">
+      <tr>
+        <td colspan="3" class="no-data-available">no hay información para mostrar</td>
+      </tr>
+    <tbody>
+  </table>
+</div>
+
+<app-product-edit #modalEdit (reloadDt)="resetDatatables()"></app-product-edit>
+<app-product-delete #modalDelete (reloadDt)="resetDatatables()"></app-product-delete>

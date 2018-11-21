@@ -1,0 +1,59 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar producto</h4>
+  </div>
+  <div class="modal-body">
+    <form class="registry-form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Colegio</label> <br>
+          <select id="cbx_schools" #cbx_schools class="form-control" formControlName="school" [ngClass]="{ 'is-invalid': submitted && f.school.errors }">
+            <option value='0'>Seleccione un colegio</option>
+            <option *ngFor="let item of schools" [value]="item.id">
+              {{item.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Genero</label> <br>
+          <select id="cbx_gender" #cbx_genders class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+            <option value='0'>Seleccione un genero</option>
+            <option *ngFor="let item of genders" [value]="item.id">
+              {{item.description}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_name">Nombre</label>
+          <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+            placeholder="Nombre">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="input_description">Descripción</label>
+          <input type="text" class="form-control" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+            placeholder="Descripción">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
+          <button type="button" class="btn btn-outline-dark" [disabled]="cbx_schools.value == 0 || cbx_genders.value == 0" (click)="onSubmit()">Guardar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+
+<button class="btn btn-outline-app mb-3" (click)="open(content)">Agregar</button>

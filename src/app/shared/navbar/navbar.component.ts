@@ -43,4 +43,12 @@ export class NavbarComponent implements OnInit {
 
   displayCheckout() {
   }
+
+  goToCart(){
+    if(this.totalItems == 0){
+      return;
+    }
+
+    this.router.navigate(["/carrito"]);
+  }
 }

@@ -1,0 +1,22 @@
+.logo-checkout {
+    -webkit-filter: grayscale(1);
+    filter: invert(1);
+    width: 400px;
+    height: 120px;
+}
+
+.title-checkout {
+    font-weight: 400;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.subtitules {
+    font-weight: 400;
+}
+
+.card-retirement, .btn-outline-success, .btn-outline-warning {
+    border-radius: 0;
+}

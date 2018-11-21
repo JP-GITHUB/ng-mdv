@@ -4,11 +4,11 @@
 }
 
 .box1 {
-    background: url("https://www.guiainfantil.com/uploads/educacion/uniformecole-p.jpg") ;
+    background: url("../../assets/images/GettyImages-534576127.jpg") ;
 }
 
 .box2 {
-    background: url("https://d1r091fxr1qmu2.cloudfront.net/documents/1877067/2168303/original-unifor.jpg");
+    background: url("../../assets/images/GettyImages-866775500.jpg");
 }
 
 .btn-school {
@@ -29,6 +29,7 @@
     top: 50%;
     width: 300px;
     height: 50px;
+    cursor: pointer;
 }
 
 .company-text .custom-mark {

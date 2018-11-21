@@ -22,7 +22,11 @@ import { CatalogueModule } from './catalogue/catalogue.module';
 import { BranchOfficeModule } from './branch-office/branch-office.module'
 import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductModule } from './product/product.module';
 import { RetirementComponent } from './retirement/retirement.component';
+import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
+import { ExistanceModule } from './existance/existance.module';
+
 
 @NgModule({
   declarations: [
@@ -35,11 +39,13 @@ import { RetirementComponent } from './retirement/retirement.component';
     RegistryComponent,
     ShoppingcartComponent,
     CheckoutComponent,
-    RetirementComponent
+    RetirementComponent,
+    ModalPaymentComponent,
   ],
   imports: [
     AppRoutingModule,
     UserModule,
+    ProductModule,
     CatalogueModule,
     HttpClientModule,
     BrowserModule,
@@ -47,6 +53,7 @@ import { RetirementComponent } from './retirement/retirement.component';
     ReactiveFormsModule,
     NgbModule,
     BranchOfficeModule,
+    ExistanceModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {
