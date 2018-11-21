@@ -9,7 +9,8 @@ import { ShoppingcartService } from '../_services/shoppingcart.service';
   styleUrls: ['./modal-payment.component.css']
 })
 export class ModalPaymentComponent implements OnInit {
-  closeResult: string;
+  closeResult: String;
+  errorMessage: String = null;
 
   public externalPayUrl;
 
@@ -29,7 +30,7 @@ export class ModalPaymentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.errorMessage = null;
   }
 
   open(content) {
@@ -71,6 +72,8 @@ export class ModalPaymentComponent implements OnInit {
 
           // data -> payment_id
           this.externalPayUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data['transfer_url']);
+        } else {
+          this.errorMessage = data['msg'];
         }
       }
     );
