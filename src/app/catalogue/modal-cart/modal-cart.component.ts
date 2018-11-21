@@ -77,9 +77,9 @@ export class ModalCartComponent implements OnInit {
       });
     } else {
       this.galleryImages.push({
-        small: '/assets/images/sin-imagen.gif',
-        medium: '/assets/images/sin-imagen.gif',
-        big: '/assets/images/sin-imagen.gif'
+        small: '/assets/images/sin-imagen-medium.gif',
+        medium: '/assets/images/sin-imagen-medium.gif',
+        big: '/assets/images/sin-imagen-medium.gif'
       });
     }
 
