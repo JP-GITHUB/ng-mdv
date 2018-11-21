@@ -9,8 +9,9 @@ import { UserService } from '../_services/user.service';
 })
 export class CheckoutComponent implements OnInit {
   public position = 'checkout';
-  private messageSale: String;
-  private statusSale: boolean;
+  public messageSale: String;
+  public statusSale: boolean; 
+  public retirementCode: String;
 
   public resumeProduct: any;
   public totalPrice: Number;
@@ -53,6 +54,7 @@ export class CheckoutComponent implements OnInit {
     if (dataEvent['status']) {
       console.log(dataEvent['msg']);
       this.messageSale = "Gracias por comprar en Confecciones MDV";
+      this.retirementCode = dataEvent['retirement_code'];
       this.statusSale = dataEvent['status'];
       this.position = 'messageSale';
     }else{
