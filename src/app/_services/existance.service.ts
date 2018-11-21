@@ -37,12 +37,6 @@ export class ExistanceService {
       );
   }
 
-  getExistanceById(userId: number) {
-    return this.http.get(this.url + '/existances/' + userId, {
-      headers: this.getHeaders()
-    });
-  }
-
   add(form: any) {
     return this.http.post(this.url + '/existances', form,{
       headers: this.getHeaders()
@@ -51,12 +45,6 @@ export class ExistanceService {
 
   edit(form: any) {
     return this.http.put(this.url + '/existances', form, {
-      headers: this.getHeaders()
-    });
-  }
-
-  delete(id: Number) {
-    return this.http.delete(this.url + '/existances/' + id, {
       headers: this.getHeaders()
     });
   }

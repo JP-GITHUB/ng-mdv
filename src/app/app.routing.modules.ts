@@ -10,6 +10,7 @@ import { ShoppingcartComponent } from './catalogue/shoppingcart/shoppingcart.com
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RetirementComponent } from './retirement/retirement.component';
 import { ProductComponent } from './product/product.component';
+import { ExistanceComponent } from './existance/existance.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -23,7 +24,8 @@ const routes: Routes = [
     { path: 'carrito', component: ShoppingcartComponent },
     { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
     { path: 'retiro', component: RetirementComponent, canActivate: [AuthGuard] },
-    { path: 'producto', component: ProductComponent, canActivate: [AuthGuard]}
+    { path: 'producto', component: ProductComponent, canActivate: [AuthGuard]},
+    { path: 'existencia', component: ExistanceComponent, canActivate: [AuthGuard]}
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
