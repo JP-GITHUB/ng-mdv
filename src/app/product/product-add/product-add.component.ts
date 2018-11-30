@@ -5,6 +5,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/_services/product.service';
 
 import { SchoolService } from 'src/app/_services/school.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-product-add',
@@ -27,7 +28,8 @@ export class ProductAddComponent implements OnInit {
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private productService: ProductService,
-    private schoolService: SchoolService
+    private schoolService: SchoolService,
+    private notifierService: NotifierService
   ) { }
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class ProductAddComponent implements OnInit {
     });
     this.f.gender.setValue(0);
     this.f.school.setValue(0);
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass:"modal-add-user" }).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-add-user" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -67,7 +69,8 @@ export class ProductAddComponent implements OnInit {
 
   get f() { return this.addForm.controls; }
 
-  onSubmit() {
+  /** Imagenes provienen desde el evento click */
+  onSubmit(productImages) {
     let data;
     this.submitted = true;
 
@@ -82,20 +85,25 @@ export class ProductAddComponent implements OnInit {
       name: this.f.name.value,
       description: this.f.description.value,
       school: this.f.school.value,
-      gender: this.f.gender.value    
+      gender: this.f.gender.value
     }
 
-    console.log(data);
+    const uploadData = new FormData();
+    Array.prototype.forEach.call(productImages.files, function (file) {
+      uploadData.append('images', file);
+    });
 
-    this.productService.add(data).subscribe(
+    uploadData.append('data', JSON.stringify(data));
+
+    this.productService.add(uploadData).subscribe(
       data => {
         if (data.hasOwnProperty('status')) {
-          if(data['status']){
-            console.log(data['status'] ? 'success' : 'error', data['msg']);
+          if (data['status']) {
+            this.notifierService.notify('success', data['msg']);
             this.reloadDt.emit();
             this.addForm.reset();
-          }else{
-            
+          } else {
+            this.notifierService.notify('error', data['msg']);
           }
         } else {
           console.log('error', 'Error al registrar.');
