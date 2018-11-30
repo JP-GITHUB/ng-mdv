@@ -34,6 +34,8 @@
           <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>Opciones</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <a class="dropdown-item" [routerLink]="[ '/usuario']" *ngIf="authService.permissions.indexOf('users') > -1">Usuarios</a>
+            <a class="dropdown-item" [routerLink]="[ '/producto']" *ngIf="authService.permissions.indexOf('users') > -1">Producto</a>
+            <a class="dropdown-item" [routerLink]="[ '/existencia']" *ngIf="authService.permissions.indexOf('users') > -1">Existencia</a>
             <a class="dropdown-item" [routerLink]="[ '/retiro']" *ngIf="authService.permissions.indexOf('retirement') > -1">Retiro</a>
           </div>
         </div>
