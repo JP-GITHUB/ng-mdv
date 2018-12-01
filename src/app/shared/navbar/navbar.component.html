@@ -25,10 +25,12 @@
         <li class="nav-item" *ngIf="route == 'ROOT'">
           <a [ngx-scroll-to]="'#contact'" class="nav-link m-2 menu-item">CONTACTO</a>
         </li>
+        <li class="nav-item" *ngIf="authService.permissions.indexOf('retirement') > -1">
+          <a class="nav-link m-2 menu-item" [routerLink]="[ '/retiro']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> ENTREGA PRODUCTOS</a>
+        </li>
       </ul>
     </div>
-    <div>
-
+    <div *ngIf="authService.permissions?.length > 0">
       <div>
         <div *ngIf="loggedIn" ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>Opciones</button>
@@ -36,7 +38,6 @@
             <a class="dropdown-item" [routerLink]="[ '/usuario']" *ngIf="authService.permissions.indexOf('users') > -1">Usuarios</a>
             <a class="dropdown-item" [routerLink]="[ '/producto']" *ngIf="authService.permissions.indexOf('users') > -1">Producto</a>
             <a class="dropdown-item" [routerLink]="[ '/existencia']" *ngIf="authService.permissions.indexOf('users') > -1">Existencia</a>
-            <a class="dropdown-item" [routerLink]="[ '/retiro']" *ngIf="authService.permissions.indexOf('retirement') > -1">Retiro</a>
           </div>
         </div>
       </div>

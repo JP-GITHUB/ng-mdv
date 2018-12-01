@@ -29,6 +29,14 @@
     color: #3c3f42
 }
 
+.nv-icon-retirement {
+    font-size: 1.3rem;
+}
+
+.dropdown-menu, .btn {
+    border-radius: 0;
+}
+
 @media (max-width: 575.98px) {
     .btn-login,
     .btn-logout {
