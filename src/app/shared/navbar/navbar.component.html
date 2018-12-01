@@ -28,6 +28,9 @@
         <li class="nav-item" *ngIf="authService.permissions.indexOf('RETIREMENTS') != -1">
           <a class="nav-link m-2 menu-item" [routerLink]="[ '/retiro']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> ENTREGA PRODUCTOS</a>
         </li>
+        <li class="nav-item" *ngIf="authService.permissions.indexOf('DEVOLUTION') != -1">
+          <a class="nav-link m-2 menu-item" [routerLink]="[ '/devolucion']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> DEVOLUCIÓN PRODUCTOS</a>
+        </li>
       </ul>
     </div>
     <div *ngIf="authService.permissions?.length > 0">
