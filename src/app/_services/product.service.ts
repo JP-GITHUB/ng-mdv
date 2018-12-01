@@ -48,8 +48,11 @@ export class ProductService {
   }
 
   add(form: any) {
+    let userData = JSON.parse(localStorage.getItem('currentUser'));
+    let headers = new HttpHeaders()
+    .set('Authorization', 'Bearer ' + userData.token);
     return this.http.post(this.url + '/products', form,{
-      headers: this.getHeaders()
+      headers: headers
     });
   }
 

@@ -46,14 +46,25 @@
       </div>
 
       <div class="form-row">
+        <div class="form-group">
+          <label for="image-product">Seleccionar imagen del producto</label>
+          <input type="file" #productImages class="form-control-file" id="image-product" name="pic" accept="image/*"
+            multiple>
+        </div>
+      </div>
+
+      <div class="form-row">
         <div class="form-group col-md-6">
           <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
-          <button type="button" class="btn btn-outline-dark" [disabled]="cbx_schools.value == 0 || cbx_genders.value == 0" (click)="onSubmit()">Guardar</button>
+          <button type="button" class="btn btn-outline-dark" [disabled]="cbx_schools.value == 0 || cbx_genders.value == 0"
+            (click)="onSubmit(productImages)">Guardar</button>
         </div>
       </div>
 
     </form>
   </div>
+
+  <notifier-container></notifier-container>
 </ng-template>
 
 <button class="btn btn-outline-app mb-3" (click)="open(content)">Agregar</button>
