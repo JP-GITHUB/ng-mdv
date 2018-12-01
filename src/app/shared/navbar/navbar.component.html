@@ -8,7 +8,7 @@
 
     <div class="collapse navbar-collapse flex-grow-1 text-right">
       <ul class="navbar-nav ml-auto flex-nowrap">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authService.permissions.indexOf('RETIREMENTS') == -1">
           <a class="nav-link m-2 menu-item nav-active" (click)="goToCart()">
             <i class="fas fa-shopping-cart"></i> {{totalItems}}
           </a>
@@ -25,7 +25,7 @@
         <li class="nav-item" *ngIf="route == 'ROOT'">
           <a [ngx-scroll-to]="'#contact'" class="nav-link m-2 menu-item">CONTACTO</a>
         </li>
-        <li class="nav-item" *ngIf="authService.permissions.indexOf('retirement') > -1">
+        <li class="nav-item" *ngIf="authService.permissions.indexOf('RETIREMENTS') != -1">
           <a class="nav-link m-2 menu-item" [routerLink]="[ '/retiro']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> ENTREGA PRODUCTOS</a>
         </li>
       </ul>
@@ -35,9 +35,9 @@
         <div *ngIf="loggedIn" ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>Opciones</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a class="dropdown-item" [routerLink]="[ '/usuario']" *ngIf="authService.permissions.indexOf('users') > -1">Usuarios</a>
-            <a class="dropdown-item" [routerLink]="[ '/producto']" *ngIf="authService.permissions.indexOf('users') > -1">Producto</a>
-            <a class="dropdown-item" [routerLink]="[ '/existencia']" *ngIf="authService.permissions.indexOf('users') > -1">Existencia</a>
+            <a class="dropdown-item" [routerLink]="[ '/usuario']" *ngIf="authService.permissions.indexOf('USERS') != -1">Usuarios</a>
+            <a class="dropdown-item" [routerLink]="[ '/producto']" *ngIf="authService.permissions.indexOf('PRODUCTS') != -1">Producto</a>
+            <a class="dropdown-item" [routerLink]="[ '/existencia']" *ngIf="authService.permissions.indexOf('EXISTANCES') != -1">Existencia</a>
           </div>
         </div>
       </div>
