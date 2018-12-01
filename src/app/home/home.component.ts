@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public hoverLocation: String = '/assets/images/location1.png';
 
   constructor(
     private navbarService: NavbarService,
@@ -20,5 +21,9 @@ export class HomeComponent implements OnInit {
 
   goCatalogue(id: Number) {
     this.router.navigate(['/catalogo/sucursal/', id]);
+  }
+
+  changeLocationMap(location: String){
+    this.hoverLocation = location;
   }
 }
