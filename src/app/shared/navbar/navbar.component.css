@@ -1,5 +1,6 @@
 .navbar {
     background-color: rgb(247, 31, 68);
+    padding: 0;
 }
 
 .navbar .menu-item {
