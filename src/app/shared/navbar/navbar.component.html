@@ -26,10 +26,10 @@
           <a [ngx-scroll-to]="'#contact'" class="nav-link m-2 menu-item">CONTACTO</a>
         </li>
         <li class="nav-item" *ngIf="authService.permissions.indexOf('RETIREMENTS') != -1">
-          <a class="nav-link m-2 menu-item" [routerLink]="[ '/retiro']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> ENTREGA PRODUCTOS</a>
+          <a class="nav-link m-2 menu-item" [routerLink]="[ '/retiro']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> ENTREGA</a>
         </li>
         <li class="nav-item" *ngIf="authService.permissions.indexOf('DEVOLUTION') != -1">
-          <a class="nav-link m-2 menu-item" [routerLink]="[ '/devolucion']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> DEVOLUCIÓN PRODUCTOS</a>
+          <a class="nav-link m-2 menu-item" [routerLink]="[ '/devolucion']"><i class="fab fa-creative-commons-remix nv-icon-retirement"></i> DEVOLUCIÓN</a>
         </li>
       </ul>
     </div>
