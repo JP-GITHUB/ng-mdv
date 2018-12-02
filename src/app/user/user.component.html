@@ -7,8 +7,9 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
+        <th>nombre</th>
+        <th>apellidos</th>
+        <th>nombre_perfil</th>
         <th></th>
       </tr>
     </thead>
@@ -17,6 +18,7 @@
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.lastname }}</td>
+        <td>{{ user.profile_name }}</td>
         <td>
           <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(user.id, user.name, user.lastname)"><img class="img-table" src="/assets/images/pencil.png"></button>
           <button class="btn btn-md p-0" (click)="modalDelete.open(user.id)"><img class="img-table" src="/assets/images/cancel.png"></button>
