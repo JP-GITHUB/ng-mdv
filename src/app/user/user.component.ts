@@ -10,6 +10,8 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  public profilesPage: any;
+
   @ViewChild(DataTableDirective)
   datatableElement: DataTableDirective;
 
@@ -22,6 +24,15 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     const that = this;
+
+    this.userService.getProfiles().subscribe(
+      obj => {
+        this.profilesPage = obj['data'];
+      },
+      err => {
+        console.log(err);
+      }
+    )
 
     this.dtOptions = {
       pagingType: 'full_numbers',

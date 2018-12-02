@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,6 +13,8 @@ export class UserEditComponent implements OnInit {
   @ViewChild('content') content;
 
   private userId: Number;
+  public userProfileId: Number;
+
   closeResult: string;
 
   objMsg = {
@@ -27,6 +29,7 @@ export class UserEditComponent implements OnInit {
   submitted = false;
 
   @Output() reloadDt: EventEmitter<any> = new EventEmitter();
+  @Input('profilesPage') profilesPage: any;
 
   constructor(
     private modalService: NgbModal,
@@ -54,10 +57,11 @@ export class UserEditComponent implements OnInit {
     this.userService.getUserById(Number(this.userId)).subscribe(
       data => {
         console.log(data);
-        if(data){
+        if (data) {
           this.f.rut.setValue(data['rut'].trim());
           this.f.mail.setValue(data['mail'].trim());
           this.f.telephone.setValue(data['telephone'].trim());
+          this.userProfileId = data['profile_id'];
         }
       },
       error => {

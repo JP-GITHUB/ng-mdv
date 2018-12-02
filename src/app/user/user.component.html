@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="mt-4 mb-4">Listado de usuarios</h2>
 
-  <app-user-add (reloadDt)="resetDatatables()"></app-user-add>
+  <app-user-add [profilesPage]="profilesPage" (reloadDt)="resetDatatables()"></app-user-add>
 
   <table datatable [dtOptions]="dtOptions" class="row-border hover tbl-users">
     <thead>
@@ -33,5 +33,5 @@
   </table>
 </div>
 
-<app-user-edit #modalEdit (reloadDt)="resetDatatables()"></app-user-edit>
+<app-user-edit #modalEdit [profilesPage]="profilesPage" (reloadDt)="resetDatatables()"></app-user-edit>
 <app-user-delete #modalDelete (reloadDt)="resetDatatables()"></app-user-delete>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,6 +18,7 @@ export class UserAddComponent implements OnInit {
   returnUrl: String;
 
   @Output() reloadDt: EventEmitter<any> = new EventEmitter();
+  @Input('profilesPage') profilesPage: any;
 
   constructor(
     private modalService: NgbModal,

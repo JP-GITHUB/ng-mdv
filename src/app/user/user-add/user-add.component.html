@@ -39,6 +39,17 @@
       </div>
 
       <div class="form-row">
+          <div class="form-group">
+            <label for="perfil">Perfil</label>
+            <select class="form-control">
+              <option [value]="undefined" disabled>Seleccionar</option>
+              <option *ngFor="let profile of profilesPage" [value]="profile">{{profile.name}}</option>
+            </select>
+          </div>
+        </div>
+  
+
+      <div class="form-row">
         <div class="form-group col-md-6">
           <label for="password">Password</label>
           <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"

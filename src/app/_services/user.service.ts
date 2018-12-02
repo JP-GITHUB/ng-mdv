@@ -48,6 +48,12 @@ export class UserService {
     });
   }
 
+  getProfiles() {
+    return this.http.get(this.url + '/profiles', {
+      headers: this.getHeaders()
+    });
+  }
+
   registry(form: any) {
     return this.http.post(this.url + '/users/register', form);
   }
