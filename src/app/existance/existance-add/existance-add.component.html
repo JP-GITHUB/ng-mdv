@@ -1,3 +1,87 @@
-<p>
-  existance-add works!
-</p>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Agregar existencia</h4>
+    </div>
+    <div class="modal-body">
+        <form class="registry-form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Colegio</label> <br>
+                    <select id="cbx_schools" (change)="loadProduct()" #cbx_schools class="form-control" formControlName="school" [ngClass]="{ 'is-invalid': submitted && f.school.errors }">
+                        <option value='0'>Seleccione un colegio</option>
+                        <option *ngFor="let item of schools" [value]="item.id">
+                            {{item.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Genero</label> <br>
+                    <select id="cbx_gender" (change)="loadProduct()" #cbx_genders class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                        <option value='0'>Seleccione un genero</option>
+                        <option *ngFor="let item of genders" [value]="item.id">
+                            {{item.description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Talla</label> <br>
+                    <select id="cbx_size" #cbx_sizes class="form-control" formControlName="size" [ngClass]="{ 'is-invalid': submitted && f.size.errors }">
+                        <option value='0'>Seleccione una talla</option>
+                        <option *ngFor="let item of sizes" [value]="item.id">
+                            {{item.description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Producto</label> <br>
+                    <select id="cbx_product" #cbx_product class="form-control" formControlName="product" [ngClass]="{ 'is-invalid': submitted && f.product.errors }">
+                        <option value='0'>Seleccione un producto</option>
+                        <option *ngFor="let item of products" [value]="item.id">                            
+                            {{item.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="input_quantity">Cantidad</label>
+                    <input type="number" #txt_quantity class="form-control" formControlName="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"
+                        placeholder="Cantidad">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="input_price">Precio</label>
+                    <input type="number" #txt_price class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
+                        placeholder="Precio">
+                </div>
+            </div>            
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <button type="button" class="btn btn-outline-dark mr-3" (click)="modal.close('Save click')">Cerrar</button>
+                    <button type="button" class="btn btn-outline-dark" [disabled]="cbx_schools.value == 0 || cbx_genders.value == 0 || cbx_sizes.value == 0 || 
+                    cbx_product.value == 0 || txt_quantity.value == '' || txt_price.value == ''"
+                        (click)="onSubmit()">Guardar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <notifier-container></notifier-container>
+</ng-template>
+
+<button class="btn btn-outline-app mb-3" (click)="open(content)">Agregar</button>

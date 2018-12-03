@@ -39,7 +39,6 @@ export class ExistanceComponent implements OnInit {
       ajax: (dataTablesParameters: any, callback) => {
         this.existanceService.getDatatablesData(dataTablesParameters).subscribe(resp => {
           that.existances = resp.data;
-          console.log(resp.data);
 
           callback({
             recordsTotal: resp.recordsTotal,

@@ -65,7 +65,7 @@ export class ProductEditComponent implements OnInit {
     this.dataForm.name.setValue(name);
     this.dataForm.description.setValue(description);
 
-    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-edit-user" }).result.then((result) => {
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-edit-product" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed`;

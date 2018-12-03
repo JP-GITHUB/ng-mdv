@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="mt-4 mb-4">Listado de productos</h2>
+  <h2 class="mt-4 mb-4">Listado de existencias</h2>
 
   <app-existance-add (reloadDt)="resetDatatables()"></app-existance-add>
 
@@ -20,7 +20,7 @@
         <td>{{ existance.quantity }}</td>
         <td>{{ existance.Size.description }}</td>
         <td>
-          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(existance.Product.name, existance.price, existance.quantity)"><img
+          <button class="btn btn-md p-0 mr-3" (click)="modalEdit.open(existance.Product.id, existance.Size.id, existance.price, existance.quantity)"><img
               class="img-table" src="/assets/images/pencil.png"></button>
         </td>
       </tr>
@@ -34,4 +34,3 @@
 </div>
 
 <app-existance-edit #modalEdit (reloadDt)="resetDatatables()"></app-existance-edit>
-<app-existance-delete #modalDelete (reloadDt)="resetDatatables()"></app-existance-delete>

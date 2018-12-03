@@ -49,4 +49,10 @@ export class ExistanceService {
     });
   }
 
+  getSize(){
+    return this.http.get(this.url + '/existances/sizes',{
+      headers: this.getHeaders()
+    });
+  }
+
 }
