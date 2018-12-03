@@ -6,41 +6,64 @@
         <form class="registry-form" [formGroup]="registryForm" (ngSubmit)="onSubmit()">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="input_name">Nombre</label>
-              <input type="email" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Nombre">
+              <label for="input_name">Nombre*</label>
+              <input type="text" class="form-control" minlength="3" formControlName="name" name="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                placeholder="Nombre">
+              <span *ngIf="submitted && f.name.errors?.required"> Debe ingresar un nombre</span>
+              <span *ngIf="submitted && f.name.errors?.minlength"> El nombre debe contener 3 o mas caracteres</span>
             </div>
             <div class="form-group col-md-6">
-              <label for="input_lastname">Apellido</label>
-              <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" placeholder="Apellido">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="input_rut">Rut</label>
-              <input type="text" class="form-control" formControlName="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }" placeholder="Rut">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="input_email">Email</label>
-              <input type="email" class="form-control" formControlName="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" placeholder="Email">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="input_telephone">Telefono</label>
-              <input type="text" class="form-control" formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" placeholder="Telefono">
+              <label for="input_lastname">Apellido*</label>
+              <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors || validRut}"
+                placeholder="Apellido">
+              <span *ngIf="submitted && f.lastname.errors?.required">Debe ingresar un apellido</span>
+              <span *ngIf="submitted && f.lastname.errors?.minlength"> El apellido debe contener 3 o mas caracteres</span>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password">
+              <label for="input_rut">Rut*</label>
+              <input type="text" class="form-control" pattern="[0-9]{7,8}-[0-9Kk]{1}" formControlName="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors}"
+                placeholder="ejemplo: 17421424-7">
+              <span *ngIf="submitted && f.rut.errors?.required">Debe ingresar un Rut</span>
+              <span *ngIf="submitted && f.rut.errors?.minlength"> El Rut debe contener 8 o mas caracteres</span>
+              <span *ngIf="submitted && f.rut.errors?.pattern"> Ingrese un formato correcto para el rut, Ejemplo: 17421424-7</span>
+              <span *ngIf="submitted && validRut"> El rut ingresado no es valido</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input_email">Email*</label>
+              <input type="email" class="form-control" formControlName="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"
+                placeholder="Email">
+              <span *ngIf="submitted && f.mail.errors?.required">Debe ingresar un email</span>
+              <span *ngIf="submitted && f.mail.errors?.minlength"> El email debe contener 9 o mas caracteres</span>
             </div>
             <div class="form-group col-md-6">
-              <label for="password">Reingresar Password</label>
-              <input type="password" class="form-control" formControlName="repassword" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" placeholder="Reingresar Password">
+              <label for="input_telephone">Telefono*</label>
+              <input type="number" class="form-control" formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }"
+                placeholder="Telefono">
+              <span *ngIf="submitted && f.telephone.errors?.required">Debe ingresar un telefono</span>
+              <span *ngIf="submitted && f.telephone.errors?.minlength"> El telefono debe contener 8 o mas caracteres</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="password">Password*</label>
+              <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                placeholder="Password">
+              <span *ngIf="submitted && f.password.errors?.required">Debe ingresar una contraseña</span>
+              <span *ngIf="submitted && f.password.errors?.minlength"> La contraseña debe tener almenos 8 caracteres</span>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="password">Reingresar Password*</label>
+              <input type="password" class="form-control" formControlName="repassword" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }"
+                placeholder="Reingresar Password">
+              <span *ngIf="submitted && f.repassword.errors?.required">Debe confirmar la contraseña</span>
+              <span *ngIf="submitted && f.repassword.errors?.minlength"> La contraseña debe tener almenos 8 caracteres</span>
             </div>
           </div>
 
@@ -48,6 +71,8 @@
             <button type="submit" class="btn btn-registry mr-2" [disabled]="loading">Enviar</button>
             <a [routerLink]="['/']" class="btn btn-registry">Volver</a>
           </div>
+          <br>
+          <span>Los campos con * son requeridos</span>
         </form>
       </div>
     </div>
