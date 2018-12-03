@@ -32,7 +32,7 @@ export class UserService {
     return this.http
       .post<DataTablesResponse>(
         this.url + '/users/datatables',
-        dataTablesParameters, {}
+        dataTablesParameters, { headers: this.getHeaders() }
       )
   }
 
@@ -59,7 +59,9 @@ export class UserService {
   }
 
   add(form: any) {
-    return this.http.post(this.url + '/users', form);
+    return this.http.post(this.url + '/users', form, {
+      headers: this.getHeaders()
+    });
   }
 
   edit(form: any) {
