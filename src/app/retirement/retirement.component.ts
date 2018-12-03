@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SaleService } from '../_services/sale.service';
 import { NotifierService } from 'angular-notifier';
+import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-retirement',
@@ -15,10 +17,15 @@ export class RetirementComponent implements OnInit {
 
   constructor(
     private saleService: SaleService,
-    private notifierService: NotifierService
+    private notifierService: NotifierService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    if(this.authService.permissions.indexOf('PRODUCTS') == -1){
+      this.router.navigate(['/']);
+    }
   }
 
   getSales(code: String) {

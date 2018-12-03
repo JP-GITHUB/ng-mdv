@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import * as moment from "moment";
 
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   public url: String;
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    private router: Router
+  ) {
     this.url = environment.apiEndPoint;
   }
 
@@ -30,6 +34,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.router.navigate(['/']);
   }
 
   get permissions() {

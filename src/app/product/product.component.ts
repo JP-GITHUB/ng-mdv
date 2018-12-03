@@ -3,6 +3,8 @@ import { DataTableDirective } from 'angular-datatables';
 
 import { Product } from '../_classes/product';
 import { ProductService } from '../_services/product.service';
+import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -17,11 +19,17 @@ export class ProductComponent implements OnInit {
   products: Product[];
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     const that = this;
+
+    if(this.authService.permissions.indexOf('PRODUCTS') == -1){
+      this.router.navigate(['/']);
+    }
 
     this.dtOptions = {
       pagingType: 'full_numbers',

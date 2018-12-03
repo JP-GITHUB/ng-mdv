@@ -3,6 +3,8 @@ import { DataTableDirective } from 'angular-datatables';
 
 import { Existance } from '../_classes/existance';
 import { ExistanceService } from '../_services/existance.service';
+import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-existance',
@@ -17,11 +19,17 @@ export class ExistanceComponent implements OnInit {
   existances: Existance[];
 
   constructor(
-    private existanceService: ExistanceService
+    private existanceService: ExistanceService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     const that = this;
+
+    if(this.authService.permissions.indexOf('EXISTANCES') == -1){
+      this.router.navigate(['/']);
+    }
 
     this.dtOptions = {
       pagingType: 'full_numbers',

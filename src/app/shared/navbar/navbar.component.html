@@ -36,7 +36,7 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="authService.permissions?.length > 0">
+    <div *ngIf="authService.permissions.indexOf('USERS') != -1 || authService.permissions.indexOf('PRODUCTS') != -1 || authService.permissions.indexOf('EXISTANCES') != -1">
       <div>
         <div *ngIf="loggedIn" ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-light" id="dropdownBasic1" ngbDropdownToggle>Opciones</button>

@@ -3,6 +3,8 @@ import { DataTableDirective } from 'angular-datatables';
 
 import { User } from '../_classes/user';
 import { UserService } from '../_services/user.service';
+import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -19,11 +21,17 @@ export class UserComponent implements OnInit {
   users: User[];
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     const that = this;
+
+    if(this.authService.permissions.indexOf('USERS') == -1){
+      this.router.navigate(['/']);
+    }
 
     this.userService.getProfiles().subscribe(
       obj => {
