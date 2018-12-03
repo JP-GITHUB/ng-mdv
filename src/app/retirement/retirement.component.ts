@@ -23,7 +23,7 @@ export class RetirementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.authService.permissions.indexOf('PRODUCTS') == -1) {
+    if (this.authService.permissions.indexOf('RETIREMENTS') == -1) {
       this.router.navigate(['/']);
     }
   }

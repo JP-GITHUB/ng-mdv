@@ -27,7 +27,13 @@ export class SaleService {
   }
 
   getSales(code: String) {
-    return this.http.get(this.url + '/sales/' + code, {
+    return this.http.get(this.url + '/sales/code/' + code, {
+      headers: this.getHeaders()
+    });
+  }
+
+  getSalesByUser(email: String) {
+    return this.http.get(this.url + '/sales/user_email/' + email, {
       headers: this.getHeaders()
     });
   }
