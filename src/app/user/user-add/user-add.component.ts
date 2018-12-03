@@ -33,6 +33,7 @@ export class UserAddComponent implements OnInit {
       rut: ['', Validators.required],
       mail: ['', Validators.required],
       telephone: ['', Validators.required],
+      profile: ['', Validators.required],
       password: ['', Validators.required],
       repassword: ['', Validators.required]
     });
@@ -75,6 +76,7 @@ export class UserAddComponent implements OnInit {
       rut: this.f.rut.value,
       mail: this.f.mail.value,
       telephone: this.f.telephone.value,
+      profile_id: this.f.profile.value,
       password: this.f.password.value,
       repassword: this.f.repassword.value
     }

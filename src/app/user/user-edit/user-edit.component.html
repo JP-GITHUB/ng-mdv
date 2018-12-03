@@ -43,7 +43,7 @@
           <label for="perfil">Perfil</label>
           <select class="form-control">
             <option [value]="undefined" disabled>Seleccionar</option>
-            <option *ngFor="let profile of profilesPage" [value]="profile" [selected]="profile.id == userProfileId">{{profile.name}}</option>
+            <option *ngFor="let profile of profilesPage" [value]="profile.id" [selected]="profile.id == userProfileId">{{profile.name}}</option>
           </select>
         </div>
       </div>
