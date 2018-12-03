@@ -44,6 +44,7 @@ export class UserEditComponent implements OnInit {
       rut: ['', Validators.required],
       mail: ['', Validators.required],
       telephone: ['', Validators.required],
+      profile: ['', Validators.required],
       password: ['', Validators.required],
       repassword: ['', Validators.required]
     });
@@ -56,12 +57,12 @@ export class UserEditComponent implements OnInit {
 
     this.userService.getUserById(Number(this.userId)).subscribe(
       data => {
-        console.log(data);
         if (data) {
           this.f.rut.setValue(data['rut'].trim());
           this.f.mail.setValue(data['mail'].trim());
           this.f.telephone.setValue(data['telephone'].trim());
           this.userProfileId = data['profile_id'];
+          this.f.profile.setValue(data['profile_id']);
         }
       },
       error => {
@@ -70,7 +71,8 @@ export class UserEditComponent implements OnInit {
     )
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-edit-user" }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
+      console.log(`Closed with: ${result}`)
+      this.editForm.reset();
     }, (reason) => {
       this.closeResult = `Dismissed`;
     });
@@ -83,6 +85,7 @@ export class UserEditComponent implements OnInit {
     this.submitted = true;
 
     if (this.editForm.invalid) {
+      console.log(this.editForm)
       console.log("Invalid form");
       return;
     }
@@ -96,6 +99,7 @@ export class UserEditComponent implements OnInit {
       rut: this.f.rut.value,
       mail: this.f.mail.value,
       telephone: this.f.telephone.value,
+      profile_id: this.f.profile.value,
       password: this.f.password.value,
       repassword: this.f.repassword.value
     }
@@ -105,7 +109,6 @@ export class UserEditComponent implements OnInit {
         if (data.hasOwnProperty('status')) {
           if (data['status']) {
             this.reloadDt.emit();
-            this.editForm.reset();
 
             this.showMsg(data['msg'], 'success');
           } else {

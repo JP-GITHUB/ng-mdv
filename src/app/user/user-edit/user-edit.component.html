@@ -39,11 +39,11 @@
       </div>
 
       <div class="form-row">
-        <div class="form-group">
+        <div class="form-group col-md-12">
           <label for="perfil">Perfil</label>
-          <select class="form-control">
+          <select class="form-control" formControlName="profile" [ngClass]="{ 'is-invalid': submitted && f.profile.errors }">
             <option [value]="undefined" disabled>Seleccionar</option>
-            <option *ngFor="let profile of profilesPage" [value]="profile.id" [selected]="profile.id == userProfileId">{{profile.name}}</option>
+            <option *ngFor="let profile of profilesPage" [value]="profile.id">{{profile.name}}</option>
           </select>
         </div>
       </div>
