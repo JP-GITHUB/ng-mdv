@@ -45,7 +45,7 @@ export class RegistryComponent implements OnInit {
       'mail': new FormControl('', [
         Validators.required,
         Validators.minLength(9),
-        Validators.maxLength(100)
+        Validators.maxLength(100),
       ]),
       'telephone': new FormControl('', [
         Validators.required,
@@ -77,7 +77,7 @@ export class RegistryComponent implements OnInit {
     
     rut.value = cuerpo + '-'+ dv
     
-    if(cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false;}
+    if(cuerpo.length < 7) { return false;}
     
     let suma = 0;
     let multiplo = 2;
@@ -101,8 +101,9 @@ export class RegistryComponent implements OnInit {
   onSubmit() {
     let data;
     this.submitted = true;
-    if (this.registryForm.invalid) {
-      this.notifier.notify('error', 'Uno de los campos ingresados no es correcto');
+    if (this.registryForm.invalid) {      
+      this.notifier.notify('error', 'Uno o algunos de los campos ingresados no son correcto');
+      console.log(this.registryForm);
       console.log("Invalid form");
       return;
     }
@@ -114,6 +115,13 @@ export class RegistryComponent implements OnInit {
       return;
     }
 
+    if(this.f.password != this.f.repassword){
+      this.f.repassword.setErrors({"match": true})
+      this.notifier.notify('error', 'Password y Reingresar Password no coinciden');
+      return;
+    }
+
+    
 
     this.loading = true;
 

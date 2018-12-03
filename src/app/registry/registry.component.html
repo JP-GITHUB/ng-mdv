@@ -11,13 +11,15 @@
                 placeholder="Nombre">
               <span *ngIf="submitted && f.name.errors?.required"> Debe ingresar un nombre</span>
               <span *ngIf="submitted && f.name.errors?.minlength"> El nombre debe contener 3 o mas caracteres</span>
+              <span *ngIf="submitted && f.name.errors?.maxLength"> El nombre no debe contener mas de 20 caracteres</span>
             </div>
             <div class="form-group col-md-6">
               <label for="input_lastname">Apellido*</label>
-              <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors || validRut}"
+              <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"
                 placeholder="Apellido">
               <span *ngIf="submitted && f.lastname.errors?.required">Debe ingresar un apellido</span>
               <span *ngIf="submitted && f.lastname.errors?.minlength"> El apellido debe contener 3 o mas caracteres</span>
+              <span *ngIf="submitted && f.lastname.errors?.maxLength"> El apellido no debe contener mas de 20 caracteres</span>
             </div>
           </div>
 
@@ -36,10 +38,12 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="input_email">Email*</label>
-              <input type="email" class="form-control" formControlName="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"
+              <input type="email" class="form-control" required email formControlName="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"
                 placeholder="Email">
               <span *ngIf="submitted && f.mail.errors?.required">Debe ingresar un email</span>
               <span *ngIf="submitted && f.mail.errors?.minlength"> El email debe contener 9 o mas caracteres</span>
+              <span *ngIf="submitted && f.mail.errors?.maxlength"> El email no debe contener mas de 100 caracteres</span>
+              <span *ngIf="submitted && f.mail.errors?.email"> El email ingresado no es valido</span>
             </div>
             <div class="form-group col-md-6">
               <label for="input_telephone">Telefono*</label>
@@ -47,23 +51,27 @@
                 placeholder="Telefono">
               <span *ngIf="submitted && f.telephone.errors?.required">Debe ingresar un telefono</span>
               <span *ngIf="submitted && f.telephone.errors?.minlength"> El telefono debe contener 8 o mas caracteres</span>
+              <span *ngIf="submitted && f.telephone.errors?.maxlength"> El telefono no debe contener mas de 14 caracteres</span>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="password">Password*</label>
+              <label for="password">Contraseña*</label>
               <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                 placeholder="Password">
               <span *ngIf="submitted && f.password.errors?.required">Debe ingresar una contraseña</span>
               <span *ngIf="submitted && f.password.errors?.minlength"> La contraseña debe tener almenos 8 caracteres</span>
+              <span *ngIf="submitted && f.password.errors?.maxlength"> La contraseña no debe contener mas de 20 caracteres</span>
             </div>
             <div class="form-group col-md-6">
-              <label for="password">Reingresar Password*</label>
+              <label for="password">Reingresar contraseña*</label>
               <input type="password" class="form-control" formControlName="repassword" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }"
                 placeholder="Reingresar Password">
               <span *ngIf="submitted && f.repassword.errors?.required">Debe confirmar la contraseña</span>
               <span *ngIf="submitted && f.repassword.errors?.minlength"> La contraseña debe tener almenos 8 caracteres</span>
+              <span *ngIf="submitted && f.repassword.errors?.maxlength"> La contraseña no debe contener mas de 20 caracteres</span>
+              <span *ngIf="submitted && f.repassword.errors?.match">No coincide con la contraseña</span>
             </div>
           </div>
 
