@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserService } from 'src/app/_services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-edit',
@@ -34,7 +35,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -66,7 +68,10 @@ export class UserEditComponent implements OnInit {
         }
       },
       error => {
-
+        if(error.status === 401){
+          console.log(error);
+          this.router.navigate(['/']);
+        }
       }
     )
 
@@ -121,6 +126,11 @@ export class UserEditComponent implements OnInit {
         this.submitted = false;
       },
       error => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/']);
+        }
+
         this.loading = false;
         console.log('error', error);
         this.showMsg('Error al modificar.', 'error');

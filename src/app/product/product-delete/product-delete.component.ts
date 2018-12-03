@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProductService } from 'src/app/_services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-delete',
@@ -18,6 +19,7 @@ export class ProductDeleteComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
+    private router: Router,
     private productService: ProductService
   ) { }
 
@@ -60,6 +62,11 @@ export class ProductDeleteComponent implements OnInit {
         }
       },
       error => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/']);
+        }
+
         console.log('error', 'Error al eliminar.');
       }
     )

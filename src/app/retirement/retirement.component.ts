@@ -23,7 +23,7 @@ export class RetirementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.authService.permissions.indexOf('PRODUCTS') == -1){
+    if (this.authService.permissions.indexOf('PRODUCTS') == -1) {
       this.router.navigate(['/']);
     }
   }
@@ -50,6 +50,12 @@ export class RetirementComponent implements OnInit {
           }
         }
 
+      },
+      (error) => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/']);
+        }
       }
     );
   }

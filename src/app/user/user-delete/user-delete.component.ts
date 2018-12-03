@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserService } from 'src/app/_services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-delete',
@@ -18,7 +19,8 @@ export class UserDeleteComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() { }
@@ -59,6 +61,11 @@ export class UserDeleteComponent implements OnInit {
         }
       },
       error => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/']);
+        }
+
         console.log('error', 'Error al eliminar.');
       }
     )

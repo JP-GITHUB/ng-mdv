@@ -5,6 +5,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/_services/product.service';
 
 import { SchoolService } from 'src/app/_services/school.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-edit',
@@ -34,6 +35,7 @@ export class ProductEditComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
+    private router: Router,
     private productService: ProductService,
     private schoolService: SchoolService
   ) { }
@@ -107,6 +109,11 @@ export class ProductEditComponent implements OnInit {
         this.submitted = false;
       },
       error => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/']);
+        }
+
         this.loading = false;
         console.log('error', error);
         this.showMsg('Error al modificar.', 'error');

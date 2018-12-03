@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/_services/product.service';
 
 import { SchoolService } from 'src/app/_services/school.service';
 import { NotifierService } from 'angular-notifier';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -29,7 +30,8 @@ export class ProductAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private schoolService: SchoolService,
-    private notifierService: NotifierService
+    private notifierService: NotifierService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -111,6 +113,11 @@ export class ProductAddComponent implements OnInit {
         this.submitted = false;
       },
       error => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/']);
+        }
+
         this.loading = false;
         console.log('error', 'Error al registrar.');
       }

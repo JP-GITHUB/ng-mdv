@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     const that = this;
 
-    if(this.authService.permissions.indexOf('PRODUCTS') == -1){
+    if (this.authService.permissions.indexOf('PRODUCTS') == -1) {
       this.router.navigate(['/']);
     }
 
@@ -37,15 +37,22 @@ export class ProductComponent implements OnInit {
       serverSide: true,
       processing: true,
       ajax: (dataTablesParameters: any, callback) => {
-        this.productService.getDatatablesData(dataTablesParameters).subscribe(resp => {
-          that.products = resp.data.filter( data => data.status == true);
+        this.productService.getDatatablesData(dataTablesParameters).subscribe(
+          resp => {
+            that.products = resp.data.filter(data => data.status == true);
 
-          callback({
-            recordsTotal: resp.recordsTotal,
-            recordsFiltered: resp.recordsFiltered,
-            data: []
+            callback({
+              recordsTotal: resp.recordsTotal,
+              recordsFiltered: resp.recordsFiltered,
+              data: []
+            });
+          },
+          error => {
+            if (error.status === 401) {
+              console.log(error);
+              this.router.navigate(['/']);
+            }
           });
-        });
       },
       columns: [{ data: 'id' }, { data: 'name', title: 'nombre' }, { data: 'description', title: 'descripción' },
       { data: 'School.name', title: 'colegio' }, { data: 'Gender.description', title: 'genero' }, { title: 'Acciones', width: '15%' }]
@@ -53,7 +60,7 @@ export class ProductComponent implements OnInit {
   }
 
   resetDatatables() {
-    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => { 
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.draw();
     });
   }

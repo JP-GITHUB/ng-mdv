@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserService } from 'src/app/_services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-add',
@@ -23,6 +24,7 @@ export class UserAddComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
+    private router: Router,
     private userService: UserService
   ) { }
 
@@ -40,7 +42,7 @@ export class UserAddComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass:"modal-add-user" }).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-add-user" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -84,12 +86,12 @@ export class UserAddComponent implements OnInit {
     this.userService.add(data).subscribe(
       data => {
         if (data.hasOwnProperty('status')) {
-          if(data['status']){
+          if (data['status']) {
             console.log(data['status'] ? 'success' : 'error', data['msg']);
             this.reloadDt.emit();
             this.addForm.reset();
-          }else{
-            
+          } else {
+
           }
         } else {
           console.log('error', 'Error al registrar.');
@@ -97,6 +99,11 @@ export class UserAddComponent implements OnInit {
         this.submitted = false;
       },
       error => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/']);
+        }
+
         this.loading = false;
         console.log('error', 'Error al registrar.');
       }
