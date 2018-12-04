@@ -27,7 +27,7 @@ export class ExistanceComponent implements OnInit {
   ngOnInit(): void {
     const that = this;
 
-    if(this.authService.permissions.indexOf('EXISTANCES') == -1){
+    if (this.authService.permissions.indexOf('EXISTANCES') == -1) {
       this.router.navigate(['/']);
     }
 
@@ -47,13 +47,18 @@ export class ExistanceComponent implements OnInit {
           });
         });
       },
-      columns: [{ data: 'Product.name', title: 'Producto' }, { data: 'price', title: 'Precio' }, { data: 'quantity', title: 'Cantidad' },
-      { data: 'Size.description', title: 'Talla' }, { title: 'Acciones', width: '15%' }]
+      columns: [
+        { data: 'Product.name', title: 'Producto' },
+        { data: 'price', title: 'Precio', orderable: false },
+        { data: 'quantity', title: 'Cantidad', orderable: false },
+        { data: 'Size.description', title: 'Talla' },
+        { title: 'Acciones', width: '15%', orderable: false }
+      ]
     };
   }
 
   resetDatatables() {
-    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => { 
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.draw();
     });
   }
