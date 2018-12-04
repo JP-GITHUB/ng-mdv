@@ -68,7 +68,6 @@ export class RegistryComponent implements OnInit {
   get f() { return this.registryForm.controls;}
 
   checkRut(rut) {
-
     var valor = rut.value.replace('.','');
     valor = valor.replace('-','');
     
@@ -115,13 +114,11 @@ export class RegistryComponent implements OnInit {
       return;
     }
 
-    if(this.f.password != this.f.repassword){
+    if(this.f.password.value != this.f.repassword.value){
       this.f.repassword.setErrors({"match": true})
       this.notifier.notify('error', 'Las Password ingresadas no coinciden.');
       return;
     }
-
-    
 
     this.loading = true;
 
