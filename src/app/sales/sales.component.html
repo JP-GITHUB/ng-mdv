@@ -4,7 +4,7 @@
       <div class="mt-5 mb-3">
         <div class="form-inline">
           <h2 class="mb-4">Ventas de Clientes</h2>
-          <label class="sr-only" for="input_search">Busqueda</label>
+          <label class="sr-only" for="input_search">Búsqueda</label>
           <div class="input-group mb-2 mr-sm-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fas fa-search"></i></div>
@@ -24,13 +24,13 @@
 
         <div class="card mb-3" *ngFor="let item of sale">
           <div class="card-header">
-            Identificador de Venta: {{item.code}}
+            Identificador de Venta: {{ item.payment_id }} | <span class="badge" [ngClass]="{'badge-success': item.status, 'badge-danger': !item.status}">{{ item.status ? 'Vigente' : 'Anulada' }}</span>
           </div>
           <div class="card-body">
-            <p class="card-text">Fecha de la venta: {{item.created_at | date:'short'}}</p>
+            <p class="card-text">Fecha de la venta: {{ item.created_at | date:'short' }}</p>
             <p class="card-text">Estado entrega:
-              <span class="badge badge-success">{{item.delivered ? 'Entregado' : 'Pendiente'}}</span>
-            </p>            
+              <span class="badge badge-success">{{ item.delivered ? 'Entregado' : 'Pendiente' }}</span>
+            </p>
             <a class="btn btn-primary" (click)="modalSaleDetail.open(name, lastName, item)">Ver detalle</a>
           </div>
         </div>

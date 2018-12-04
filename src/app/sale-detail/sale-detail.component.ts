@@ -38,7 +38,7 @@ export class SaleDetailComponent {
   cancelSale(saleId) {
     this.saleService.cancelSale(saleId).subscribe(
       data => {
-
+        console.log(data);
       },
       error => {
 

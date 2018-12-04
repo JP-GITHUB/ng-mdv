@@ -45,7 +45,7 @@ export class SaleService {
   }
 
   cancelSale(saleId) {
-    return this.http.post(this.url + '/sales/cancel', { saleId: saleId }, {
+    return this.http.post(this.url + '/sales/cancel', { sale_id: saleId }, {
       headers: this.getHeaders()
     });
   }
