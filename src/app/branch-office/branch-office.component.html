@@ -6,9 +6,9 @@
   <table datatable [dtOptions]="dtOptions" class="row-border hover tbl-users">
     <thead>
       <tr>
-        <th>NAME</th>
-        <th>LOCATION</th>
-        <th>TELEPHONE</th>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+        <th>Teléfono</th>
         <th></th>
       </tr>
     </thead>
@@ -25,7 +25,7 @@
     </tbody>
     <tbody *ngIf="branchOffices?.length == 0">
       <tr>
-        <td colspan="3" class="no-data-available">No data!</td>
+        <td colspan="3" class="no-data-available">¡No hay información!</td>
       </tr>
     <tbody>
   </table>

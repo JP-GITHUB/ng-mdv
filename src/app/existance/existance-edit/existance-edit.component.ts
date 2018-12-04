@@ -16,7 +16,7 @@ export class ExistanceEditComponent implements OnInit {
 
   closeResult: string;
   editForm: FormGroup;
-  loading = false; //Utilizar para deshabilitar el boton de guardar, antySpam best choice award
+  loading = false; //Utilizar para deshabilitar el boton de guardar.
   submitted = false;
   returnUrl: String;
   private productId: number;

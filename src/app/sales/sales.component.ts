@@ -26,7 +26,7 @@ export class SalesComponent implements OnInit {
 
   getSales(user_email: String) {
     if (user_email.length < 4) {
-      this.notifierService.notify('warning', 'La busqueda debe ser minimo de 4 caracteres.');
+      this.notifierService.notify('warning', 'La búsqueda debe contener al menos 4 caracteres.');
       return;
     }
 

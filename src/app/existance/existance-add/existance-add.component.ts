@@ -19,7 +19,7 @@ export class ExistanceAddComponent implements OnInit {
 
   closeResult: string;
   addForm: FormGroup;
-  loading = false; //Utilizar para deshabilitar el boton de guardar, antySpam best choice award
+  loading = false; //Utilizar para deshabilitar el boton de guardar.
   submitted = false;
   returnUrl: String;
   private schools: any;

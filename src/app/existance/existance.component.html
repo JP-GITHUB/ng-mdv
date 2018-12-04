@@ -6,10 +6,10 @@
   <table datatable [dtOptions]="dtOptions" class="row-border hover tbl-products">
     <thead>
       <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Product size</th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Talla</th>
         <th></th>
       </tr>
     </thead>
@@ -27,7 +27,7 @@
     </tbody>
     <tbody *ngIf="existances?.length == 0">
       <tr>
-        <td colspan="3" class="no-data-available">no hay información para mostrar</td>
+        <td colspan="3" class="no-data-available">No hay información para mostrar.</td>
       </tr>
     <tbody>
   </table>

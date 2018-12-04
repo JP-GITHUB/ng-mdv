@@ -70,9 +70,9 @@ export class UserComponent implements OnInit {
       },
       columns: [
         { data: 'id' },
-        { data: 'name', title: 'nombre' },
-        { data: 'lastname', title: 'apellidos' },
-        { data: 'profile_name', title: 'nombre perfil' },
+        { data: 'name', title: 'Nombre' },
+        { data: 'lastname', title: 'Apellidos' },
+        { data: 'profile_name', title: 'Perfil' },
         { title: 'Acciones', width: '15%' }
       ]
     };

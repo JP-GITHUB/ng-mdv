@@ -30,7 +30,7 @@ export class RetirementComponent implements OnInit {
 
   getSales(code: String) {
     if (code.length < 4) {
-      this.notifierService.notify('warning', 'La busqueda debe ser minimo de 4 caracteres.');
+      this.notifierService.notify('warning', 'La búsqueda debe contener mínimo 4 caracteres.');
       return;
     }
 

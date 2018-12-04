@@ -39,7 +39,7 @@ export class BranchOfficeComponent implements OnInit {
           });
         });
       },
-      columns: [{ data: 'name', title: 'Nombre' }, { data: 'location', title: 'Ubicación' }, { data: 'telephone', title: 'Telefono'}, { title: 'Acciones', width: '15%' }]
+      columns: [{ data: 'name', title: 'Nombre' }, { data: 'location', title: 'Ubicación' }, { data: 'telephone', title: 'Teléfono'}, { title: 'Acciones', width: '15%' }]
     };
   }
   
