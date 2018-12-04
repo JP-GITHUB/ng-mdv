@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mt-5 mb-3">
+        <div class="form-inline">
+          <h2 class="mb-4">Tus compras</h2>
+        </div>
+      </div>
+
+      <div *ngIf="sale">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <h4>Nombre Cliente : {{name + ' ' + lastName}}</h4>
+          </div>
+        </div>
+
+        <div class="card mb-3" *ngFor="let item of (saleObs | async)">
+          <div class="card-header">
+            Identificador de Venta: {{ item.payment_id }} | <span class="badge" [ngClass]="{'badge-success': item.status, 'badge-danger': !item.status}">{{
+              item.status ? 'Vigente' : 'Anulada' }}</span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Fecha de la venta: {{ item.created_at | date:'short' }}</p>
+            <p class="card-text">Estado de la entrega:
+              <span class="badge badge-success">{{ item.delivered ? 'Entregado' : 'Pendiente' }}</span>
+            </p>
+            <a class="btn btn-primary" (click)="modalSaleDetail.open(name, lastName, item)" [class.disabled]="!item.status ? true: null">Ver
+              detalle</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-sale-detail #modalSaleDetail [client]="true" (eventCancel)="eventCancel($event)"></app-sale-detail>
+<notifier-container></notifier-container>

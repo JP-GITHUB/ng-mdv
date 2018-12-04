@@ -67,7 +67,7 @@
     </div>
 
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer" *ngIf="!client">
     <button type="button" class="btn btn-outline-dark" (click)="cancelSale(sale.id)">Anular venta</button>
   </div>
 </ng-template>

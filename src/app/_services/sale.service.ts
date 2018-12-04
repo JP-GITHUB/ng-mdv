@@ -32,6 +32,18 @@ export class SaleService {
     });
   }
 
+  getPurchasesByUser(email: String) {
+    return this.http.get(this.url + '/purchases/user_email/' + email, {
+      headers: this.getHeaders()
+    });
+  }
+
+  getPurchases(code: String) {
+    return this.http.get(this.url + '/purchases/code/' + code, {
+      headers: this.getHeaders()
+    });
+  }
+
   getSalesByUser(email: String) {
     return this.http.get(this.url + '/sales/user_email/' + email, {
       headers: this.getHeaders()

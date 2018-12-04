@@ -12,6 +12,7 @@ import { RetirementComponent } from './retirement/retirement.component';
 import { ProductComponent } from './product/product.component';
 import { ExistanceComponent } from './existance/existance.component';
 import { SalesComponent } from './sales/sales.component';
+import { PurchaseComponent } from './purchase/purchase.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: 'retiro', component: RetirementComponent, canActivate: [AuthGuard] },
     { path: 'producto', component: ProductComponent, canActivate: [AuthGuard]},
     { path: 'existencia', component: ExistanceComponent, canActivate: [AuthGuard]},
-    { path: 'ventas', component: SalesComponent, canActivate: [AuthGuard]}
+    { path: 'ventas', component: SalesComponent, canActivate: [AuthGuard]},
+    { path: 'compras', component: PurchaseComponent, canActivate: [AuthGuard]}
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

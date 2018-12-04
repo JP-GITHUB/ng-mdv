@@ -1,4 +1,4 @@
-import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SaleService } from '../_services/sale.service';
 
@@ -15,7 +15,8 @@ export class SaleDetailComponent {
   public sale: any;
   public products: any;
 
-  @Output() eventCancel:EventEmitter<Boolean>  = new EventEmitter();
+  @Output() eventCancel: EventEmitter<Boolean> = new EventEmitter();
+  @Input('client') client: any;
 
   constructor(
     private modalService: NgbModal,
@@ -27,7 +28,11 @@ export class SaleDetailComponent {
     this.clientLastname = clientLastname;
     this.sale = sale;
 
-    this.products = this.saleService.getSales(this.sale.code);
+    if (this.client) {
+      this.products = this.saleService.getPurchases(this.sale.code);
+    } else {
+      this.products = this.saleService.getSales(this.sale.code);
+    }
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title', windowClass: "modal-sale-detail" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
