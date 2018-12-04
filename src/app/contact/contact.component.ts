@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit {
   send(): void {
 
     if(this.contactForm.invalid){
-      console.log("Se muricio!");
+      console.log("Error al enviar el formulario.");
       return;
     }
     

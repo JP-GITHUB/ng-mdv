@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Agregar sucursal</h4>
+    <h4 class="modal-title" id="modal-basic-title">Agregar Sucursal</h4>
   </div>
   <div class="modal-body">
     <form class="registry-form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
@@ -23,7 +23,7 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="input_telephone">Telefono</label>
+          <label for="input_telephone">Teléfono</label>
           <input type="number" class="form-control" formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"
             placeholder="Telefono">
         </div>

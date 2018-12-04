@@ -51,7 +51,7 @@ export class ProductDeleteComponent implements OnInit {
       data => {
         if (data.hasOwnProperty('status')) {
           if (data['status']) {
-            alert("El producto fue deshabilitado");
+            alert("El producto fue deshabilitado.");
             this.modalService.dismissAll();
             this.reloadDt.emit();
           } else {

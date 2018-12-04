@@ -4,7 +4,7 @@
       <div class="content-list d-none d-sm-block">
         <h3 class="mb-4 display-4">Colegios</h3>
         <ul class="list-group list-group-flush">
-          <li *ngIf="schools.length == 0">Sin colegios para mostrar</li>
+          <li *ngIf="schools.length == 0">Sin colegios para mostrar.</li>
           <li class="list-group-item" *ngFor="let item of schools" [ngClass]="{'active': activeElementSchool == item}" (click)="changeSchool(item);">
             {{item.name}}
           </li>

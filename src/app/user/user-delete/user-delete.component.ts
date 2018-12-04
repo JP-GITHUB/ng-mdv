@@ -50,7 +50,7 @@ export class UserDeleteComponent implements OnInit {
       data => {
         if (data.hasOwnProperty('status')) {
           if (data['status']) {
-            alert("El usuario fue deshabilitado");
+            alert("El usuario fue deshabilitado.");
             this.modalService.dismissAll();
             this.reloadDt.emit();
           } else {

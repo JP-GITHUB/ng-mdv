@@ -19,9 +19,9 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label>Genero</label> <br>
+          <label>Género</label> <br>
           <select id="cbx_gender" #cbx_genders class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
-            <option value='0'>Seleccione un genero</option>
+            <option value='0'>Seleccione un género</option>
             <option *ngFor="let item of genders" [value]="item.id">
               {{item.description}}
             </option>

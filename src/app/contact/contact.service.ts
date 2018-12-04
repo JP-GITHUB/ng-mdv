@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ContactService {
-  contactUrl = 'Colocar aqui la api cuando entienda esta shit';
+  contactUrl = '';
 
   constructor(
     private http: HttpClient,

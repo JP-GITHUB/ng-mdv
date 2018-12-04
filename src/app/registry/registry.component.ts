@@ -102,7 +102,7 @@ export class RegistryComponent implements OnInit {
     let data;
     this.submitted = true;
     if (this.registryForm.invalid) {      
-      this.notifier.notify('error', 'Uno o algunos de los campos ingresados no son correcto');
+      this.notifier.notify('error', 'Uno o algunos de los campos ingresados no son correctos');
       console.log(this.registryForm);
       console.log("Invalid form");
       return;
@@ -111,13 +111,13 @@ export class RegistryComponent implements OnInit {
     if(!this.checkRut(this.f.rut)){
       this.validRut = true;
       this.f.rut.setErrors({"invalidRut": true})
-      this.notifier.notify('error', 'El rut ingresado no es valido');
+      this.notifier.notify('error', 'El rut ingresado no es válido');
       return;
     }
 
     if(this.f.password != this.f.repassword){
       this.f.repassword.setErrors({"match": true})
-      this.notifier.notify('error', 'Password y Reingresar Password no coinciden');
+      this.notifier.notify('error', 'Las Password ingresadas no coinciden.');
       return;
     }
 

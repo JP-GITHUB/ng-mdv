@@ -54,8 +54,8 @@ export class ProductComponent implements OnInit {
             }
           });
       },
-      columns: [{ data: 'id' }, { data: 'name', title: 'nombre' }, { data: 'description', title: 'descripción' },
-      { data: 'School.name', title: 'colegio' }, { data: 'Gender.description', title: 'genero' }, { title: 'Acciones', width: '15%' }]
+      columns: [{ data: 'id' }, { data: 'name', title: 'Nombre' }, { data: 'description', title: 'Descripción' },
+      { data: 'School.name', title: 'Colegio' }, { data: 'Gender.description', title: 'Género' }, { title: 'Acciones', width: '15%' }]
     };
   }
 
