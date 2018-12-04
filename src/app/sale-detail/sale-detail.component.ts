@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SaleService } from '../_services/sale.service';
 
@@ -13,8 +12,10 @@ export class SaleDetailComponent {
   closeResult: string;
   public clientName: String;
   public clientLastname;
-  public sale: any
+  public sale: any;
   public products: any;
+
+  @Output() eventCancel:EventEmitter<Boolean>  = new EventEmitter();
 
   constructor(
     private modalService: NgbModal,
@@ -37,8 +38,12 @@ export class SaleDetailComponent {
 
   cancelSale(saleId) {
     this.saleService.cancelSale(saleId).subscribe(
-      data => {
-        console.log(data);
+      result => {
+        if (result['status']) {
+          this.eventCancel.emit(true);
+        } else {
+          this.eventCancel.emit(false);
+        }
       },
       error => {
 

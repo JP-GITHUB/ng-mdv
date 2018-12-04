@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <div class="card mb-3" *ngFor="let item of sale">
+        <div class="card mb-3" *ngFor="let item of (saleObs | async)">
           <div class="card-header">
             Identificador de Venta: {{ item.payment_id }} | <span class="badge" [ngClass]="{'badge-success': item.status, 'badge-danger': !item.status}">{{ item.status ? 'Vigente' : 'Anulada' }}</span>
           </div>
@@ -31,7 +31,7 @@
             <p class="card-text">Estado entrega:
               <span class="badge badge-success">{{ item.delivered ? 'Entregado' : 'Pendiente' }}</span>
             </p>
-            <a class="btn btn-primary" (click)="modalSaleDetail.open(name, lastName, item)">Ver detalle</a>
+            <a class="btn btn-primary" (click)="modalSaleDetail.open(name, lastName, item)" [class.disabled]="!item.status ? true: null">Ver detalle</a>
           </div>
         </div>
       </div>
@@ -39,5 +39,5 @@
   </div>
 </div>
 
-<app-sale-detail #modalSaleDetail></app-sale-detail>
+<app-sale-detail #modalSaleDetail (eventCancel)="eventCancel($event)"></app-sale-detail>
 <notifier-container></notifier-container>

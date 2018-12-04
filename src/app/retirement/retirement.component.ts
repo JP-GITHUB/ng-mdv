@@ -37,19 +37,22 @@ export class RetirementComponent implements OnInit {
     this.currentCode = code;
     this.saleService.getSales(code).subscribe(
       (data) => {
-        if (data['delivered']) {
-          this.statusBtnRetirement = true;
-          this.notifierService.notify('warning', 'La venta ya ha sido entregada anteriormente.');
-        } else {
-          if (data['payment_status'] != "1") {
+        if (data) {
+          if (data['delivered']) {
             this.statusBtnRetirement = true;
-            this.notifierService.notify('warning', 'El producto no puede ser entregado. ' + (data['payment_status'] == '0' ? '[No pago]' : ''));
+            this.notifierService.notify('warning', 'La venta ya ha sido entregada anteriormente.');
           } else {
-            this.statusBtnRetirement = false;
-            this.sale = data;
+            if (data['payment_status'] != "1") {
+              this.statusBtnRetirement = true;
+              this.notifierService.notify('warning', 'El producto no puede ser entregado. ' + (data['payment_status'] == '0' ? '[No pago]' : ''));
+            } else {
+              this.statusBtnRetirement = false;
+              this.sale = data;
+            }
           }
+        } else {
+          this.notifierService.notify('error', 'No se pudo encontrar venta.')
         }
-
       },
       (error) => {
         if (error.status === 401) {
