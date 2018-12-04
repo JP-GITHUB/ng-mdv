@@ -16,7 +16,7 @@ export class PurchaseComponent implements OnInit {
   public lastName: String;
   public userEmail: String;
 
-  public sale: any;
+  public sale;
   public saleObs: Observable<any>;
 
   constructor(
@@ -27,7 +27,12 @@ export class PurchaseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getSales('asd@mail.cl');
+    let userData = this.authService.infoAuth();
+    if (userData) {
+      this.getSales(userData.mail);
+    } else {
+      this.sale = false;
+    }
   }
 
   getSales(userEmail: String) {

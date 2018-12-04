@@ -7,7 +7,12 @@
         </div>
       </div>
 
-      <div *ngIf="sale">
+      <div *ngIf="(saleObs | async)?.length==0">
+        <img src="assets/images/empty_cart.png" class="img-empty-cart" alt="">
+      </div>
+
+
+      <div *ngIf="(saleObs | async)?.length > 0">
         <div class="row">
           <div class="col-md-12 mb-3">
             <h4>Nombre Cliente : {{name + ' ' + lastName}}</h4>

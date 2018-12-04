@@ -32,6 +32,16 @@ export class AuthService {
       }));
   }
 
+  infoAuth() {
+    let dataUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (dataUser) {
+      return dataUser.user_data;
+    } else {
+      return null;
+    }
+
+  }
+
   logout() {
     localStorage.removeItem('currentUser');
     this.router.navigate(['/']);
