@@ -43,7 +43,11 @@
     max-width: 900px;
 }
 
-.modal-payment .modal-dialog{
+.modal-payment .modal-dialog {
+    max-width: 80%;
+}
+
+.modal-sale-detail .modal-dialog {
     max-width: 80%;
 }
 

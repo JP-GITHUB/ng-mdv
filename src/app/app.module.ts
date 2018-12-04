@@ -27,6 +27,7 @@ import { RetirementComponent } from './retirement/retirement.component';
 import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
 import { ExistanceModule } from './existance/existance.module';
 import { SalesComponent } from './sales/sales.component';
+import { SaleDetailComponent } from './sale-detail/sale-detail.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { SalesComponent } from './sales/sales.component';
     RetirementComponent,
     ModalPaymentComponent,
     SalesComponent,
+    SaleDetailComponent,
   ],
   imports: [
     AppRoutingModule,

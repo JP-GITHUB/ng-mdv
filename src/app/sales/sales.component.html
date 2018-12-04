@@ -30,8 +30,8 @@
             <p class="card-text">Fecha de la venta: {{item.created_at | date:'short'}}</p>
             <p class="card-text">Estado entrega:
               <span class="badge badge-success">{{item.delivered ? 'Entregado' : 'Pendiente'}}</span>
-            </p>
-            <a href="#" class="btn btn-primary">Ver detalle</a>
+            </p>            
+            <a class="btn btn-primary" (click)="modalSaleDetail.open(name, lastName, item)">Ver detalle</a>
           </div>
         </div>
       </div>
@@ -39,4 +39,5 @@
   </div>
 </div>
 
+<app-sale-detail #modalSaleDetail></app-sale-detail>
 <notifier-container></notifier-container>

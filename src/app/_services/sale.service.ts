@@ -43,4 +43,11 @@ export class SaleService {
       headers: this.getHeaders()
     });
   }
+
+  cancelSale(saleId) {
+    return this.http.post(this.url + '/sales/cancel', { saleId: saleId }, {
+      headers: this.getHeaders()
+    });
+  }
+
 }
